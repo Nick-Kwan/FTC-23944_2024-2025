@@ -15,20 +15,18 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.arcrobotics.ftclib.command.Command;
 
 
-import org.firstinspires.ftc.teamcode.util.robotConstants.intakeSlide;
 
-import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 
 public class FieldCentric extends OpMode
 {
-    private gamepadEx goon;
+    private GamepadEx goon;
 
     @Override
     public void init()
     {
 
-        goon = new gamepadEx();
+        goon = new GamepadEx();
 
         telemetry.addLine("Skibidi");
 
@@ -38,10 +36,6 @@ public class FieldCentric extends OpMode
     public void loop()
     {
 
-        if(goon.left_stick_button  )
 
-        {
-
-        }
     }
 }
