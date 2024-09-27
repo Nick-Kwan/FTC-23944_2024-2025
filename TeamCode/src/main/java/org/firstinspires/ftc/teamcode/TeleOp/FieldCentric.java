@@ -3,19 +3,13 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
-
-<<<<<<< HEAD
-
-public class FieldCentric extends OpMode
-{
-    private GamepadEx goon;
-=======
-
-
 
 public class FieldCentric extends OpMode
 {
@@ -23,7 +17,6 @@ public class FieldCentric extends OpMode
     private GamepadEx driver, operator;
     private Robot bot;
 
->>>>>>> origin/Jonathan
 
     @Override
     public void init()
@@ -33,10 +26,7 @@ public class FieldCentric extends OpMode
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
 
-<<<<<<< HEAD
-        goon = new GamepadEx(gamepad1);
-=======
->>>>>>> origin/Jonathan
+        driver = new GamepadEx(gamepad1);
 
         telemetry.addLine("Skibidi");
         telemetry.update();
@@ -49,10 +39,8 @@ public class FieldCentric extends OpMode
         telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
         telemetry.update();
 
-<<<<<<< HEAD
-        goon.readButtons();
+        driver.readButtons();
 
-=======
         driver.readButtons();
         operator.readButtons();
 
@@ -63,8 +51,5 @@ public class FieldCentric extends OpMode
         {
             bot.driveTrain.resetIMU();
         }
-
-
->>>>>>> origin/Jonathan
     }
 }

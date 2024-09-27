@@ -54,10 +54,6 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
         multiDexEnabled true
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Jonathan
 
         /**
          * We keep the versionCode and versionName of robot controller applications in sync with
