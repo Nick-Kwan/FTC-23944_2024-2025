@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -27,7 +28,7 @@ public class Mecanum {
         backRightMotor = hardwareMap.get(DcMotorEx.class, "backRightMotor");
 
         frontRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         imu = hardwareMap.get(IMU.class, "imu");
         // this is making a new object called 'parameters' that we use to hold the angle the imu is at
