@@ -3,22 +3,13 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
+
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.arcrobotics.ftclib.command.Command;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
-
-
-
 
 public class FieldCentric extends OpMode
 {
@@ -35,6 +26,7 @@ public class FieldCentric extends OpMode
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
 
+        driver = new GamepadEx(gamepad1);
 
         telemetry.addLine("Skibidi");
         telemetry.update();
@@ -48,6 +40,8 @@ public class FieldCentric extends OpMode
         telemetry.update();
 
         driver.readButtons();
+
+        driver.readButtons();
         operator.readButtons();
 
         bot.driveTrain.drive(driver);
@@ -57,7 +51,5 @@ public class FieldCentric extends OpMode
         {
             bot.driveTrain.resetIMU();
         }
-
-
     }
 }
