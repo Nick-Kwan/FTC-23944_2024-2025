@@ -27,10 +27,6 @@ public class Mecanum {
         backRightMotor = hardwareMap.get(DcMotorEx.class, "backRightMotor");
 
         frontLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
-
-        frontRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        //backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
