@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Robot {
     public Mecanum driveTrain;
+    public Claw servoClaw;
 
     Telemetry telemetry;
 
@@ -14,5 +15,6 @@ public class Robot {
         this.telemetry = telemetry;
 
         driveTrain = new Mecanum(hardwareMap);
+        servoClaw = new Claw(hardwareMap);
     }
 }
