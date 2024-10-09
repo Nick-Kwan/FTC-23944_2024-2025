@@ -4,14 +4,15 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.tel
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 
 public class Claw {
-    private ServoEx servoC;
+    private Servo servoC;
     private double pos = 0.75;
 
     public Claw (HardwareMap hardwareMap){
-        servoC = hardwareMap.get(ServoEx.class, "servoC");
+        servoC = hardwareMap.get(Servo.class, "servoC");
 
 
     }
