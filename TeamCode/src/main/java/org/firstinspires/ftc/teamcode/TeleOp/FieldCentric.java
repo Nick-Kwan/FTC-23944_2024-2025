@@ -45,8 +45,12 @@ public class FieldCentric extends OpMode
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.servoClaw.setClawPosition();
+        if (driver.wasJustPressed(GamepadKeys.Button.X)){
+            bot.servoClaw.openClaw();
+        }
+
+        if (driver.wasJustPressed(GamepadKeys.Button.A)){
+            bot.servoClaw.closeClaw();
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.START))
