@@ -28,7 +28,7 @@ public class FieldCentric extends OpMode
 
         driver = new GamepadEx(gamepad1);
 
-        telemetry.addLine("Skibidi");
+        telemetry.addLine("boop");
         telemetry.update();
 
     }
