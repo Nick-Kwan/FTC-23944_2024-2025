@@ -40,8 +40,6 @@ public class FieldCentric extends OpMode
         telemetry.update();
 
         driver.readButtons();
-
-        driver.readButtons();
         operator.readButtons();
 
         bot.driveTrain.drive(driver);
