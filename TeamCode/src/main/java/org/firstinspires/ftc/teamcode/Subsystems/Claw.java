@@ -9,15 +9,18 @@ import com.qualcomm.robotcore.hardware.ServoController;
 
 public class Claw {
     private Servo servoC;
-    private double pos = 0.75;
+    private double pos0 = 0;
+    private double pos1 = 1;
 
     public Claw (HardwareMap hardwareMap){
         servoC = hardwareMap.get(Servo.class, "servoC");
 
 
     }
-    public void setClawPosition (){
-        servoC.setPosition(pos);
-        telemetry.addData("servoC", servoC.getPosition());
+    public void setClawPosition0(){
+        servoC.setPosition(pos0);
+    }
+    public void setClawPosition1(){
+        servoC.setPosition(pos1);
     }
 }

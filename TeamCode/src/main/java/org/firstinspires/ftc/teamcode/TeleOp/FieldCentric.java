@@ -40,15 +40,16 @@ public class FieldCentric extends OpMode
         telemetry.update();
 
         driver.readButtons();
-
-        driver.readButtons();
         operator.readButtons();
 
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.servoClaw.setClawPosition();
+            bot.servoClaw.setClawPosition1();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
+            bot.servoClaw.setClawPosition0();
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.START))
