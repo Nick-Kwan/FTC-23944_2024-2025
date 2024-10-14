@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import java.text.DecimalFormat;
 
 public class Mecanum {
-    private DcMotorEx frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor;
+    private DcMotorEx leftFront, leftBack, rightFront, rightBack;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
 
@@ -21,15 +21,15 @@ public class Mecanum {
 
 
     public Mecanum(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
-        backLeftMotor = hardwareMap.get(DcMotorEx.class, "backLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotorEx.class, "frontRightMotor");
-        backRightMotor = hardwareMap.get(DcMotorEx.class, "backRightMotor");
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
 
-        backLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
+        leftBack.setDirection(DcMotorEx.Direction.REVERSE);
+        rightBack.setDirection(DcMotorEx.Direction.REVERSE);
+        leftBack.setDirection(DcMotorEx.Direction.REVERSE);
 
 
         imu = hardwareMap.get(IMU.class, "imu");
@@ -58,10 +58,10 @@ public class Mecanum {
     }
 
     public void setMotorPower() {
-        frontLeftMotor.setPower(frontLeftPower * offset);
-        backLeftMotor.setPower(backLeftPower * offset);
-        frontRightMotor.setPower(frontRightPower * offset);
-        backRightMotor.setPower(backRightPower * offset);
+        leftFront.setPower(frontLeftPower * offset);
+        leftBack.setPower(backLeftPower * offset);
+        rightFront.setPower(frontRightPower * offset);
+        rightBack.setPower(backRightPower * offset);
     }
     public void resetIMU()
     {
