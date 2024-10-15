@@ -37,6 +37,7 @@ public class FieldCentric extends OpMode
     public void loop()
     {
         telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
+        telemetry.addData("Right Claw position", bot.servoClaw.getPosition());
         telemetry.update();
 
         driver.readButtons();
