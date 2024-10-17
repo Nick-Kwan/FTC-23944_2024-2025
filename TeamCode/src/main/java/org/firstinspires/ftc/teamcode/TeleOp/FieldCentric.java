@@ -28,7 +28,7 @@ public class FieldCentric extends OpMode
 
         driver = new GamepadEx(gamepad1);
 
-        telemetry.addLine("boop");
+        telemetry.addLine("skibidi");
         telemetry.update();
 
     }
@@ -56,5 +56,7 @@ public class FieldCentric extends OpMode
         {
             bot.driveTrain.resetIMU();
         }
+
+
     }
 }
