@@ -52,6 +52,16 @@ public class FieldCentric extends OpMode
             bot.servoClaw.setClawPosition0();
         }
 
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.servoRClaw.setClawPosition1();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+            bot.servoRClaw.setClawPosition0();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            bot.servoRClaw.setClawPositionMID();
+        }
+
         if (driver.wasJustPressed(GamepadKeys.Button.START))
         {
             bot.driveTrain.resetIMU();
