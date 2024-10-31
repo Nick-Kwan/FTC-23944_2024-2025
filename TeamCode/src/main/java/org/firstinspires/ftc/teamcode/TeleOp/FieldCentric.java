@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Subsystems.Slides;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -16,6 +17,7 @@ public class FieldCentric extends OpMode
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+    private Slides slide;
 
 
     @Override
@@ -25,6 +27,7 @@ public class FieldCentric extends OpMode
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
+        slide = new Slides(hardwareMap);
 
         driver = new GamepadEx(gamepad1);
 
@@ -44,6 +47,7 @@ public class FieldCentric extends OpMode
 
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
+
 
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.servoClaw.setClawPosition1();

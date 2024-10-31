@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 
-public class Claw {
+public class AxonClaw {
     private Servo servoC;
-    private double pos0 = 0.15;
+    private double pos0 = 0;
     private double pos1 = 0.5;
 
-    public Claw (HardwareMap hardwareMap)
+    public AxonClaw (HardwareMap hardwareMap)
     {
         servoC = hardwareMap.get(Servo.class, "servoC");
     }
