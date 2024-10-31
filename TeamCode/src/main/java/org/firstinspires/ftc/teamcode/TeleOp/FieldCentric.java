@@ -70,7 +70,8 @@ public class FieldCentric extends OpMode
             bot.aX.setClawPositionR0();
         }
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(825);
+            bot.sr.setPosition(760);
+            
         }
 
 
