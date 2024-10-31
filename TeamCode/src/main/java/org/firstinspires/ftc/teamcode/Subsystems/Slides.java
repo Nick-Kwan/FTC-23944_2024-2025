@@ -11,11 +11,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideRotation;
 public class Slides {
     private DcMotorEx rightSlide, leftSlide;
     private Robot bot;
-    private double power = 0.05;
+    private double power = 0.2;
 
     public Slides(HardwareMap hardwaremap) {
-        rightSlide = hardwaremap.get(DcMotorEx.class, "rightRSlide");
-        leftSlide = hardwaremap.get(DcMotorEx.class, "leftRSlide");
+        rightSlide = hardwaremap.get(DcMotorEx.class, "rightSlide");
+        leftSlide = hardwaremap.get(DcMotorEx.class, "leftSlide");
 
         rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

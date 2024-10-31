@@ -8,6 +8,7 @@ public class Robot {
     public Mecanum driveTrain;
     public Claw servoClaw;
     public RClaw servoRClaw;
+    public Slides s;
     public SlideRotation sr;
     public Arm aX;
 
@@ -21,6 +22,7 @@ public class Robot {
         aX = new Arm(hardwareMap);
         servoClaw = new Claw(hardwareMap);
         servoRClaw = new RClaw(hardwareMap);
+        s = new Slides(hardwareMap);
         sr = new SlideRotation(hardwareMap);
 
     }

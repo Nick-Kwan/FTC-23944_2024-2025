@@ -15,12 +15,9 @@ public class Arm {
         servoAL = hardwareMap.get(Servo.class, "servoAL");
         servoAR = hardwareMap.get(Servo.class, "servoAR");
     }
-    public void setClawPositionL0() {servoAL.setPosition(pos0);}
-    public void setClawPositionL1(){servoAL.setPosition(pos1);}
-    public void setClawPositionLMID(){servoAL.setPosition(mid);}
 
-    public void setClawPositionR0(){servoAR.setPosition(pos0);}
-    public void setClawPositionR1(){servoAR.setPosition(pos1);}
+    public void setClawPosition0(){servoAR.setPosition(pos0); servoAL.setPosition(pos0);}
+    public void setClawPosition1(){servoAR.setPosition(pos1); servoAL.setPosition(pos1);}
     public void setClawPositionRMID(){servoAL.setPosition(mid);}
 
 
