@@ -9,6 +9,7 @@ public class Robot {
     public Claw servoClaw;
     public RClaw servoRClaw;
     public SlideRotation sr;
+    public Arm aX;
 
     Telemetry telemetry;
 
@@ -17,6 +18,7 @@ public class Robot {
         this.telemetry = telemetry;
 
         driveTrain = new Mecanum(hardwareMap);
+        aX = new Arm(hardwareMap);
         servoClaw = new Claw(hardwareMap);
         servoRClaw = new RClaw(hardwareMap);
         sr = new SlideRotation(hardwareMap);

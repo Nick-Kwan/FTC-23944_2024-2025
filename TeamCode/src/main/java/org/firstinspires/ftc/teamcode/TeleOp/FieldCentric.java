@@ -61,6 +61,18 @@ public class FieldCentric extends OpMode
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.servoRClaw.setClawPositionMID();
         }
+        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            bot.aX.setClawPositionL0();
+            bot.aX.setClawPositionR1();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+            bot.aX.setClawPositionL1();
+            bot.aX.setClawPositionR0();
+        }
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+            bot.sr.setPosition(825);
+        }
+
 
         if (driver.wasJustPressed(GamepadKeys.Button.START))
         {

@@ -36,7 +36,7 @@ public class Slides {
             case extending: {
                 switch (eSlides) {
                     case rest:
-                        bot.sr.setPosition(0);
+                        bot.sr.setPosition(100);
                         setPosition(0);
                         break;
                     case vertical:
