@@ -1,47 +1,49 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.ESlides;
-import org.firstinspires.ftc.teamcode.Commands.RotationState;
+import org.firstinspires.ftc.teamcode.Subsystems.SlideRotation;
 
 public class Slides {
-     private DcMotorEx leftSlide, rightSlide;
-     private double power = .05;
-     private Robot bot;
+    private DcMotorEx rightSlide, leftSlide;
+    private Robot bot;
+    private double power = 0.05;
 
-    public Slides(HardwareMap hardwareMap) {
-        rightSlide = hardwareMap.get(DcMotorEx.class, "rightRSlide");
-        leftSlide = hardwareMap.get(DcMotorEx.class, "leftRSlide");
+    public Slides(HardwareMap hardwaremap) {
+        rightSlide = hardwaremap.get(DcMotorEx.class, "rightRSlide");
+        leftSlide = hardwaremap.get(DcMotorEx.class, "leftRSlide");
 
         rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         rightSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftSlide.setDirection(DcMotorSimple.Direction.REVERSE);
 
         rightSlide.setTargetPositionTolerance(5);
         leftSlide.setTargetPositionTolerance(5);
+
+
     }
 
-    public void setRSlide(RotationState rotationState, ESlides eSlides) {
-        switch (rotationState) {
-            case stat:
+    public void setRSlidePosition(ExtensionState extensionState, ESlides eSlides) {
+        switch (extensionState) {
+            case retracted:
                 break;
-            case rotating: {
+            case extending: {
                 switch (eSlides) {
                     case rest:
-                        bot.sr.setPosition(0);
+                        bot.sr.setPosition(100);
                         setPosition(0);
                         break;
                     case vertical:
                         bot.sr.setPosition(1);
                         setPosition(1);
                         break;
-                    case horizontal:
+                    case Horizontal:
                         bot.sr.setPosition(2);
                         setPosition(2);
                         break;
@@ -63,12 +65,11 @@ public class Slides {
                         break;
                 }
             }
-            case rotated:
+            case extended:
                 break;
         }
     }
-
-    public void setPosition(int pos) {
+    public void setPosition (int pos){
         leftSlide.setTargetPosition(pos);
         rightSlide.setTargetPosition(pos);
 

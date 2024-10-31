@@ -1,18 +1,17 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import org.firstinspires.ftc.teamcode.Commands.RotationState;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class SlideRotation {
-    private DcMotorEx leftRSlide, rightRSlide;
-    private double power = .05;
+    private DcMotorEx rightRSlide, leftRSlide;
+    private double power = 0.20;
 
-    public SlideRotation(HardwareMap hardwareMap) {
-        rightRSlide = hardwareMap.get(DcMotorEx.class, "rightRSlide");
-        leftRSlide = hardwareMap.get(DcMotorEx.class, "leftRSlide");
+    public SlideRotation(HardwareMap hardwaremap) {
+        rightRSlide = hardwaremap.get(DcMotorEx.class, "rightRSlide");
+        leftRSlide = hardwaremap.get(DcMotorEx.class, "leftRSlide");
 
         rightRSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftRSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -24,14 +23,14 @@ public class SlideRotation {
         leftRSlide.setTargetPositionTolerance(5);
     }
 
-    public void setPosition(int pos) {
-        leftRSlide.setTargetPosition(pos);
-        rightRSlide.setTargetPosition(pos);
+        public void setPosition (int pos){
+            leftRSlide.setTargetPosition(pos);
+            rightRSlide.setTargetPosition(pos);
 
-        leftRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        leftRSlide.setPower(power);
-        rightRSlide.setPower(power);
+            leftRSlide.setPower(power);
+            rightRSlide.setPower(power);
+        }
     }
-}
