@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
-import com.arcrobotics.ftclib.command.CommandBase;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -59,14 +58,21 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setClawPosition0();
         }
 
-        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+        if (operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.servoRClaw.setClawPositionMID();
-            bot.aX.setClawPosition0();
+            bot.aX.setArmPosition0();
         }
-        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.servoRClaw.setClawPositionMID();
-            bot.aX.setClawPosition1();
+            bot.aX.setArmPosition1();
         }
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+            bot.servoRClaw.setClawPositionMID();
+            bot.aX.setArmPositionMID();
+        }
+
+
+
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.sr.setPosition(760);
             try {
@@ -85,7 +91,6 @@ public class FieldCentric extends OpMode
             }
             bot.sr.setPosition(0);
         }
-
 
         if (driver.wasJustPressed(GamepadKeys.Button.START))
         {
