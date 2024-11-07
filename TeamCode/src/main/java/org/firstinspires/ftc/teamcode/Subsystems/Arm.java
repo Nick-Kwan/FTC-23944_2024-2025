@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
     private Servo servoAL;
     private Servo servoAR;
-    private double pos0 = -0;
-    private double mid = -0.5;
-    private double pos1 = -1;
+    private double pos0 = 0;
+    private double mid = 0.5;
+    private double pos1 = 1;
 
     public Arm(HardwareMap hardwareMap)
     {

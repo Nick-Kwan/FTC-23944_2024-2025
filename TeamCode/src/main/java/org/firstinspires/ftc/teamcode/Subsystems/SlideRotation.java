@@ -26,11 +26,13 @@ public class SlideRotation {
         public void setPosition (int pos){
             leftRSlide.setTargetPosition(pos);
             rightRSlide.setTargetPosition(pos);
-
             leftRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightRSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             leftRSlide.setPower(power);
             rightRSlide.setPower(power);
+        }
+        public int getPosition(){
+        return leftRSlide.getCurrentPosition();
         }
     }

@@ -44,10 +44,10 @@ public class FieldCentric extends OpMode
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
             bot.servoClaw.setClawPosition1();
         }
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
             bot.servoClaw.setClawPosition0();
         }
 
@@ -58,23 +58,9 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setClawPosition0();
         }
 
-        if (operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
-            bot.servoRClaw.setClawPositionMID();
-            bot.aX.setArmPosition0();
-        }
-        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
-            bot.servoRClaw.setClawPositionMID();
-            bot.aX.setArmPosition1();
-        }
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.servoRClaw.setClawPositionMID();
-            bot.aX.setArmPositionMID();
-        }
-
-
-
+//        Vert
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(760);
+            bot.sr.setPosition(750);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -82,6 +68,7 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPosition(500);
         }
+//        Rest
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
             bot.s.setPosition(0);
             try {
@@ -90,6 +77,22 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.sr.setPosition(0);
+        }
+
+        //High Chamber
+        if (operator.wasJustPressed(GamepadKeys.Button.Y)){
+            bot.sr.setPosition(550);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(1200);
+        }
+
+        //Slammer
+        if (operator.wasJustPressed(GamepadKeys.Button.B) && bot.sr.getPosition()>50){
+            bot.sr.setPosition(475);
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.START))

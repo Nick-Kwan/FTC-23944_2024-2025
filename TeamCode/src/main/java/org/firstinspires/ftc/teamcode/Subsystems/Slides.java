@@ -79,4 +79,7 @@ public class Slides {
         leftSlide.setPower(power);
         rightSlide.setPower(power);
     }
+    public int getPosition(){
+        return leftSlide.getCurrentPosition();
+    }
 }
