@@ -110,7 +110,7 @@ public class FieldCentric extends OpMode
         }
         //pick up specimen
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(80);
+            bot.sr.setPosition(100);
             bot.servoClaw.setClawPosition0();
         }
 
@@ -136,9 +136,9 @@ public class FieldCentric extends OpMode
         }
         //       High Slam
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
-            bot.sr.setPosition(350);
+            bot.sr.setPosition(450);
 
-            bot.s.setPosition(932);
+            bot.s.setPosition(900);
             try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
@@ -158,7 +158,7 @@ public class FieldCentric extends OpMode
         }
         //        Low Slam
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.sr.setPosition(293);
+            bot.sr.setPosition(240);
 
             bot.s.setPosition(481);
             try {
