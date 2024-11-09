@@ -156,6 +156,11 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPosition(532);
         }
+        if (driver.wasJustPressed(GamepadKeys.Button.Y)){
+            bot.s.setPosition(1600);
+            bot.sr.setPosition(750);
+
+        }
         //        Low Slam
       /*  if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
             bot.sr.setPosition(240);
