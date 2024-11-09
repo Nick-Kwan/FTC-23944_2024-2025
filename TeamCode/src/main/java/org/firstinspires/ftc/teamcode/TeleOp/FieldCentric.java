@@ -110,7 +110,7 @@ public class FieldCentric extends OpMode
         }
         //pick up specimen
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(100);
+            bot.sr.setPosition(85);
             bot.servoClaw.setClawPosition0();
         }
 
