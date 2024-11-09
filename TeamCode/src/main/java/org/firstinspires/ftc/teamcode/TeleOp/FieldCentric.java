@@ -60,7 +60,7 @@ public class FieldCentric extends OpMode
 //        In Sub 2
         if (operator.wasJustPressed(GamepadKeys.Button.B)){
             bot.servoClaw.setClawPosition0();
-            bot.sr.setPosition(100);
+            bot.sr.setPosition(120);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class FieldCentric extends OpMode
         //        In Sub 1
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.servoClaw.setClawPosition0();
-            bot.sr.setPosition(100);
+            bot.sr.setPosition(120);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -85,7 +85,7 @@ public class FieldCentric extends OpMode
             bot.servoClaw.setClawPosition0();
             bot.sr.setPosition(0);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -96,7 +96,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.sr.setPosition(110);
+            bot.sr.setPosition(130);
         }
         //        Rest
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
