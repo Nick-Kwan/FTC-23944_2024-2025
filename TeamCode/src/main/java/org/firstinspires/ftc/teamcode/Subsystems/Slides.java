@@ -82,4 +82,8 @@ public class Slides {
     public int getPosition(){
         return (leftSlide.getCurrentPosition() + rightSlide.getCurrentPosition())/2;
     }
+    public void setPower0(){
+        leftSlide.setPower(0);
+        rightSlide.setPower(0);
+    }
 }

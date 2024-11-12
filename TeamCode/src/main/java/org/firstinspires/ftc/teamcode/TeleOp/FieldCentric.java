@@ -83,6 +83,11 @@ public class FieldCentric extends OpMode
 //        Fish
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
             bot.servoClaw.setClawPosition0();
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             bot.sr.setPosition(0);
             try {
                 Thread.sleep(750);
@@ -107,10 +112,17 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.sr.setPosition(0);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPower0();
+            bot.sr.setPower0();
         }
         //pick up specimen
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(90);
+            bot.sr.setPosition(97);
             bot.servoClaw.setClawPosition0();
         }
 

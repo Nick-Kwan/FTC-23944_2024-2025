@@ -35,4 +35,8 @@ public class SlideRotation {
     public int getPosition(){
         return (leftRSlide.getCurrentPosition() + rightRSlide.getCurrentPosition())/2;
     }
+    public void setPower0(){
+        leftRSlide.setPower(0);
+        rightRSlide.setPower(0);
+    }
     }
