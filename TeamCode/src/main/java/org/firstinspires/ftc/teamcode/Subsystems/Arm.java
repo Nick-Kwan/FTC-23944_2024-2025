@@ -6,22 +6,24 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
     private Servo servoAL;
     private Servo servoAR;
-    private double pos0 = 0.25;
+    private double pos0 = 0;
     private double mid = 0.5;
-    private double pos1 = 0.75;
+    private double pos1 = 1;
 
     public Arm(HardwareMap hardwareMap)
     {
         servoAL = hardwareMap.get(Servo.class, "servoAL");
         servoAR = hardwareMap.get(Servo.class, "servoAR");
+        //servoAL.setDirection(Servo.Direction.REVERSE);
     }
-    public void setClawPositionL0() {servoAL.setPosition(pos0);}
-    public void setClawPositionL1(){servoAL.setPosition(pos1);}
-    public void setClawPositionLMID(){servoAL.setPosition(mid);}
 
-    public void setClawPositionR0(){servoAR.setPosition(pos0);}
-    public void setClawPositionR1(){servoAR.setPosition(pos1);}
-    public void setClawPositionRMID(){servoAL.setPosition(mid);}
+    public void setArmPosition0(){servoAR.setPosition(pos0); servoAL.setPosition(pos0);}
+    public void setArmPosition1(){servoAR.setPosition(pos1); servoAL.setPosition(pos1);}
+    public void setArmPositionMID(){servoAL.setPosition(mid);}
+    public void setALPosition0(){servoAL.setPosition(pos0);}
+    public void setALPosition1(){servoAL.setPosition(pos1);}
+    public void setARPosition0(){servoAR.setPosition(pos0);}
+    public void setARPosition1(){servoAR.setPosition(pos1);}
 
 
 }
