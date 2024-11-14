@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Auto.Other;
+package org.firstinspires.ftc.teamcode.Auto.tuning;
 
 import com.acmerobotics.roadrunner.Time;
 import com.acmerobotics.roadrunner.Twist2dDual;

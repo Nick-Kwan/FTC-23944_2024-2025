@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -12,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import java.text.DecimalFormat;
 
 public class Mecanum {
-    private DcMotorEx leftFront, leftBack, rightFront, rightBack;
+    private DcMotorEx left_front, left_back, right_front, right_back;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
 
@@ -22,14 +21,14 @@ public class Mecanum {
 
 
     public Mecanum(HardwareMap hardwareMap) {
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
+        left_front = hardwareMap.get(DcMotorEx.class, "left_front");
+        left_back = hardwareMap.get(DcMotorEx.class, "left_back");
+        right_front = hardwareMap.get(DcMotorEx.class, "right_front");
+        right_back = hardwareMap.get(DcMotorEx.class, "right_back");
 
 
-        leftFront.setDirection(DcMotorEx.Direction.REVERSE);
-        leftBack.setDirection(DcMotorEx.Direction.REVERSE);
+        left_front.setDirection(DcMotorEx.Direction.REVERSE);
+        left_back.setDirection(DcMotorEx.Direction.REVERSE);
 
 
         imu = hardwareMap.get(IMU.class, "imu");
@@ -58,10 +57,10 @@ public class Mecanum {
     }
 
     public void setMotorPower() {
-        leftFront.setPower(frontLeftPower * offset);
-        leftBack.setPower(backLeftPower * offset);
-        rightFront.setPower(frontRightPower * offset);
-        rightBack.setPower(backRightPower * offset);
+        left_front.setPower(frontLeftPower * offset);
+        left_back.setPower(backLeftPower * offset);
+        right_front.setPower(frontRightPower * offset);
+        right_back.setPower(backRightPower * offset);
     }
     public void resetIMU()
     {
