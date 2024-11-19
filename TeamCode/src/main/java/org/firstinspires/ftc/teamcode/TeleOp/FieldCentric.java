@@ -47,7 +47,7 @@ public class FieldCentric extends OpMode
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
-        bot.servoRClaw.setClawPositionMID();
+        bot.servoRClaw.setRClawPositionMID();
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
@@ -55,6 +55,12 @@ public class FieldCentric extends OpMode
         }
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.servoClaw.setClawPosition1();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.X)){
+            bot.servoRClaw.setRClawPositionL();
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.B)){
+            bot.servoRClaw.setRClawPositionR();
         }
 
 //        In Sub 2
