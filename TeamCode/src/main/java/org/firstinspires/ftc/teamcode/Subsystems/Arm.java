@@ -7,14 +7,13 @@ public class Arm {
     private Servo servoAL;
     private Servo servoAR;
     private double pos0 = 0;
-    private double mid = 0.5;
+    private double mid = 0.92;
     private double pos1 = 1;
 
     public Arm(HardwareMap hardwareMap)
     {
         servoAL = hardwareMap.get(Servo.class, "servoAL");
         servoAR = hardwareMap.get(Servo.class, "servoAR");
-        //servoAL.setDirection(Servo.Direction.REVERSE);
     }
 
     public void setArmPosition0(){servoAR.setPosition(pos0); servoAL.setPosition(pos0);}
