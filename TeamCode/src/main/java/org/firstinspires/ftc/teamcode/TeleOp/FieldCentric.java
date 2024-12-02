@@ -25,8 +25,6 @@ public class FieldCentric extends OpMode
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
 
-        driver = new GamepadEx(gamepad1);
-
         telemetry.addLine("boop");
         telemetry.update();
 
@@ -143,6 +141,16 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(1500);
+        }
+        //High Bucket
+        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+            bot.sr.setPosition(600);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(2500);
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
