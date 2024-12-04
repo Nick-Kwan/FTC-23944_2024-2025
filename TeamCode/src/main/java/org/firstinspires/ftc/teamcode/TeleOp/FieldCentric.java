@@ -47,20 +47,22 @@ public class FieldCentric extends OpMode
 
         bot.servoRClaw.setRClawPositionMID();
         bot.aX.setArmPositionMID();
-        //bot.servoClaw.setClawPosition0();
+        bot.servoClaw.setClawPosition1();
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.servoClaw.setClawPosition0();
+            telemetry.addLine("working");
+
+
         }
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.servoClaw.setClawPosition1();
         }
         if (driver.wasJustPressed(GamepadKeys.Button.X)){
-            bot.servoRClaw.setRClawPositionL();
-        }
-        if (driver.wasJustPressed(GamepadKeys.Button.B)){
-            bot.servoRClaw.setRClawPositionR();
+            bot.servoRClaw.incrementRotation(0.1);
+        } else if (driver.wasJustPressed(GamepadKeys.Button.B)){
+            bot.servoRClaw.incrementRotation(-0.1);
         }
 
 //        In Sub 2
@@ -130,6 +132,7 @@ public class FieldCentric extends OpMode
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.sr.setPosition(97);
             bot.servoClaw.setClawPosition0();
+
         }
 
         //Low Bucket
@@ -146,7 +149,7 @@ public class FieldCentric extends OpMode
         if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.sr.setPosition(600);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

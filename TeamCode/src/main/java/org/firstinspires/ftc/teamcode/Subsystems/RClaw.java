@@ -9,6 +9,7 @@ public class RClaw {
     private double mid = 0.5;
     private double pos1 = 0.75;
     private double offset = 0.05;
+    private double rotationTarget;
 
     public RClaw (HardwareMap hardwareMap)
     {
@@ -20,4 +21,12 @@ public class RClaw {
     public void setClawPosition0() {servoRC.setPosition(pos0);}
     public void setRClawPositionMID() {servoRC.setPosition(mid);}
     public void setClawPosition1(){servoRC.setPosition(pos1);}
+
+    public void incrementRotation(double increment){
+        rotationTarget += increment;
+    }
+
+    public void setRotation(double rotationTarget) {
+        servoRC.setPosition(rotationTarget);
+    }
 }

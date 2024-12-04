@@ -18,6 +18,9 @@ public class SlideRotation {
         rightRSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        //rightRSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
 
         rightRSlide.setTargetPositionTolerance(5);
         leftRSlide.setTargetPositionTolerance(5);
