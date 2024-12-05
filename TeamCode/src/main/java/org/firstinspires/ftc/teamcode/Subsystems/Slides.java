@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideRotation;
 public class Slides {
     private DcMotorEx rightSlide, leftSlide;
     private Robot bot;
-    private double power = 0.50;
+    private double power = 0.75;
 
     public Slides(HardwareMap hardwaremap) {
         rightSlide = hardwaremap.get(DcMotorEx.class, "rightSlide");
@@ -87,4 +87,5 @@ public class Slides {
         leftSlide.setPower(0);
         rightSlide.setPower(0);
     }
+
 }

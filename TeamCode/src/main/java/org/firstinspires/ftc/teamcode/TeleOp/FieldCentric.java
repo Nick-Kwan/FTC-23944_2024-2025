@@ -83,7 +83,7 @@ public class FieldCentric extends OpMode
             bot.s.setPosition(1360);
         }
         //        In Sub 1
-        if (operator.wasJustPressed(GamepadKeys.Button.A)){
+        /*if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.servoClaw.setClawPosition0();
             bot.sr.setPosition(120);
             try {
@@ -92,7 +92,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(650);
-        }
+        }*/
 
 //        Fish
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
@@ -121,10 +121,11 @@ public class FieldCentric extends OpMode
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.s.setPosition(0);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2250);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            bot.sr.setPower42();
             bot.sr.setPosition(0);
             try {
                 Thread.sleep(500);
@@ -133,12 +134,18 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPower0();
             bot.sr.setPower0();
+            bot.aX.setArmPosMID();
+            bot.servoRClaw.setRClawPositionMID();
         }
-        //pick up specimen
+        //pick up specimen from wall
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(97);
+            bot.servoRClaw.setRClawPositionMID();
+            bot.aX.setArmPosWall();
             bot.servoClaw.setClawPosition0();
-
+        }
+        //upAbit
+        if (driver.wasJustPressed(GamepadKeys.Button.A)){
+            bot.aX.setArmPosUPaBIT();
         }
 
         //Low Bucket
@@ -152,7 +159,7 @@ public class FieldCentric extends OpMode
             bot.s.setPosition(1500);
         }
         //High Bucket
-        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+        if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.sr.setPosition(600);
             try {
                 Thread.sleep(1500);
@@ -160,16 +167,18 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(2500);
+            bot.aX.setArmPosHB();
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(550);
+            bot.aX.setArmPosSpec();
+            bot.sr.setPosition(690);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1280);
+            bot.s.setPosition(600);// prev 650 (too high) 550 to low
         }
         //       High Slam
        /* if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
@@ -184,15 +193,17 @@ public class FieldCentric extends OpMode
             bot.servoClaw.setClawPosition0();
         }*/
         //        Low Specimen
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
-            bot.sr.setPosition(400);
+        /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
+            bot.aX.setArmPosSpec();
+            bot.sr.setPosition(690);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(532);
-        }
+        }*/
+        //all the way up
         if (driver.wasJustPressed(GamepadKeys.Button.Y)){
             bot.s.setPosition(1600);
             bot.sr.setPosition(750);

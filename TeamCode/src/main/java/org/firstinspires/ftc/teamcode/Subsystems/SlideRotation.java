@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class SlideRotation {
     private DcMotorEx rightRSlide, leftRSlide;
-    private double power = 0.50;
+    private double power = 0.75;
 
     public SlideRotation(HardwareMap hardwaremap) {
         rightRSlide = hardwaremap.get(DcMotorEx.class, "rightRSlide");
@@ -41,5 +41,9 @@ public class SlideRotation {
     public void setPower0(){
         leftRSlide.setPower(0);
         rightRSlide.setPower(0);
+    }
+    public void setPower42(){
+        leftRSlide.setPower(0.42);
+        rightRSlide.setPower(0.42);
     }
     }

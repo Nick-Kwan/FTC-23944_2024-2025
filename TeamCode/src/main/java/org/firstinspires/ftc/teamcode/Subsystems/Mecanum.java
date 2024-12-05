@@ -62,8 +62,5 @@ public class Mecanum {
         right_front.setPower(frontRightPower * offset);
         right_back.setPower(backRightPower * offset);
     }
-    public void resetIMU()
-    {
-        resetIMU();
-    }
+    public void resetIMU() {resetIMU();}
 }

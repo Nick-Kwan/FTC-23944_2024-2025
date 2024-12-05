@@ -7,8 +7,12 @@ public class Arm {
     private Servo servoAL;
     private Servo servoAR;
     private double mid = 0.92;
-    private double wall = 0.65;
+    private double wall = 0.60;
     private double init = 0.85;
+    private double hb = 0.75; // hb = high bucket
+    private double specimen = 0.55;
+    private double upAbit = 0.45;
+    private double slam = 0.65;
 
     public Arm(HardwareMap hardwareMap)
     {
@@ -20,6 +24,14 @@ public class Arm {
     public void setArmPosMID(){servoAL.setPosition(mid); servoAR.setPosition(mid);}
     public void setArmPosWall(){servoAL.setPosition(wall); servoAR.setPosition(wall);}
     public void setArmPosInit(){servoAL.setPosition(init); servoAR.setPosition(init);}
+    public void setArmPosHB(){servoAL.setPosition(hb); servoAR.setPosition(hb);}
+    public void setArmPosSpec(){servoAL.setPosition(specimen); servoAR.setPosition(specimen);}
+    public void setArmPosUPaBIT(){servoAL.setPosition(upAbit); servoAR.setPosition(upAbit);}
+    public void setArmPosSlam(){servoAL.setPosition(slam); servoAR.setPosition(slam);}
+
+
+
+
 
 
 
