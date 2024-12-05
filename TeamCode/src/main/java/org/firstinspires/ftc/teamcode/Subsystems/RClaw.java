@@ -16,11 +16,11 @@ public class RClaw {
 
     public void setRClawPositionMID() {servoRC.setPosition(mid);}
 
-    public void incrementRotation(double increment){
+    /*public void incrementRotation(double increment){
         rotationTarget += increment;
     }
 
     public void setRotation(double rotationTarget) {
         servoRC.setPosition(rotationTarget);
-    }
+    }*/
 }
