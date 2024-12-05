@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
     private Servo servoAL;
     private Servo servoAR;
-    private double pos0 = 0;
     private double mid = 0.92;
-    private double pos1 = 1;
+    private double wall = 0.65;
+    private double init = 0.85;
 
     public Arm(HardwareMap hardwareMap)
     {
@@ -16,13 +16,12 @@ public class Arm {
         servoAR = hardwareMap.get(Servo.class, "servoAR");
     }
 
-    public void setArmPosition0(){servoAR.setPosition(pos0); servoAL.setPosition(pos0);}
-    public void setArmPosition1(){servoAR.setPosition(pos1); servoAL.setPosition(pos1);}
-    public void setArmPositionMID(){servoAL.setPosition(mid);}
-    public void setALPosition0(){servoAL.setPosition(pos0);}
-    public void setALPosition1(){servoAL.setPosition(pos1);}
-    public void setARPosition0(){servoAR.setPosition(pos0);}
-    public void setARPosition1(){servoAR.setPosition(pos1);}
+
+    public void setArmPosMID(){servoAL.setPosition(mid); servoAR.setPosition(mid);}
+    public void setArmPosWall(){servoAL.setPosition(wall); servoAR.setPosition(wall);}
+    public void setArmPosInit(){servoAL.setPosition(init); servoAR.setPosition(init);}
+
+
 
 
 }

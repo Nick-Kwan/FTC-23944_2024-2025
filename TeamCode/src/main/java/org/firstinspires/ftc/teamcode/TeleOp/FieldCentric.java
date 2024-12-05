@@ -28,6 +28,15 @@ public class FieldCentric extends OpMode
         telemetry.addLine("boop");
         telemetry.update();
 
+        bot.aX.setArmPosInit();
+        try {
+            Thread.sleep(1200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        bot.servoRClaw.setRClawPositionMID();
+        bot.aX.setArmPosMID();
+
     }
 
     @Override
@@ -45,15 +54,11 @@ public class FieldCentric extends OpMode
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
-        bot.servoRClaw.setRClawPositionMID();
-        bot.aX.setArmPositionMID();
-        bot.servoClaw.setClawPosition1();
+
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.servoClaw.setClawPosition0();
-            telemetry.addLine("working");
-
 
         }
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
