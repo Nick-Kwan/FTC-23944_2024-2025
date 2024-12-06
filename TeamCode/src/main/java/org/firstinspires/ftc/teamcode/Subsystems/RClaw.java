@@ -5,7 +5,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class RClaw {
     private Servo servoRC;
-    private double mid = 0.32;
+    private double mid = 0.17;
+    private double flip = 0.92;
     private double offset = 0.05;
     private double rotationTarget;
 
@@ -15,6 +16,8 @@ public class RClaw {
     }
 
     public void setRClawPositionMID() {servoRC.setPosition(mid);}
+    public void setRClawPosFlip(){servoRC.setPosition(flip);}
+
 
     /*public void incrementRotation(double increment){
         rotationTarget += increment;

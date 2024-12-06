@@ -10,9 +10,9 @@ public class Arm {
     private double wall = 0.60;
     private double init = 0.85;
     private double hb = 0.75; // hb = high bucket
-    private double specimen = 0.55;
+    private double specimen = 0.45;
     private double upAbit = 0.45;
-    private double slam = 0.65;
+    private double slam = 0.35;
 
     public Arm(HardwareMap hardwareMap)
     {
