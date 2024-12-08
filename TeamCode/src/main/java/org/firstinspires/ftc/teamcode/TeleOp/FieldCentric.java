@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
-import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.subsystems.Robot;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -28,14 +28,14 @@ public class FieldCentric extends OpMode
         telemetry.addLine("boop");
         telemetry.update();
 
-        bot.aX.setArmPosInit();
+        bot.arm.setArmPosInit();
         try {
             Thread.sleep(1200);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         bot.servoRClaw.setRClawPositionMID();
-        bot.aX.setArmPosMID();
+        bot.arm.setArmPosMID();
 
     }
 
@@ -134,18 +134,18 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPower0();
             bot.sr.setPower0();
-            bot.aX.setArmPosMID();
+            bot.arm.setArmPosMID();
             bot.servoRClaw.setRClawPositionMID();
         }
         //pick up specimen from wall
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.servoRClaw.setRClawPositionMID();
-            bot.aX.setArmPosWall();
+            bot.arm.setArmPosWall();
             bot.servoClaw.setClawPosition0();
         }
         //upAbit
         if (driver.wasJustPressed(GamepadKeys.Button.A)){
-            bot.aX.setArmPosUPaBIT();
+            bot.arm.setArmPosUPaBIT();
 
         }
 
@@ -168,7 +168,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(2500);
-            bot.aX.setArmPosHB();
+            bot.arm.setArmPosHB();
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
@@ -179,7 +179,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(1550);// don't go above 1550
-            bot.aX.setArmPosMID();
+            bot.arm.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
         }
         //       High Slam
