@@ -1,17 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
-import com.arcrobotics.ftclib.command.Subsystem;
 import com.arcrobotics.ftclib.controller.PIDFController;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.commands.State;
-import org.firstinspires.ftc.teamcode.commands.LiftPID;
 import org.firstinspires.ftc.teamcode.commands.RobotConstants;
-import org.firstinspires.ftc.teamcode.commands.VoltageReader;
 import org.firstinspires.ftc.teamcode.commands.VoltageScaler;
 
 public class Lift {

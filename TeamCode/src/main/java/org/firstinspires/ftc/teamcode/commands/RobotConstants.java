@@ -47,6 +47,30 @@ public class RobotConstants {
     }
 
     @Config
+    public static class Sr {
+        public static String leftSlide = "leftRSlide";
+        public static String rightSlide = "rightRSlide";
+
+        public static double P = 0.000;
+        public static double I = 0.00000;
+        public static double D = 0.0;
+        public static double F = 0.00000;
+
+        public static double loweringP = 0.000;
+        public static double loweringI = 0.0;
+        public static double loweringD = 0.0000;
+        public static double loweringF = 0.00000;
+
+        // POSITIONS
+        public static int idle = 0;
+        public static int highBucket = 600;
+        public static int lowBucket = 550;
+        public static int highBar = 465;
+        //public static int lowBar = 0;
+        public static int submersible = 0;
+    }
+
+    @Config
     public static class Arm {
         public static String leftArm = "leftArm";
         public static String rightArm = "rightArm";
