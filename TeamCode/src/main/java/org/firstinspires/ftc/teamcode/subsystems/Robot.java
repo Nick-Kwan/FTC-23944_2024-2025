@@ -8,7 +8,7 @@ public class Robot {
 
     public Mecanum driveTrain;
     public Lift lift;
-    public SlideRotation sr;
+    public Sr sr;
     public Arm arm;
 
     private State state;
@@ -18,7 +18,7 @@ public class Robot {
         driveTrain = new Mecanum(hardwareMap);
         arm = new Arm(hardwareMap);
         lift = new Lift(hardwareMap);
-        sr = new SlideRotation(hardwareMap);
+        sr = new Sr(hardwareMap);
 
         state = State.IDLE;
         setPosition(state);
@@ -28,7 +28,7 @@ public class Robot {
     public void setPosition(State state){
         lift.setPosition(state);
         arm.setPosition(state);
-        //horizontalExtension.setPosition(state);
+        sr.setPosition(state);
 
         this.state = state;
     }

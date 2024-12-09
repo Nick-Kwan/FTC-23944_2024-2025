@@ -77,7 +77,7 @@ public class Sr {
         target = position;
     }
 
-    public void powerSlides(){
+    public void powerRSlides(){
         double voltageCorrection = voltageScaler.getVoltageCorrection();
 
         double correction;
@@ -111,9 +111,9 @@ public class Sr {
         rightRSlide.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
-    public void incrementSlides(double input) {
+    /*public void incrementSlides(double input) {
         setTarget((int)(rightRSlide.getCurrentPosition()+input));
-    }
+    }*/
 
     public void altZeroPowerBehavior(){
         if (leftRSlide.getZeroPowerBehavior() == DcMotor.ZeroPowerBehavior.BRAKE){
@@ -140,7 +140,7 @@ public class Sr {
         return loweringSrPID.getPositionError();
     }
 
-    public double getLiftPower(){
+    public double getSrPower(){
         return rightRSlide.getPower();
     }
 }

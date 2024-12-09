@@ -115,7 +115,8 @@ public class Arm implements Subsystem {
         rotationTarget += increment;
     }
 
-    public void setRotation() {
+    public void setRotation(double rotationTarget) {
+        this.rotationTarget = rotationTarget;
         rotation.setPosition(rotationTarget);
     }
 
