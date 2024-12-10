@@ -10,9 +10,9 @@ public class Arm {
     private double wall = 0.60;
     private double init = 0.85;
     private double hb = 0.75; // hb = high bucket
-    private double specimen = 0.45;
     private double upAbit = 0.45;
-    private double slam = 0.35;
+    private double sub = 0.8;
+    private double pos1 = 1;
 
     public Arm(HardwareMap hardwareMap)
     {
@@ -25,9 +25,11 @@ public class Arm {
     public void setArmPosWall(){servoAL.setPosition(wall); servoAR.setPosition(wall);}
     public void setArmPosInit(){servoAL.setPosition(init); servoAR.setPosition(init);}
     public void setArmPosHB(){servoAL.setPosition(hb); servoAR.setPosition(hb);}
-    public void setArmPosSpec(){servoAL.setPosition(specimen); servoAR.setPosition(specimen);}
     public void setArmPosUPaBIT(){servoAL.setPosition(upAbit); servoAR.setPosition(upAbit);}
-    public void setArmPosSlam(){servoAL.setPosition(slam); servoAR.setPosition(slam);}
+    public void setArmPosSUB(){servoAL.setPosition(sub); servoAR.setPosition(sub);}
+    public void setArmPos1(){servoAL.setPosition(pos1); servoAR.setPosition(pos1);}
+
+
 
 
 
