@@ -179,7 +179,7 @@ public class FieldCentric extends OpMode
         }
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
-            bot.sr.setPosition(600);
+            bot.sr.setPosition(690); // Doing high bucket from behind he robot right now
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
@@ -214,10 +214,10 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosUPaBIT();
         }
 
-        // rotate claw 90 degrees
+        /*// rotate claw 90 degrees
         if (driver.wasJustPressed(GamepadKeys.Button.X)) {
             bot.servoRClaw.setRClawPosNine();
-        }
+        }*/
 
 
         //        Low Slam
