@@ -142,18 +142,11 @@ public class FieldCentric extends OpMode
         //        Rest Low
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.s.setPosition(0);
-            try {
-                Thread.sleep(450);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (bot.s.getPosition() < 100) {
+                bot.sr.setPower42();
+                bot.sr.setPosition(0);
             }
-            bot.sr.setPower42();
-            bot.sr.setPosition(0);
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+
             bot.s.setPower0();
             bot.sr.setPower0();
             bot.servoClaw.setClawPosition1();
@@ -179,6 +172,7 @@ public class FieldCentric extends OpMode
         }
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
+            bot.aX.setArmPosMID();
             bot.sr.setPosition(690); // Doing high bucket from behind he robot right now
             try {
                 Thread.sleep(1500);
@@ -186,11 +180,11 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(2500);
-            bot.aX.setArmPosHB();
+            bot.aX.setArmPosUPaBIT();
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(485); // prev 465 worked
+            bot.sr.setPosition(500); // prev 485 worked
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
