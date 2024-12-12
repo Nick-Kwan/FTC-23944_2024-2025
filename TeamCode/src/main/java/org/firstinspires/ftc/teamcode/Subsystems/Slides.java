@@ -65,7 +65,7 @@ public class Slides {
     }
 
     public void powerSlides() {
-        if ((robotState == State.IDLE || robotState == State.IN_SUB)) {
+        if ((robotState == State.IDLE)) {
             rightSlide.setPower(0);
             leftSlide.setPower(0);
         } else {
