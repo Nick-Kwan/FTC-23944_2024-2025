@@ -62,5 +62,15 @@ public class Mecanum {
         right_front.setPower(frontRightPower * offset);
         right_back.setPower(backRightPower * offset);
     }
+
+    public double[] getMotorPowers(){
+        return new double[] {
+                frontLeftPower,
+                backLeftPower,
+                frontRightPower,
+                backRightPower
+        };
+    }
+
     public void resetIMU() {resetIMU();}
 }

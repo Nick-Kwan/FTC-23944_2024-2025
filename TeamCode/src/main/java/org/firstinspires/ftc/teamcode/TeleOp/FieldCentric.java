@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
+import org.firstinspires.ftc.teamcode.commands.State;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -12,18 +13,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class FieldCentric extends OpMode
 {
-    private ElapsedTime runTime;
+
     private GamepadEx driver, operator;
     private Robot bot;
-
 
     @Override
     public void init()
     {
-        runTime = new ElapsedTime();
+        telemetry.addLine("Initializing");
+        telemetry.update();
+
+        bot = new Robot(hardwareMap);
+
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
-        bot = new Robot(hardwareMap, telemetry);
 
         telemetry.addLine("boop");
         telemetry.update();
@@ -42,10 +45,17 @@ public class FieldCentric extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
-        telemetry.addLine("Slide Pos: "+bot.s.getPosition());
-        telemetry.addLine("RotSlide Pos: "+bot.sr.getPosition());
+        telemetry.addLine("Running");
+        telemetry.addData("Current State: ", bot.getState());
 
+        telemetry.addData("\n Slide Position: ", bot.s.getPosition());
+        //telemetry.addData("\n Slide Power: ", bot.s.getPower());
+        telemetry.addData("\n Slide Rotation Position: ", bot.sr.getPosition());
+        //telemetry.addData("\n Slide Rotation Power: ", bot.sr.getSrPower());
+        telemetry.addData("\n FL Motor Power: ", bot.driveTrain.getMotorPowers()[0]);
+        telemetry.addData("\n BL Motor Power: ", bot.driveTrain.getMotorPowers()[1]);
+        telemetry.addData("\n FR Motor Power: ", bot.driveTrain.getMotorPowers()[2]);
+        telemetry.addData("\n BR Motor Power: ", bot.driveTrain.getMotorPowers()[3]);
         telemetry.update();
 
         driver.readButtons();
@@ -54,9 +64,6 @@ public class FieldCentric extends OpMode
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
-
-
-
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
             bot.servoClaw.setClawPosition0();
 
@@ -64,19 +71,12 @@ public class FieldCentric extends OpMode
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.servoClaw.setClawPosition1();
         }
-        /*if (driver.wasJustPressed(GamepadKeys.Button.X)){
-            bot.servoRClaw.incrementRotation(0.1);
-        }
-        if (driver.wasJustPressed(GamepadKeys.Button.B)){
-            bot.servoRClaw.incrementRotation(-0.1);
-        }*/
 
 //        In Sub 2
         if (operator.wasJustPressed(GamepadKeys.Button.B)){
             bot.servoClaw.setClawPosition1();
             bot.servoRClaw.setRClawPositionMID();
             bot.aX.setArmPosSUB();
-            //bot.servoClaw.setClawPosition0();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -84,17 +84,6 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPosition(1500);
         }
-        //        In Sub 1
-        /*if (operator.wasJustPressed(GamepadKeys.Button.A)){
-            bot.servoClaw.setClawPosition0();
-            bot.sr.setPosition(120);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(650);
-        }*/
 
 //        Fish
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
@@ -105,18 +94,6 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.aX.setArmPos1();
-            /*try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition1();
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.aX.setArmPosSUB();*/
         }
         //        Rest High
         if (driver.wasJustPressed(GamepadKeys.Button.B)){
@@ -126,7 +103,6 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.sr.setPower42();
             bot.sr.setPosition(0);
             try {
                 Thread.sleep(750);
@@ -143,7 +119,6 @@ public class FieldCentric extends OpMode
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.s.setPosition(0);
             if (bot.s.getPosition() < 100) {
-                bot.sr.setPower42();
                 bot.sr.setPosition(0);
             }
 
@@ -194,10 +169,6 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
         }
-        //       High Slam
-       if (driver.wasJustPressed(GamepadKeys.Button.X)){
-            bot.s.setPosition(400);
-        }
 
         //all the way up
         if (driver.wasJustPressed(GamepadKeys.Button.Y)){
@@ -213,32 +184,6 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setRClawPosNine();
         }*/
 
-
-        //        Low Slam
-      /*  if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.sr.setPosition(240);
-
-            bot.s.setPosition(481);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition0();
-        }
-
-       */
-        //        Low Specimen
-        /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
-            bot.aX.setArmPosSpec();
-            bot.sr.setPosition(690);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(532);
-        }*/
         if (driver.wasJustPressed(GamepadKeys.Button.START))
         {
             bot.driveTrain.resetIMU();

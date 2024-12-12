@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.commands.State;
 
 public class Robot {
     public Mecanum driveTrain;
@@ -12,11 +12,9 @@ public class Robot {
     public SlideRotation sr;
     public Arm aX;
 
-    Telemetry telemetry;
+    private State state;
 
-    public Robot(HardwareMap hardwareMap, Telemetry telemetry){
-
-        this.telemetry = telemetry;
+    public Robot(HardwareMap hardwareMap){
 
         driveTrain = new Mecanum(hardwareMap);
         aX = new Arm(hardwareMap);
@@ -25,5 +23,18 @@ public class Robot {
         s = new Slides(hardwareMap);
         sr = new SlideRotation(hardwareMap);
 
+        state = State.IDLE;
+        setPosition(state);
+    }
+
+    public void setPosition(State state){
+        s.setPosition(state);
+        sr.setPosition(state);
+
+        this.state = state;
+    }
+
+    public State getState(){
+        return state;
     }
 }

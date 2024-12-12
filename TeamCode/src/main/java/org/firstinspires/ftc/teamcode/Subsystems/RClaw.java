@@ -20,13 +20,4 @@ public class RClaw {
     public void setRClawPosFlip(){servoRC.setPosition(flip);}
     public void setRClawPosNine(){servoRC.setPosition(ninety);}
 
-
-
-    /*public void incrementRotation(double increment){
-        rotationTarget += increment;
-    }
-
-    public void setRotation(double rotationTarget) {
-        servoRC.setPosition(rotationTarget);
-    }*/
 }
