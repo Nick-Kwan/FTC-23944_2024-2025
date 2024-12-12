@@ -118,7 +118,7 @@ public class FieldCentric extends OpMode
             }
             bot.aX.setArmPosSUB();*/
         }
-        //        Rest High
+        //        Rest normal
         if (driver.wasJustPressed(GamepadKeys.Button.B)){
             bot.s.setPosition(0);
             try {
@@ -139,20 +139,31 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPositionMID();
         }
-        //        Rest Low
-        if (operator.wasJustPressed(GamepadKeys.Button.Y)){
-            bot.s.setPosition(0);
-            if (bot.s.getPosition() < 100) {
-                bot.sr.setPower42();
-                bot.sr.setPosition(0);
-            }
 
+        //        Rest High
+        if (operator.wasJustPressed(GamepadKeys.Button.Y)){
+            bot.aX.setArmPosMID();
+
+            bot.s.setPosition(0);
+            try {
+                Thread.sleep(3500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.sr.setPower42();
+            bot.sr.setPosition(0);
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             bot.s.setPower0();
             bot.sr.setPower0();
             bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPositionMID();
         }
+
         //pick up specimen from wall
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.servoRClaw.setRClawPositionMID();
@@ -173,7 +184,7 @@ public class FieldCentric extends OpMode
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.aX.setArmPosMID();
-            bot.sr.setPosition(690); // Doing high bucket from behind he robot right now
+            bot.sr.setPosition(690); // Doing high bucket from behind the robot right now
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
@@ -194,12 +205,8 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
         }
-        //       High Slam
-       if (driver.wasJustPressed(GamepadKeys.Button.X)){
-            bot.s.setPosition(400);
-        }
 
-        //all the way up
+        //if clawservo stuck
         if (driver.wasJustPressed(GamepadKeys.Button.Y)){
             bot.aX.setArmPosHB(); // try init next of too high
         }
