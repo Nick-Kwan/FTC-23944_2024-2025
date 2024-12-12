@@ -104,6 +104,7 @@ public class FieldCentric extends OpMode {
                     bot.setPosition(State.IDLE);
                 }
 
+                // didnt finish full code here
         }
     }
 }
