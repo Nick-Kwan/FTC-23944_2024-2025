@@ -76,7 +76,7 @@ public class FieldCentric extends OpMode
             bot.servoClaw.setClawPosition1();
             bot.servoRClaw.setRClawPositionMID();
             bot.aX.setArmPosSUB();
-            bot.servoClaw.setClawPosition0();
+            //bot.servoClaw.setClawPosition0();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -105,7 +105,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.aX.setArmPos1();
-            try {
+            /*try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -116,7 +116,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.aX.setArmPosSUB();
+            bot.aX.setArmPosSUB();*/
         }
         //        Rest High
         if (driver.wasJustPressed(GamepadKeys.Button.B)){
