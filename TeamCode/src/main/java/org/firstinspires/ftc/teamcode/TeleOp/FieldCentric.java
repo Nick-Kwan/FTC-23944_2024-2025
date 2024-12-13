@@ -84,17 +84,18 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPosition(1500);
         }
-        //        In Sub 1
-        /*if (operator.wasJustPressed(GamepadKeys.Button.A)){
-            bot.servoClaw.setClawPosition0();
-            bot.sr.setPosition(120);
+        // rest from sub
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
+            bot.aX.setArmPosSUB();
+            bot.s.setPosition(0);
             try {
-                Thread.sleep(500);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(650);
-        }*/
+            bot.s.setPower0();
+            bot.aX.setArmPosMID();
+        }
 
 //        Fish
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
@@ -118,11 +119,11 @@ public class FieldCentric extends OpMode
             }
             bot.aX.setArmPosSUB();*/
         }
-        //        Rest normal
+        //        Rest High Specimen
         if (driver.wasJustPressed(GamepadKeys.Button.B)){
             bot.s.setPosition(0);
             try {
-                Thread.sleep(2750);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -140,13 +141,13 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setRClawPositionMID();
         }
 
-        //        Rest High
+        //        Rest High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.aX.setArmPosMID();
 
             bot.s.setPosition(0);
             try {
-                Thread.sleep(3500);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -184,18 +185,17 @@ public class FieldCentric extends OpMode
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.aX.setArmPosMID();
-            bot.sr.setPosition(690); // Doing high bucket from behind the robot right now
+            bot.sr.setPosition(700); // Doing high bucket from behind the robot right now
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(2500);
-            bot.aX.setArmPosUPaBIT();
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(500); // prev 485 worked
+            bot.sr.setPosition(513); // prev 500 worked
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
