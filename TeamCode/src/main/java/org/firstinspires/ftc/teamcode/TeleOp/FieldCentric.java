@@ -201,7 +201,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1450);// 1550 to high
+            bot.s.setPosition(1270);// 1350 to high
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
         }
