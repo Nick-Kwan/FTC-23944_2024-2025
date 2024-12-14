@@ -224,7 +224,7 @@ public class FieldCentric extends OpMode
             }
             bot.s.setPosition(1100); // prev 1360
             try {
-                Thread.sleep(500);
+                Thread.sleep(350); // prev 500
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
