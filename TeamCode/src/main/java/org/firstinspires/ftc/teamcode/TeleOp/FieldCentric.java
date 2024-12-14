@@ -195,13 +195,13 @@ public class FieldCentric extends OpMode
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(500); // prev 500 worked
+            bot.sr.setPosition(513); // prev 513 worked
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1270);// 1350 to high
+            bot.s.setPosition(1340);// 1270 to high
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
         }
