@@ -173,7 +173,7 @@ public class FieldCentric extends OpMode
         }
 
         //Low Bucket
-        if (operator.wasJustPressed(GamepadKeys.Button.X)){
+        /*if (operator.wasJustPressed(GamepadKeys.Button.X)){
             bot.sr.setPosition(550);
             try {
                 Thread.sleep(1000);
@@ -181,7 +181,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(1500);
-        }
+        }*/
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.aX.setArmPosMID();
@@ -201,9 +201,40 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1720);// 1650 perfect W/ GRIP
+            bot.s.setPosition(1450);// 1550 to high
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosFlip();
+        }
+
+        // Slowly Raise or Lower Slides
+        /*if(operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+            bot.sr.incrementSlides(50);
+        }
+        if(operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.sr.incrementSlides(-50);
+        }*/
+        // Level 2 Climb
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.aX.setArmPosWall();
+            bot.sr.setPosition(390);
+            try {
+                Thread.sleep(2500); // prev 3500.
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(1100); // prev 1360
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.sr.setPosition(200); // prev 250
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(0);
         }
 
         //if clawservo stuck

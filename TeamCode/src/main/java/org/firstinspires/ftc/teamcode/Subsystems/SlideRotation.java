@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class SlideRotation {
     private DcMotorEx rightRSlide, leftRSlide;
     private double power = 0.75;
+    int target, prevTarget;
 
     public SlideRotation(HardwareMap hardwaremap) {
         rightRSlide = hardwaremap.get(DcMotorEx.class, "rightRSlide");
@@ -46,4 +47,12 @@ public class SlideRotation {
         leftRSlide.setPower(0.42);
         rightRSlide.setPower(0.42);
     }
+    public void incrementSlides(double input) {
+        setPosition((int)(rightRSlide.getCurrentPosition()+input));
     }
+    public void setTarget(int position) {
+        prevTarget = target;
+        target = position;
+    }
+
+}
