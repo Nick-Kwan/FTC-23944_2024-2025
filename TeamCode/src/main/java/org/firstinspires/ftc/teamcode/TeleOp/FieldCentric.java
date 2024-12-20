@@ -121,6 +121,18 @@ public class FieldCentric extends OpMode
         }
         //        Rest High Specimen
         if (driver.wasJustPressed(GamepadKeys.Button.B)){
+            bot.s.setPosition(350);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.servoClaw.setClawPosition0();
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             bot.s.setPosition(0);
             try {
                 Thread.sleep(1500);
@@ -195,15 +207,14 @@ public class FieldCentric extends OpMode
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.sr.setPosition(513); // prev 513 worked
+            bot.aX.setArmPosUPaBIT();
+            bot.sr.setPosition(720); //
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1340);// 1270 to high
-            bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPosFlip();
+            bot.s.setPosition(300);//
         }
 
         // Slowly Raise or Lower Slides
