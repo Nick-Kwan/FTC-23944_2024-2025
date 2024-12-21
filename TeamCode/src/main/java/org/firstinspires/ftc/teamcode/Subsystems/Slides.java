@@ -17,6 +17,8 @@ public class Slides {
         rightSlide = hardwaremap.get(DcMotorEx.class, "rightSlide");
         leftSlide = hardwaremap.get(DcMotorEx.class, "leftSlide");
 
+        //rightSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //leftSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -86,6 +88,22 @@ public class Slides {
     public void setPower0(){
         leftSlide.setPower(0);
         rightSlide.setPower(0);
+    }
+    public void altZeroPowerBehavior(){
+        if (leftSlide.getZeroPowerBehavior() == DcMotor.ZeroPowerBehavior.BRAKE){
+            setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        } else {
+            setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+    }
+
+    public DcMotor.ZeroPowerBehavior getZeroPowerBehavior(){
+        return leftSlide.getZeroPowerBehavior();
+    }
+
+    public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
+        leftSlide.setZeroPowerBehavior(behavior);
+        rightSlide.setZeroPowerBehavior(behavior);
     }
 
 }

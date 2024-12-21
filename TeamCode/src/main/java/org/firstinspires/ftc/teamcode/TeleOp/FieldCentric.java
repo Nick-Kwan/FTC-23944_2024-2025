@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
@@ -120,38 +121,20 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosSUB();*/
         }
         //        Rest High Specimen
-        if (driver.wasJustPressed(GamepadKeys.Button.B)){
-            bot.s.setPosition(350);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition0();
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(0);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.sr.setPower42();
+        /*if (driver.wasJustPressed(GamepadKeys.Button.B)){
             bot.sr.setPosition(0);
             try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            bot.s.setPosition(0);
             bot.s.setPower0();
             bot.sr.setPower0();
             bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPositionMID();
-        }
+        }*/
 
         //        Rest High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
@@ -197,24 +180,58 @@ public class FieldCentric extends OpMode
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.aX.setArmPosMID();
-            bot.sr.setPosition(700); // Doing high bucket from behind the robot right now
+            bot.sr.setPosition(720);
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(2500);
+            bot.s.setPosition(835);
         }
         //        High Specimen
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
             bot.aX.setArmPosUPaBIT();
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             bot.sr.setPosition(720); //
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.aX.setArmPosSpec();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(300);//
+            bot.servoClaw.setClawPosition0();
+            bot.sr.setPosition(0);
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(0);
+            bot.s.setPower0();
+            bot.sr.setPower0();
+            bot.servoClaw.setClawPosition1();
+            bot.aX.setArmPosMID();
+            bot.servoRClaw.setRClawPositionMID();
+        }
+
+        // Retract Slides due to slides slipping out while robot is moving
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
+            bot.s.setPosition(0);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPower0();
         }
 
         // Slowly Raise or Lower Slides
