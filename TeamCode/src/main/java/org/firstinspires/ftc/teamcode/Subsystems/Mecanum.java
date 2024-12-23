@@ -14,6 +14,7 @@ public class Mecanum {
     private DcMotorEx left_front, left_back, right_front, right_back;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
+    private Robot bot;
 
     DecimalFormat df = new DecimalFormat("#.##");
     // This rounds to two decimal places
@@ -63,4 +64,12 @@ public class Mecanum {
         right_back.setPower(backRightPower * offset);
     }
     public void resetIMU() {resetIMU();}
+
+    public void slideSlipFix(GamepadEx gamepad1) {
+        if (gamepad1.getRightX() > 0.75 || gamepad1.getRightX()<-0.75){
+            bot.s.setPosition(0);
+        } else {
+            bot.s.setPower0();
+        }
+    }
 }

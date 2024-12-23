@@ -53,6 +53,7 @@ public class FieldCentric extends OpMode
         operator.readButtons();
 
         bot.driveTrain.drive(driver);
+        bot.driveTrain.slideSlipFix(driver);
         bot.driveTrain.setMotorPower();
 
 
