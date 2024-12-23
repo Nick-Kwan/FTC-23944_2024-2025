@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -16,6 +17,7 @@ public class FieldCentric extends OpMode
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+
 
 
     @Override
@@ -53,7 +55,6 @@ public class FieldCentric extends OpMode
         operator.readButtons();
 
         bot.driveTrain.drive(driver);
-        bot.driveTrain.slideSlipFix(driver);
         bot.driveTrain.setMotorPower();
 
 
@@ -226,11 +227,8 @@ public class FieldCentric extends OpMode
 
         // Retract Slides due to slides slipping out while robot is moving
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
-            bot.s.setPosition(0);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (bot.s.getPosition() > 0) {
+                bot.s.setPosition(-50);
             }
             bot.s.setPower0();
         }

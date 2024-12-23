@@ -5,8 +5,14 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import java.text.DecimalFormat;
 
@@ -14,7 +20,10 @@ public class Mecanum {
     private DcMotorEx left_front, left_back, right_front, right_back;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
+    private float rotRate = 1;
     private Robot bot;
+    private ElapsedTime runTime;
+
 
     DecimalFormat df = new DecimalFormat("#.##");
     // This rounds to two decimal places
@@ -65,9 +74,13 @@ public class Mecanum {
     }
     public void resetIMU() {resetIMU();}
 
-    public void slideSlipFix(GamepadEx gamepad1) {
-        if (gamepad1.getRightX() > 0.75 || gamepad1.getRightX()<-0.75){
-            bot.s.setPosition(0);
+
+    public void slideSlipFix() {
+        AngularVelocity myRobotAngularVelocity;
+        myRobotAngularVelocity = imu.getRobotAngularVelocity(AngleUnit.DEGREES);
+        float zRotationRate = myRobotAngularVelocity.zRotationRate;
+        if (zRotationRate > rotRate){
+            bot.s.setPos0();
         } else {
             bot.s.setPower0();
         }
