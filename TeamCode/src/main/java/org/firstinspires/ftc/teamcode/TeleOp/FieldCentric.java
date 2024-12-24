@@ -52,16 +52,24 @@ public class FieldCentric extends OpMode
 
         driver.readButtons();
         operator.readButtons();
+        bot.driveTrain.drive(driver);
+        //bot.driveTrain.setMotorPower();
 
-        bot.driveTrain.setMotorPower();
 
 
-
-        /*double slidePosition = bot.s.getPosition(); // Get slide motor's current position
+        double slidePosition = bot.s.getPosition(); // Get slide motor's current position
         boolean slowModeCondition = slidePosition > slidePositionThreshold;
         if (slowModeCondition) {
             bot.driveTrain.setSlowMode();
-        }*/
+        } else {
+            bot.driveTrain.setMotorPower();
+            if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
+                bot.s.setPosition(0);
+                if (slidePosition <= 10) {
+                    bot.s.setPower0();
+                }
+            }
+        }
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
@@ -202,7 +210,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(0);
+            bot.s.setPosition(42);
             bot.sr.setPosition(720); //
             try {
                 Thread.sleep(1000);
