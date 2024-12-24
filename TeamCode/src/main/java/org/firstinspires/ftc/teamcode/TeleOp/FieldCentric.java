@@ -196,6 +196,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            bot.s.setPosition(0);
             bot.sr.setPosition(720); //
             try {
                 Thread.sleep(1000);
@@ -204,14 +205,15 @@ public class FieldCentric extends OpMode
             }
             bot.aX.setArmPosSpec();
             try {
-                Thread.sleep(500);
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             bot.servoClaw.setClawPosition0();
             bot.sr.setPosition(0);
+            bot.s.setPosition(0);
             try {
-                Thread.sleep(750);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -224,15 +226,16 @@ public class FieldCentric extends OpMode
         }
 
         // Retract Slides due to slides slipping out while robot is moving
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
-            bot.s.setPosition(0);
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
+            bot.s.setPosition(-50);
             try {
-                Thread.sleep(500);
+                Thread.sleep(350);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             bot.s.setPower0();
         }
+
 
         // Slowly Raise or Lower Slides
         /*if(operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
