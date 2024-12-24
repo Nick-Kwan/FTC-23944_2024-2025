@@ -43,10 +43,6 @@ public class SlideRotation {
         leftRSlide.setPower(0);
         rightRSlide.setPower(0);
     }
-    public void setPower42(){
-        leftRSlide.setPower(0.42);
-        rightRSlide.setPower(0.42);
-    }
     public void incrementSlides(double input) {
         setPosition((int)(rightRSlide.getCurrentPosition()+input));
     }

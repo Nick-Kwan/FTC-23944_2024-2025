@@ -156,11 +156,10 @@ public class FieldCentric extends OpMode
 
             bot.s.setPosition(0);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.sr.setPower42();
             bot.sr.setPosition(0);
             try {
                 Thread.sleep(750);
@@ -239,21 +238,7 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setRClawPositionMID();
         }
 
-        // Retract Slides due to slides slipping out while robot is moving
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
-            bot.s.setPosition(-50);
-            if (bot.s.getPosition() <= 10)
-                bot.s.setPower0();
-        }
 
-
-        // Slowly Raise or Lower Slides
-        /*if(operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.sr.incrementSlides(50);
-        }
-        if(operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
-            bot.sr.incrementSlides(-50);
-        }*/
         // Level 2 Climb
         /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
             bot.aX.setArmPosMID();
