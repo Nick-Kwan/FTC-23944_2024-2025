@@ -16,6 +16,7 @@ public class FieldCentric extends OpMode
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+    private double slidePositionThreshold = 400; // Position threshold for slow mode
 
 
     @Override
@@ -52,10 +53,15 @@ public class FieldCentric extends OpMode
         driver.readButtons();
         operator.readButtons();
 
-        bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
 
 
+
+        /*double slidePosition = bot.s.getPosition(); // Get slide motor's current position
+        boolean slowModeCondition = slidePosition > slidePositionThreshold;
+        if (slowModeCondition) {
+            bot.driveTrain.setSlowMode();
+        }*/
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
@@ -83,7 +89,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1500);
+            bot.s.setPosition(590);
         }
         // rest from sub
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {

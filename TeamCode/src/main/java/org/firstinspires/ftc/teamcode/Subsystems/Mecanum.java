@@ -62,5 +62,34 @@ public class Mecanum {
         right_front.setPower(frontRightPower * offset);
         right_back.setPower(backRightPower * offset);
     }
+
+    public void setSlowMode() {
+        left_front.setPower(frontLeftPower * 0.3);
+        left_back.setPower(backLeftPower * 0.3);
+        right_front.setPower(frontRightPower * 0.3);
+        right_back.setPower(backRightPower * 0.3);
+    }
     public void resetIMU() {resetIMU();}
+
+    public double getHeading(){
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+    }
+
+    public void resetHeading(){
+        imu.resetYaw();
+    }
+
+    public double[] getMotorPowers(){
+        return new double[] {
+                frontLeftPower,
+                backLeftPower,
+                frontRightPower,
+                backRightPower
+        };
+    }
+
+    public double getMotorPower(){
+        return frontLeftPower;
+    }
+
 }
