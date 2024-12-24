@@ -228,12 +228,8 @@ public class FieldCentric extends OpMode
         // Retract Slides due to slides slipping out while robot is moving
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
             bot.s.setPosition(-50);
-            try {
-                Thread.sleep(350);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPower0();
+            if (bot.s.getPosition() <= 10)
+                bot.s.setPower0();
         }
 
 
