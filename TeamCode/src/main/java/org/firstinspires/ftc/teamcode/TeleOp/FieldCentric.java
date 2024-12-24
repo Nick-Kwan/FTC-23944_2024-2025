@@ -210,7 +210,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(42);
+            bot.s.setPosition(27);
             bot.sr.setPosition(720); //
             try {
                 Thread.sleep(1000);
@@ -255,28 +255,35 @@ public class FieldCentric extends OpMode
             bot.sr.incrementSlides(-50);
         }*/
         // Level 2 Climb
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
-            bot.aX.setArmPosWall();
-            bot.sr.setPosition(390);
+        /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.aX.setArmPosMID();
+            bot.sr.setPosition(700);
             try {
                 Thread.sleep(2500); // prev 3500.
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(1100); // prev 1360
+            bot.s.setPosition(310); // prev 1360
             try {
-                Thread.sleep(350); // prev 500
+                Thread.sleep(1000); // prev 500
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.sr.setPosition(200); // prev 250
+            bot.sr.setPosition(746); // prev 250
+            try {
+                Thread.sleep(750);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            bot.s.setPosition(220);
             try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             bot.s.setPosition(0);
-        }
+            bot.sr.setPosition(0);
+        } */
 
         //if clawservo stuck
         if (driver.wasJustPressed(GamepadKeys.Button.Y)){
