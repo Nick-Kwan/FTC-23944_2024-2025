@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Auto.RRdrives.PinpointDrive;
 import org.firstinspires.ftc.teamcode.Auto.tuning.TankDrive;
 
 public final class ManualFeedbackTuner extends LinearOpMode {
-    public static double DISTANCE = 64;
+    public static double DISTANCE = 32;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -18,8 +18,6 @@ public final class ManualFeedbackTuner extends LinearOpMode {
             PinpointDrive drive = new PinpointDrive(hardwareMap, new Pose2d(0, 0, 0));
 
             waitForStart();
-
-
 
             while (opModeIsActive()) {
                 Actions.runBlocking(
