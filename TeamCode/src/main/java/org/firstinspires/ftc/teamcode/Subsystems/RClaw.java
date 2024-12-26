@@ -8,17 +8,32 @@ public class RClaw {
     private double mid = 0.2; // prev 0.17
     private double flip = 0.85; // prev 0.92 left of North
     private double ninety = 0.5;
-    private double offset = 0.05;
-    private double rotationTarget;
+    private boolean posNine;
 
     public RClaw (HardwareMap hardwareMap)
     {
         servoRC = hardwareMap.get(Servo.class, "servoRC");
     }
 
-    public void setRClawPositionMID() {servoRC.setPosition(mid);}
     public void setRClawPosFlip(){servoRC.setPosition(flip);}
-    public void setRClawPosNine(){servoRC.setPosition(ninety);}
+
+    public void actuateClaw(){
+        if (servoRC.getPosition() == mid){
+            setRClawPosNine();
+        } else {
+            setRClawPosMID();
+        }
+    }
+
+    public void setRClawPosMID(){
+        posNine = false;
+        servoRC.setPosition(mid);
+    }
+
+    public void setRClawPosNine(){
+        posNine = true;
+        servoRC.setPosition(ninety);
+    }
 
 
 

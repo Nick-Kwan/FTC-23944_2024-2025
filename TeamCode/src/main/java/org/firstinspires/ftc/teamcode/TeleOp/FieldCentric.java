@@ -36,7 +36,7 @@ public class FieldCentric extends OpMode
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        bot.servoRClaw.setRClawPositionMID();
+        bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
 
     }
@@ -89,7 +89,7 @@ public class FieldCentric extends OpMode
 //        In Sub 2
         if (operator.wasJustPressed(GamepadKeys.Button.B)){
             bot.servoClaw.setClawPosition1();
-            bot.servoRClaw.setRClawPositionMID();
+            bot.servoRClaw.setRClawPosMID();
             bot.aX.setArmPosSUB();
             //bot.servoClaw.setClawPosition0();
             try {
@@ -102,6 +102,7 @@ public class FieldCentric extends OpMode
         // rest from sub
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
             bot.aX.setArmPosSUB();
+            bot.servoRClaw.setRClawPosMID();
             bot.s.setPosition(0);
             try {
                 Thread.sleep(1500);
@@ -109,6 +110,7 @@ public class FieldCentric extends OpMode
                 throw new RuntimeException(e);
             }
             bot.s.setPower0();
+
             bot.aX.setArmPosMID();
         }
 
@@ -153,7 +155,7 @@ public class FieldCentric extends OpMode
         //        Rest High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.Y)){
             bot.aX.setArmPosMID();
-
+            bot.sr.setPosition(650);
             bot.s.setPosition(0);
             try {
                 Thread.sleep(1500);
@@ -170,12 +172,12 @@ public class FieldCentric extends OpMode
             bot.sr.setPower0();
             bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPositionMID();
+            bot.servoRClaw.setRClawPosMID();
         }
 
         //pick up specimen from wall
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.servoRClaw.setRClawPositionMID();
+            bot.servoRClaw.setRClawPosMID();
             bot.aX.setArmPosWall();
             bot.servoClaw.setClawPosition0();
         }
@@ -235,7 +237,7 @@ public class FieldCentric extends OpMode
             bot.sr.setPower0();
             bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPositionMID();
+            bot.servoRClaw.setRClawPosMID();
         }
 
 
@@ -279,10 +281,10 @@ public class FieldCentric extends OpMode
             bot.aX.setArmPosUPaBIT();
         }
 
-        /*// rotate claw 90 degrees
-        if (driver.wasJustPressed(GamepadKeys.Button.X)) {
-            bot.servoRClaw.setRClawPosNine();
-        }*/
+        // rotate claw 90 degrees
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
+            bot.servoRClaw.actuateClaw();
+        }
 
 
         //        Low Slam
