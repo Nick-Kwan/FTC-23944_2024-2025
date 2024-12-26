@@ -105,7 +105,7 @@ public class FieldCentric extends OpMode
             bot.servoRClaw.setRClawPosMID();
             bot.s.setPosition(0);
             try {
-                Thread.sleep(1500);
+                Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -158,7 +158,7 @@ public class FieldCentric extends OpMode
             bot.sr.setPosition(650);
             bot.s.setPosition(0);
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

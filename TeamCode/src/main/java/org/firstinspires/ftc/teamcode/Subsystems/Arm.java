@@ -11,7 +11,7 @@ public class Arm {
     private double init = 0.85;
     private double hb = 0.58    ; // hb = high bucket
     private double upAbit = 0.45;
-    private double sub = 0.8;
+    private double sub = 0.7;
     private double pos1 = 1;
     private double spec = 0.815;
 
