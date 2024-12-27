@@ -26,6 +26,9 @@ public class ArmActions {
     public Action armHBAction() {
         return new armHB();
     }
+    public Action armUPaBITAction () {
+        return new armUPaBIT();
+    }
     public class armMID implements Action{
 
         @Override
@@ -63,6 +66,22 @@ public class ArmActions {
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
             arm.setArmPosUPaBIT();
+            return false;
+        }
+    }
+    public class armSub implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            arm.setArmPosSUB();
+            return false;
+        }
+    }
+    public class armSpec implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            arm.setArmPosSpec();
             return false;
         }
     }

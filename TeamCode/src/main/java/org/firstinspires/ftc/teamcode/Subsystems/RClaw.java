@@ -15,7 +15,7 @@ public class RClaw {
         servoRC = hardwareMap.get(Servo.class, "servoRC");
     }
 
-    public void setRClawPosFlip(){servoRC.setPosition(flip);}
+    //public void setRClawPosFlip(){servoRC.setPosition(flip);}
 
     public void actuateClaw(){
         if (servoRC.getPosition() == mid){
@@ -35,13 +35,4 @@ public class RClaw {
         servoRC.setPosition(ninety);
     }
 
-
-
-    /*public void incrementRotation(double increment){
-        rotationTarget += increment;
-    }
-
-    public void setRotation(double rotationTarget) {
-        servoRC.setPosition(rotationTarget);
-    }*/
 }

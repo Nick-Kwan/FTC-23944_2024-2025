@@ -28,7 +28,6 @@ public class Arm {
     public void setArmPosHB(){servoAL.setPosition(hb); servoAR.setPosition(hb);}
     public void setArmPosUPaBIT(){servoAL.setPosition(upAbit); servoAR.setPosition(upAbit);}
     public void setArmPosSUB(){servoAL.setPosition(sub); servoAR.setPosition(sub);}
-    public void setArmPos1(){servoAL.setPosition(pos1); servoAR.setPosition(pos1);}
     public void setArmPosSpec(){servoAL.setPosition(spec); servoAR.setPosition(spec);}
 
 

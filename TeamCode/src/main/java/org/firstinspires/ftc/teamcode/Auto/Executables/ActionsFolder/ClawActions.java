@@ -13,10 +13,10 @@ public class ClawActions {
     public ClawActions(HardwareMap hardwareMap){
         claw = new Claw(hardwareMap);
     }
-    public Action closeClawAction(){
+    public Action clawCloseAction(){
         return new closeClaw();
     }
-    public Action openClawAction(){
+    public Action clawOpenAction(){
         return new openClaw();
     }
 
