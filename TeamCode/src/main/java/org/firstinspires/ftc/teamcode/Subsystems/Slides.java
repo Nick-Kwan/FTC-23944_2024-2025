@@ -89,9 +89,6 @@ public class Slides {
         leftSlide.setPower(0);
         rightSlide.setPower(0);
     }
-    public double getPower() {
-        return leftSlide.getPower();
-    }
     public void altZeroPowerBehavior(){
         if (leftSlide.getZeroPowerBehavior() == DcMotor.ZeroPowerBehavior.BRAKE){
             setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
