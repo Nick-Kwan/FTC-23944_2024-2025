@@ -23,6 +23,12 @@ public class BotActions {
     public Action clawOpenAction(){
         return clawActions.clawOpenAction();
     }
+    public Action rClaw90Action(){
+        return rClawActions.rotClaw90Action();
+    }
+    public Action rClawMIDAction(){
+        return rClawActions.rotClawMIDAction();
+    }
     public Action armMidAction(){
         return armActions.armMIDAction();
     }
@@ -38,5 +44,31 @@ public class BotActions {
     public Action armUPaBITAction(){
         return armActions.armUPaBITAction();
     }
-    public Action 
+    public Action rSlideOffAction(){
+        return rSlideActions.slideRotationOFFAction();
+    }
+    public Action getRslidePosAction(){
+        return rSlideActions.getSlideRotationPosAction();
+    }
+    public Action rSlideDownAction(){
+        return rSlideActions.slideRotationDownAction();
+    }
+    public Action rSlideUpAction(){
+        return rSlideActions.slideRotationUpAction();
+    }
+    public Action slideOffAction(){
+        return slideActions.slideOFFAction();
+    }
+    public Action getSlidePosAction(){
+        return slideActions.getSlidePosAction();
+    }
+    public Action slideDownAction(){
+        return slideActions.slideDownAction();
+    }
+    public Action slideSpecAction(){
+        return slideActions.slideSpecAction();
+    }
+    public Action slideHbAction(){
+        return slideActions.slideHBAction();
+    }
 }
