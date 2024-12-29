@@ -44,6 +44,12 @@ public class BotActions {
     public Action armUPaBITAction(){
         return armActions.armUPaBITAction();
     }
+    public Action armSpecAction(){
+        return armActions.armSpecAction();
+    }
+    public Action armAutoAction() {
+        return armActions.armAutoAction();
+    }
     public Action rSlideOffAction(){
         return rSlideActions.slideRotationOFFAction();
     }

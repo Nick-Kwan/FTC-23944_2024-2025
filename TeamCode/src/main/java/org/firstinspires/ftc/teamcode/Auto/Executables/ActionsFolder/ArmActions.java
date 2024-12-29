@@ -29,6 +29,28 @@ public class ArmActions {
     public Action armUPaBITAction () {
         return new armUPaBIT();
     }
+    public Action armAutoAction () {
+        return new armAuto();
+    }
+    public Action armSpecAction () {
+        return new armSpec();
+    }
+    public class armSpecAction implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            arm.setArmPosSpec();
+            return false;
+        }
+    }
+    public class armAuto implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            arm.setArmPosSAuto();
+            return false;
+        }
+    }
     public class armMID implements Action{
 
         @Override

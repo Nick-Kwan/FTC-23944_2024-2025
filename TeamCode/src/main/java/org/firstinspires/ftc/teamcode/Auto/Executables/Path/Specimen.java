@@ -26,7 +26,7 @@ public class Specimen extends LinearOpMode{
     PinpointDrive drive;
     TelemetryPacket tel = new TelemetryPacket();
     SequentialAction path;
-    Pose2d start = new Pose2d(8,-8,Math.toRadians(180));
+    Pose2d start = new Pose2d(8.5,-8.25,Math.toRadians(180));
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
@@ -76,8 +76,34 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.rClawMIDAction(),
                         bot.clawCloseAction(),
+                        bot.armAutoAction()
+                ))
+                .setTangent(0)
+                .splineToConstantHeading(new Vector2d(40, 7.5), Math.toRadians(0), new TranslationalVelConstraint(30))
+                .afterTime(0, new ParallelAction(
+                        bot.rSlideUpAction(),
+                        bot.slideSpecAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.armSpecAction()
+                ))
+                .waitSeconds(0.2)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction(),
+                        bot.rSlideDownAction(),
+                        bot.slideDownAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction(),
+                        bot.slideOffAction(),
+                        bot.rSlideDownAction(),
+                        bot.clawCloseAction(),
                         bot.armMidAction()
                 ))
+                .splineToConstantHeading(new Vector2d(40, -28.5), Math.PI/2, new TranslationalVelConstraint(50))
+                .splineTo(new Vector2d(60, -40.5), Math.PI/3)
                 .build();
     }
 }

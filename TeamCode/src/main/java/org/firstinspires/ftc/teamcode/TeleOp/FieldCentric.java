@@ -59,7 +59,7 @@ public class FieldCentric extends OpMode
 
         double slidePosition = bot.s.getPosition(); // Get slide motor's current position
         boolean slowModeCondition = slidePosition > slidePositionThreshold;
-        if (slowModeCondition) {
+        if (slowModeCondition || bot.aX.getArmPos() == 0.645) {
             bot.driveTrain.setSlowMode();
         } else {
             bot.driveTrain.setMotorPower();
@@ -122,7 +122,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.aX.setArmPosMID();
+            bot.aX.setArmPosFish();
             /*try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
