@@ -103,7 +103,28 @@ public class Specimen extends LinearOpMode{
                         bot.armMidAction()
                 ))
                 .splineToConstantHeading(new Vector2d(40, -28.5), Math.PI/2, new TranslationalVelConstraint(50))
-                .splineTo(new Vector2d(60, -40.5), Math.PI/3)
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(60, -35, Math.PI/2), Math.PI/2)
+                .splineToConstantHeading(new Vector2d(27,-35),0, new TranslationalVelConstraint(30))
+                .splineToConstantHeading(new Vector2d(70, -32), 0)
+                .splineToConstantHeading(new Vector2d(60, -43), 0)
+                .splineToConstantHeading(new Vector2d(27,-41),0, new TranslationalVelConstraint(30))
+                .splineToLinearHeading(new Pose2d(48, -48, (3*Math.PI)/2), 0)
+                .afterTime(0, new ParallelAction(
+                        bot.slideSpecAction(),
+                        bot.rClaw90Action(),
+                        bot.clawOpenAction()
+                ))
+                .splineToConstantHeading(new Vector2d(49, -61.5), 0)
+                .afterTime(0, new ParallelAction(
+                        bot.clawCloseAction(),
+                        bot.slideDownAction(),
+                        bot.slideOffAction()
+                ))
+                .splineToLinearHeading(new Pose2d(21, -50, 0), 0)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction()
+                ))
                 .build();
     }
 }

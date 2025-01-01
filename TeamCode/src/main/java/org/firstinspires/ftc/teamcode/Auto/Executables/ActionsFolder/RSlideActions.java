@@ -26,6 +26,17 @@ public class RSlideActions {
     public Action slideRotationUpAction() {
         return new slideRotationUp();
     }
+    public Action slideRotationHbRAction() {
+        return new slideRotationHbRAction();
+    }
+    public class slideRotationHbRAction implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slideRotation.setPosition(650);
+            return false;
+        }
+    }
     public class slideRotationUp implements Action{
 
         @Override

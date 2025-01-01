@@ -29,6 +29,17 @@ public class SlideActions {
     public Action slideHBAction() {
         return new slideHB();
     }
+    public Action slideHB3Action() {
+        return new slideHB3();
+    }
+    public class slideHB3 implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(805);
+            return false;
+        }
+    }
     public class slideHB implements Action{
 
         @Override

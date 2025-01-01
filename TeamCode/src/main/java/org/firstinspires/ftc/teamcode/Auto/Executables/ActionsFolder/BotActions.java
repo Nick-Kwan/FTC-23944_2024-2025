@@ -62,6 +62,9 @@ public class BotActions {
     public Action rSlideUpAction(){
         return rSlideActions.slideRotationUpAction();
     }
+    public Action rSlideHbRAction(){
+        return rSlideActions.slideRotationHbRAction();
+    }
     public Action slideOffAction(){
         return slideActions.slideOFFAction();
     }
@@ -76,5 +79,8 @@ public class BotActions {
     }
     public Action slideHbAction(){
         return slideActions.slideHBAction();
+    }
+    public Action slideHb3Action() {
+        return slideActions.slideHB3Action();
     }
 }

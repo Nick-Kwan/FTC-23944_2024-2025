@@ -122,7 +122,7 @@ public class FieldCentric extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.aX.setArmPosFish();
+            bot.aX.setArmPosMID();
             /*try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
