@@ -152,7 +152,7 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction()
                 ))
-                .splineToLinearHeading(new Pose2d(27, -44,-Math.toRadians(-170)),0)
+                .splineToLinearHeading(new Pose2d(27, -44,-Math.toRadians(-17)),0)
                 .waitSeconds(0.25)
                 .afterTime(0, new ParallelAction(
                         bot.slideSpec2Action()
