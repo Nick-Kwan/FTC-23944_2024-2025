@@ -32,6 +32,39 @@ public class SlideActions {
     public Action slideHB3Action() {
         return new slideHB3();
     }
+    public Action slideSpec1Action() {
+        return new slideSpec1();
+    }
+    public Action slideSpec2Action() {
+        return new slideSpec2();
+    }
+    public Action slideSoec3Action(){
+        return new slideSpec3();
+    }
+    public class slideSpec3 implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(560);
+            return false;
+        }
+    }
+    public class slideSpec2 implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(560);
+            return false;
+        }
+    }
+    public class slideSpec1 implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(520);
+            return false;
+        }
+    }
     public class slideHB3 implements Action{
 
         @Override

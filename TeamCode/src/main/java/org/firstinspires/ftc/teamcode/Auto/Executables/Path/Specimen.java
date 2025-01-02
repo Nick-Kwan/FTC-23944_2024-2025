@@ -30,8 +30,8 @@ public class Specimen extends LinearOpMode{
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(20),
-            new AngularVelConstraint(Math.PI/3)
+            new TranslationalVelConstraint(60),
+            new AngularVelConstraint(2*(Math.PI/3))
     ));
 
     public enum AutoStates{
@@ -99,31 +99,16 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.clawCloseAction(),
                         bot.armMidAction()
                 ))
-                .splineToConstantHeading(new Vector2d(40, -28.5), Math.PI/2, new TranslationalVelConstraint(50))
-                .setTangent(0)
-                .splineToLinearHeading(new Pose2d(60, -35, Math.PI/2), Math.PI/2)
-                .splineToConstantHeading(new Vector2d(27,-35),0, new TranslationalVelConstraint(30))
-                .splineToConstantHeading(new Vector2d(70, -32), 0)
-                .splineToConstantHeading(new Vector2d(60, -43), 0)
-                .splineToConstantHeading(new Vector2d(27,-41),0, new TranslationalVelConstraint(30))
-                .splineToLinearHeading(new Pose2d(48, -48, (3*Math.PI)/2), 0)
+                .splineToLinearHeading(new Pose2d(37,-34,-Math.toRadians(36)),0)
                 .afterTime(0, new ParallelAction(
-                        bot.slideSpecAction(),
-                        bot.rClaw90Action(),
-                        bot.clawOpenAction()
+                        bot.rClawHalfAction(),
+                        bot.slideSpec1Action()
                 ))
-                .splineToConstantHeading(new Vector2d(49, -61.5), 0)
+                .waitSeconds(0.75)
                 .afterTime(0, new ParallelAction(
-                        bot.clawCloseAction(),
-                        bot.slideDownAction(),
-                        bot.slideOffAction()
-                ))
-                .splineToLinearHeading(new Pose2d(21, -50, 0), 0)
-                .afterTime(0, new ParallelAction(
-                        bot.clawOpenAction()
+                        bot.clawCloseAction()
                 ))
                 .build();
     }

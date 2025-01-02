@@ -29,6 +29,9 @@ public class BotActions {
     public Action rClawMIDAction(){
         return rClawActions.rotClawMIDAction();
     }
+    public Action rClawHalfAction(){
+        return rClawActions.rotClawHalfAction();
+    }
     public Action armMidAction(){
         return armActions.armMIDAction();
     }
@@ -82,5 +85,14 @@ public class BotActions {
     }
     public Action slideHb3Action() {
         return slideActions.slideHB3Action();
+    }
+    public Action slideSpec1Action() {
+        return slideActions.slideSpec1Action();
+    }
+    public Action slideSpec2Action() {
+        return slideActions.slideSpec2Action();
+    }
+    public Action slideSpec3Action(){
+        return slideActions.slideSoec3Action();
     }
 }

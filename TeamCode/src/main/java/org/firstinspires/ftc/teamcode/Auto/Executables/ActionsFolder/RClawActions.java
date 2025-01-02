@@ -19,6 +19,17 @@ public class RClawActions {
     public Action rotClawMIDAction() {
         return new clawRotateMID();
     }
+    public Action rotClawHalfAction() {
+        return new clawRotateHalf();
+    }
+    public class clawRotateHalf implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            rClaw.setRClawPosHalf();
+            return false;
+        }
+    }
     public class clawRotate90 implements Action{
 
         @Override

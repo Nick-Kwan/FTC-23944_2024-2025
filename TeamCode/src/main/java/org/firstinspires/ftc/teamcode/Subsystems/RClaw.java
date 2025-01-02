@@ -8,6 +8,7 @@ public class RClaw {
     private double mid = 0.2; // prev 0.17
     private double flip = 0.85; // prev 0.92 left of North
     private double ninety = 0.5;
+    private double half = 0.37;
     private boolean posNine;
 
     public RClaw (HardwareMap hardwareMap)
@@ -35,4 +36,7 @@ public class RClaw {
         servoRC.setPosition(ninety);
     }
 
+    public void setRClawPosHalf(){
+        servoRC.setPosition(half);
+    }
 }
