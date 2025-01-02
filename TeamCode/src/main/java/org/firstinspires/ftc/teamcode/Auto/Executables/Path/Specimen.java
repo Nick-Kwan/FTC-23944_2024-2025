@@ -119,7 +119,7 @@ public class Specimen extends LinearOpMode{
                         bot.armInitAction()
                 ))
                 .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34, -47, -Math.toRadians(42)),0)
+                .splineToLinearHeading(new Pose2d(34, -49, -Math.toRadians(42)),0)
                 .afterTime(0, new ParallelAction(
                         bot.armMidAction()
                 ))
@@ -131,7 +131,7 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.slideSpec2Action()
                 ))
-                .splineToLinearHeading(new Pose2d(32, -49, -Math.toRadians(140)),0)
+                .splineToLinearHeading(new Pose2d(32, -42, -Math.toRadians(140)),0)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction()
                 ))
@@ -139,7 +139,7 @@ public class Specimen extends LinearOpMode{
                         bot.armInitAction()
                 ))
                 .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34,-55,-Math.toRadians(43)),0)
+                .splineToLinearHeading(new Pose2d(34,-56.5,-Math.toRadians(43)),0)
                 .afterTime(0, new ParallelAction(
                         bot.armMidAction(),
                         bot.slideSpec3Action()
@@ -152,7 +152,7 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction()
                 ))
-                .splineToLinearHeading(new Pose2d(33, -50,-Math.toRadians(-180)),0)
+                .splineToLinearHeading(new Pose2d(27, -44,-Math.toRadians(-170)),0)
                 .waitSeconds(0.25)
                 .afterTime(0, new ParallelAction(
                         bot.slideSpec2Action()
@@ -165,7 +165,8 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction()
                 ))
-                .waitSeconds(0.25)
+                .splineToConstantHeading(new Vector2d(32,-44),0)
+                .waitSeconds(0.5)
                 .afterTime(0, new ParallelAction(
                         bot.armWallAction(),
                         bot.rClawMIDAction()
