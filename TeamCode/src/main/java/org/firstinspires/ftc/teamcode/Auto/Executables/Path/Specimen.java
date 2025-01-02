@@ -30,7 +30,7 @@ public class Specimen extends LinearOpMode{
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(60),
+            new TranslationalVelConstraint(85),
             new AngularVelConstraint(2*(Math.PI/3))
     ));
 
@@ -109,6 +109,66 @@ public class Specimen extends LinearOpMode{
                 .waitSeconds(0.75)
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
+                ))
+                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(34,-34,-Math.toRadians(137)),0)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction()
+                ))
+                .afterTime(0,new ParallelAction(
+                        bot.armInitAction()
+                ))
+                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(34, -47, -Math.toRadians(42)),0)
+                .afterTime(0, new ParallelAction(
+                        bot.armMidAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.clawCloseAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.slideSpec2Action()
+                ))
+                .splineToLinearHeading(new Pose2d(32, -49, -Math.toRadians(140)),0)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction()
+                ))
+                .afterTime(0, new ParallelAction(
+                        bot.armInitAction()
+                ))
+                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(34,-55,-Math.toRadians(43)),0)
+                .afterTime(0, new ParallelAction(
+                        bot.armMidAction(),
+                        bot.slideSpec3Action()
+                ))
+                .waitSeconds(0.5)
+                .afterTime(0, new ParallelAction(
+                        bot.clawCloseAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction()
+                ))
+                .splineToLinearHeading(new Pose2d(33, -50,-Math.toRadians(-180)),0)
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.slideSpec2Action()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction()
+                ))
+                .waitSeconds(0.5)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.armWallAction(),
+                        bot.rClawMIDAction()
                 ))
                 .build();
     }

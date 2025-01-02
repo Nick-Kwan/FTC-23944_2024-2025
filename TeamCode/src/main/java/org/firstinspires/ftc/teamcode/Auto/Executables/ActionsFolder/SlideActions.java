@@ -45,7 +45,7 @@ public class SlideActions {
 
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            slides.setPosition(560);
+            slides.setPosition(500);
             return false;
         }
     }
@@ -53,7 +53,7 @@ public class SlideActions {
 
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            slides.setPosition(560);
+            slides.setPosition(200);
             return false;
         }
     }
