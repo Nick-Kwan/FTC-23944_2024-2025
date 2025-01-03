@@ -93,6 +93,9 @@ public class BotActions {
         return slideActions.slideSpec2Action();
     }
     public Action slideSpec3Action(){
-        return slideActions.slideSoec3Action();
+        return slideActions.slideSpec3Action();
+    }
+    public Action slideSpec4Action(){
+        return slideActions.slideSpec4Action();
     }
 }

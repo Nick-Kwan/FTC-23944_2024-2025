@@ -79,7 +79,7 @@ public class Specimen extends LinearOpMode{
                         bot.armAutoAction()
                 ))
                 .setTangent(0)
-                .splineToConstantHeading(new Vector2d(40, 7.5), Math.toRadians(0), new TranslationalVelConstraint(30))
+                .splineToConstantHeading(new Vector2d(40, 7.5), Math.toRadians(0))
                 .afterTime(0, new ParallelAction(
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
@@ -119,7 +119,7 @@ public class Specimen extends LinearOpMode{
                         bot.armInitAction()
                 ))
                 .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34, -49, -Math.toRadians(42)),0)
+                .splineToLinearHeading(new Pose2d(34, -47, -Math.toRadians(42)),0)
                 .afterTime(0, new ParallelAction(
                         bot.armMidAction()
                 ))
@@ -139,7 +139,7 @@ public class Specimen extends LinearOpMode{
                         bot.armInitAction()
                 ))
                 .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34,-56.5,-Math.toRadians(43)),0)
+                .splineToLinearHeading(new Pose2d(36,-55.5,-Math.toRadians(43)),0)
                 .afterTime(0, new ParallelAction(
                         bot.armMidAction(),
                         bot.slideSpec3Action()
@@ -152,7 +152,7 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction()
                 ))
-                .splineToLinearHeading(new Pose2d(27, -44,-Math.toRadians(-17)),0)
+                .splineToLinearHeading(new Pose2d(28, -45,-Math.toRadians(177)),0)
                 .waitSeconds(0.25)
                 .afterTime(0, new ParallelAction(
                         bot.slideSpec2Action()
@@ -161,15 +161,87 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction()
                 ))
+                .waitSeconds(0.4)
+                .afterTime(0, new ParallelAction(
+                        bot.armWallAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
+                        bot.slideSpec4Action(),
+                        bot.armWallAction(),
+                        bot.rClawMIDAction()
+                ))
                 .waitSeconds(0.5)
+                .afterTime(0, new ParallelAction(
+                        bot.clawCloseAction()
+                ))
+                .waitSeconds(0.3)
+                .afterTime(0, new ParallelAction(
+                        bot.armAutoAction()
+                ))
+                .waitSeconds(0.3)
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction()
                 ))
-                .splineToConstantHeading(new Vector2d(32,-44),0)
+                .splineToConstantHeading(new Vector2d(40, 4), 0)
+                .afterTime(0, new ParallelAction(
+                        bot.rSlideUpAction(),
+                        bot.slideSpecAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.armSpecAction()
+                ))
+                .waitSeconds(0.2)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction(),
+                        bot.rSlideDownAction(),
+                        bot.slideDownAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction(),
+                        bot.slideOffAction(),
+                        bot.rSlideDownAction(),
+                        bot.armWallAction()
+                ))
+                .splineToConstantHeading(new Vector2d(24,-48),0)
+                .afterTime(0, new ParallelAction(
+                        bot.armWallAction()
+                ))
                 .waitSeconds(0.5)
                 .afterTime(0, new ParallelAction(
-                        bot.armWallAction(),
-                        bot.rClawMIDAction()
+                        bot.clawCloseAction()
+                ))
+                .waitSeconds(0.3)
+                .afterTime(0, new ParallelAction(
+                        bot.armAutoAction()
+                ))
+                .waitSeconds(0.3)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction()
+                ))
+                .splineToConstantHeading(new Vector2d(40, 11), 0)
+                .afterTime(0, new ParallelAction(
+                        bot.rSlideUpAction(),
+                        bot.slideSpecAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.armSpecAction()
+                ))
+                .waitSeconds(0.2)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction(),
+                        bot.rSlideDownAction(),
+                        bot.slideDownAction()
+                ))
+                .waitSeconds(1)
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction(),
+                        bot.slideOffAction(),
+                        bot.rSlideDownAction(),
+                        bot.armWallAction()
                 ))
                 .build();
     }

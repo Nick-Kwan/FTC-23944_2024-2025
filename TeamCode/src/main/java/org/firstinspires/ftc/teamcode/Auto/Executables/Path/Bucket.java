@@ -109,11 +109,15 @@ public class Bucket extends LinearOpMode {
                         bot.rSlideDownAction(),
                         bot.slideOffAction()
                 ))
-                .splineToLinearHeading(new Pose2d(31, 23, 0), 0)
+                .splineToLinearHeading(new Pose2d(31, 23.5, 0), 0)
                 .afterTime(0, new ParallelAction(
-                        bot.rSlideOffAction(),
+                        bot.rSlideOffAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
+                .waitSeconds(0.25)
                 .setTangent(0)
                 .splineToLinearHeading(new Pose2d(16, 26, -Math.PI/4), Math.PI/2)
                 .afterTime(0, new ParallelAction(
@@ -144,12 +148,16 @@ public class Bucket extends LinearOpMode {
                         bot.rSlideDownAction(),
                         bot.slideOffAction()
                 ))
-                .splineToLinearHeading(new Pose2d(32, 33, 0), 0)
+                .splineToLinearHeading(new Pose2d(32, 34, 0), 0)
                 .afterTime(0, new ParallelAction(
-                        bot.rSlideOffAction(),
+                        bot.rSlideOffAction()
+                ))
+                .waitSeconds(0.25)
+                .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
                 .setTangent(0)
+                .waitSeconds(0.25)
                 .splineToLinearHeading(new Pose2d(14, 27, -Math.PI/4), Math.PI/2)
                 .afterTime(0, new ParallelAction(
                         bot.rSlideUpAction(),
@@ -180,7 +188,7 @@ public class Bucket extends LinearOpMode {
                         bot.rSlideOffAction(),
                         bot.slideOffAction()
                 ))
-                .splineToLinearHeading(new Pose2d(15, 27.5, Math.toRadians(23)),0)
+                .splineToLinearHeading(new Pose2d(15, 27.5, Math.toRadians(20)),0) // was 23 deg
                 .waitSeconds(0.75)
                 .afterTime(0, new ParallelAction(
                         bot.slideHb3Action()
@@ -220,13 +228,11 @@ public class Bucket extends LinearOpMode {
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction(),
                         bot.slideOffAction(),
-                        bot.rSlideDownAction(),
-                        bot.rSlideOffAction()
+                        bot.rSlideUpAction()
                 ))
                 .setTangent(0)
                 .splineToLinearHeading(new Pose2d(66, -4, (Math.PI)/2), -Math.PI, new TranslationalVelConstraint(85))
                 .afterTime(0, new ParallelAction(
-                        bot.rSlideUpAction(),
                         bot.armHBAction()
                 ))
                 .build();

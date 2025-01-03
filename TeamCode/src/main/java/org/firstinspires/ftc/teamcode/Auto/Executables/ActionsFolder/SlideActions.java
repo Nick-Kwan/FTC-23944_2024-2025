@@ -38,8 +38,19 @@ public class SlideActions {
     public Action slideSpec2Action() {
         return new slideSpec2();
     }
-    public Action slideSoec3Action(){
+    public Action slideSpec3Action(){
         return new slideSpec3();
+    }
+    public Action slideSpec4Action(){
+        return new slideSpec4();
+    }
+    public class slideSpec4 implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(460);
+            return false;
+        }
     }
     public class slideSpec3 implements Action{
 
