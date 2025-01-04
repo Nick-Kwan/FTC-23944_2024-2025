@@ -98,6 +98,7 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideDownAction(),
                         bot.armMidAction()
                 ))
+                // scores first spec
                 .splineToConstantHeading(new Vector2d(40,-28),Math.PI/2,baseVelConstraint) // was x : 43
                 .splineToConstantHeading(new Vector2d(55,-28),0,baseVelConstraint)
                 .splineToConstantHeading(new Vector2d(55,-42),0,baseVelConstraint)
@@ -129,13 +130,17 @@ public class Specimen extends LinearOpMode{
                 // lets go of second sample
                 .waitSeconds(0.2)
                 .afterTime(0,new ParallelAction(
+                        bot.armInitAction()
+                ))
+                .splineToConstantHeading(new Vector2d(19,-38.5),Math.PI/2,baseVelConstraint)
+                .afterTime(0,new ParallelAction(
                         bot.armWallAction()
                 ))
-                .splineToConstantHeading(new Vector2d(20,-38.5),Math.PI/2,baseVelConstraint)
+                .waitSeconds(0.2)
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
-                // grabs preloaded spec from wall
+                // grabs preloaded (second) spec from wall
                 .waitSeconds(0.5)
                 .afterTime(0,new ParallelAction(
                         bot.armUPaBITAction()
@@ -145,8 +150,9 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(36,12),-Math.PI/2,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(37,12),-Math.PI/2,baseVelConstraint)
                 .afterTime(0, new ParallelAction(
+                        bot.slideSpecAction(),
                         bot.armSpecAction()
                 ))
                 .waitSeconds(0.125)
@@ -155,6 +161,44 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideDownAction(),
                         bot.slideDownAction()
                 ))
+                .waitSeconds(0.25)//was 0.5s
+                .afterTime(0, new ParallelAction(
+                        bot.slideDownAction(),
+                        bot.slideOffAction(),
+                        bot.rSlideDownAction(),
+                        bot.armMidAction()
+                ))
+                // scores preloaded specimen
+                .splineToConstantHeading(new Vector2d(16,-39.5),-Math.PI/2,baseVelConstraint) // was x : 20 (too far)
+                .afterTime(0,new ParallelAction(
+                        bot.armWallAction()
+                ))
+                .waitSeconds(0.3)
+                .afterTime(0,new ParallelAction(
+                        bot.clawCloseAction()
+                ))
+                // gets Third Spec from wall
+                .waitSeconds(0.5)
+                .afterTime(0,new ParallelAction(
+                        bot.armUPaBITAction()
+                ))
+                .waitSeconds(0.4)
+                .afterTime(0,new ParallelAction(
+                        bot.rSlideUpAction(),
+                        bot.slideSpecAction()
+                ))
+                .splineToConstantHeading(new Vector2d(38,10.5),-7*(Math.PI/8),baseVelConstraint)
+                .afterTime(0, new ParallelAction(
+                        bot.slideSpecAction(),
+                        bot.armSpecAction()
+                ))
+                .waitSeconds(0.125)
+                .afterTime(0, new ParallelAction(
+                        bot.clawOpenAction(),
+                        bot.rSlideDownAction(),
+                        bot.slideDownAction()
+                ))
+                // scores 3rd spec
                 .waitSeconds(0.25)//was 0.5s
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction(),
