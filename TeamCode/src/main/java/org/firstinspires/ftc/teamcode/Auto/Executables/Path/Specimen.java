@@ -30,8 +30,8 @@ public class Specimen extends LinearOpMode{
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(85),
-            new AngularVelConstraint(2*(Math.PI/3))
+            new TranslationalVelConstraint(60),
+            new AngularVelConstraint(3*(Math.PI/3))
     ));
 
     public enum AutoStates{
@@ -76,172 +76,91 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.rClawMIDAction(),
                         bot.clawCloseAction(),
-                        bot.armAutoAction()
+                        bot.armUPaBITAction(),
+                        bot.rSlideUpAction(),
+                        bot.slideSpecAction()
                 ))
                 .setTangent(0)
-                .splineToConstantHeading(new Vector2d(40, 7.5), Math.toRadians(0))
-                .afterTime(0, new ParallelAction(
-                        bot.rSlideUpAction(),
-                        bot.slideSpecAction()
-                ))
-                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(37, 7.5), 0,baseVelConstraint) // x: 40 works
                 .afterTime(0, new ParallelAction(
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.2)
+                .waitSeconds(0.125)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
                         bot.slideDownAction()
                 ))
-                .waitSeconds(1)
+                .waitSeconds(0.25)//was 0.5s
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
                         bot.armMidAction()
                 ))
-                .splineToLinearHeading(new Pose2d(37,-34,-Math.toRadians(36)),0)
-                .afterTime(0, new ParallelAction(
-                        bot.rClawHalfAction(),
-                        bot.slideSpec1Action()
-                ))
-                .waitSeconds(0.75)
-                .afterTime(0, new ParallelAction(
-                        bot.clawCloseAction()
-                ))
-                .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34,-34,-Math.toRadians(137)),0)
-                .afterTime(0, new ParallelAction(
-                        bot.clawOpenAction()
-                ))
+                .splineToConstantHeading(new Vector2d(40,-28),Math.PI/2,baseVelConstraint) // was x : 43
+                .splineToConstantHeading(new Vector2d(55,-28),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(55,-42),0,baseVelConstraint)
                 .afterTime(0,new ParallelAction(
-                        bot.armInitAction()
-                ))
-                .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(34, -47, -Math.toRadians(42)),0)
-                .afterTime(0, new ParallelAction(
-                        bot.armMidAction()
-                ))
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
-                        bot.slideSpec2Action()
-                ))
-                .splineToLinearHeading(new Pose2d(32, -42, -Math.toRadians(140)),0)
-                .afterTime(0, new ParallelAction(
-                        bot.clawOpenAction()
-                ))
-                .afterTime(0, new ParallelAction(
-                        bot.armInitAction()
-                ))
-                .waitSeconds(0.5)
-                .splineToLinearHeading(new Pose2d(36,-55.5,-Math.toRadians(43)),0)
-                .afterTime(0, new ParallelAction(
-                        bot.armMidAction(),
-                        bot.slideSpec3Action()
-                ))
-                .waitSeconds(0.5)
-                .afterTime(0, new ParallelAction(
-                        bot.clawCloseAction()
-                ))
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
+                // grabs first sample
+                .waitSeconds(0.2)
+                .splineToConstantHeading(new Vector2d(26,-42),0,baseVelConstraint)
+                .afterTime(0,new ParallelAction(
+                        bot.clawOpenAction(),
                         bot.slideDownAction()
                 ))
-                .splineToLinearHeading(new Pose2d(28, -45,-Math.toRadians(177)),0)
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
-                        bot.slideSpec2Action()
+                // lets go of first sample
+                .splineToConstantHeading(new Vector2d(54,-24),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(53,-51),-Math.PI/2,baseVelConstraint)
+                .afterTime(0,new ParallelAction(
+                        bot.clawCloseAction()
                 ))
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
-                        bot.clawOpenAction()
-                ))
+                //grabs second sample
                 .waitSeconds(0.4)
                 .afterTime(0, new ParallelAction(
+                        bot.slideSpec2Action()
+                ))
+                .splineToConstantHeading(new Vector2d(27,-50),0,baseVelConstraint) // was x : 24
+                .afterTime(0,new ParallelAction(
+                        bot.clawOpenAction()
+                ))
+                // lets go of second sample
+                .waitSeconds(0.2)
+                .afterTime(0,new ParallelAction(
                         bot.armWallAction()
                 ))
-                .waitSeconds(0.25)
-                .afterTime(0, new ParallelAction(
-                        bot.slideSpec4Action(),
-                        bot.armWallAction(),
-                        bot.rClawMIDAction()
-                ))
-                .waitSeconds(0.5)
+                .splineToConstantHeading(new Vector2d(20,-38.5),Math.PI/2,baseVelConstraint)
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
-                .waitSeconds(0.3)
-                .afterTime(0, new ParallelAction(
-                        bot.armAutoAction()
+                // grabs preloaded spec from wall
+                .waitSeconds(0.5)
+                .afterTime(0,new ParallelAction(
+                        bot.armUPaBITAction()
                 ))
-                .waitSeconds(0.3)
-                .afterTime(0, new ParallelAction(
-                        bot.slideDownAction()
-                ))
-                .splineToConstantHeading(new Vector2d(40, 4), 0)
-                .afterTime(0, new ParallelAction(
+                .waitSeconds(0.2)
+                .afterTime(0,new ParallelAction(
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(36,12),-Math.PI/2,baseVelConstraint)
                 .afterTime(0, new ParallelAction(
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.2)
+                .waitSeconds(0.125)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
                         bot.slideDownAction()
                 ))
-                .waitSeconds(1)
+                .waitSeconds(0.25)//was 0.5s
                 .afterTime(0, new ParallelAction(
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armWallAction()
-                ))
-                .splineToConstantHeading(new Vector2d(24,-48),0)
-                .afterTime(0, new ParallelAction(
-                        bot.armWallAction()
-                ))
-                .waitSeconds(0.5)
-                .afterTime(0, new ParallelAction(
-                        bot.clawCloseAction()
-                ))
-                .waitSeconds(0.3)
-                .afterTime(0, new ParallelAction(
-                        bot.armAutoAction()
-                ))
-                .waitSeconds(0.3)
-                .afterTime(0, new ParallelAction(
-                        bot.slideDownAction()
-                ))
-                .splineToConstantHeading(new Vector2d(40, 11), 0)
-                .afterTime(0, new ParallelAction(
-                        bot.rSlideUpAction(),
-                        bot.slideSpecAction()
-                ))
-                .waitSeconds(1)
-                .afterTime(0, new ParallelAction(
-                        bot.armSpecAction()
-                ))
-                .waitSeconds(0.2)
-                .afterTime(0, new ParallelAction(
-                        bot.clawOpenAction(),
-                        bot.rSlideDownAction(),
-                        bot.slideDownAction()
-                ))
-                .waitSeconds(1)
-                .afterTime(0, new ParallelAction(
-                        bot.slideDownAction(),
-                        bot.slideOffAction(),
-                        bot.rSlideDownAction(),
-                        bot.armWallAction()
+                        bot.armMidAction()
                 ))
                 .build();
     }
