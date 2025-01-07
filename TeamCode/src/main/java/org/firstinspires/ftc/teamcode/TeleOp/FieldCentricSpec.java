@@ -6,12 +6,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
-public class FieldCentric extends OpMode
+public class FieldCentricSpec extends OpMode
 {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
@@ -32,13 +31,12 @@ public class FieldCentric extends OpMode
 
         bot.aX.setArmPosInit();
         try {
-            Thread.sleep(1200);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
-
     }
 
     @Override

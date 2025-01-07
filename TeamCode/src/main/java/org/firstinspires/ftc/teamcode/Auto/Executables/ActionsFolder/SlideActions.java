@@ -96,7 +96,7 @@ public class SlideActions {
 
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            slides.setPosition(27);
+            slides.setPosition(21);
             return false;
         }
     }
