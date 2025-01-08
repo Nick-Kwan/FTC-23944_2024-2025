@@ -41,7 +41,7 @@ public class RSlideActions {
 
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            slideRotation.setPosition(740);
+            slideRotation.setPosition(727);
             return false;
         }
     }

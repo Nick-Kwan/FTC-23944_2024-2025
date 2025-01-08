@@ -30,11 +30,15 @@ public class Specimen extends LinearOpMode{
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(66),
+            new TranslationalVelConstraint(76),
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint modVelConstraint = new MinVelConstraint(Arrays.asList(
             new TranslationalVelConstraint(100),
+            new AngularVelConstraint(3*(Math.PI/3))
+    ));
+    VelConstraint slowVelConstraint = new MinVelConstraint(Arrays.asList(
+            new TranslationalVelConstraint(30),
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint fastVelConstraint = new MinVelConstraint(Arrays.asList(
@@ -104,10 +108,10 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armMidAction()
+                        bot.armWallAction()
                 ))
                 // scores first spec
-                .splineToConstantHeading(new Vector2d(40,-28),Math.PI/2,baseVelConstraint) // was x : 43
+                .splineToConstantHeading(new Vector2d(40,-28),Math.PI/2,baseVelConstraint)
                 .splineToConstantHeading(new Vector2d(55,-28),0,baseVelConstraint)
                 .splineToConstantHeading(new Vector2d(55,-42),0,baseVelConstraint)
                 .waitSeconds(0)
@@ -116,17 +120,14 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction()
                 ))
                 // lets go of first sample
-                .splineToConstantHeading(new Vector2d(54,-24),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(54,-14),0,baseVelConstraint)
                 .splineToConstantHeading(new Vector2d(53,-51),-Math.PI/2,baseVelConstraint)
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(22,-37),0,baseVelConstraint) // was x : 24
+                .splineToConstantHeading(new Vector2d(27,-29),0,baseVelConstraint) // was y : 29
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(14.5,-26),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(14.5,-29),0,slowVelConstraint)
                 // lets go of second sample
-                .afterTime(0,new ParallelAction(
-                        bot.armWallAction()
-                ))
-                .waitSeconds(0.2)
+
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
@@ -156,15 +157,12 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armMidAction()
+                        bot.armWallAction()
                 ))
                 // scores preloaded specimen
                 .splineToConstantHeading(new Vector2d(28,-24),-Math.PI/2,baseVelConstraint)
-                .splineToConstantHeading(new Vector2d(17.5,-26),0,baseVelConstraint)
-                .afterTime(0,new ParallelAction(
-                        bot.armWallAction()
-                ))
-                .waitSeconds(0.2) // was 0.4
+                .splineToConstantHeading(new Vector2d(17.25,-26),0,baseVelConstraint)
+
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
                 ))
@@ -195,15 +193,11 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armMidAction()
+                        bot.armWallAction()
                 ))
                 // scores 3rd spec
                 .splineToConstantHeading(new Vector2d(28,-24),-Math.PI/2,baseVelConstraint)
-                .splineToConstantHeading(new Vector2d(17.5,-26),0,baseVelConstraint)
-                .afterTime(0,new ParallelAction(
-                        bot.armWallAction()
-                ))
-                .waitSeconds(0.2) // was 0.4
+                .splineToConstantHeading(new Vector2d(17.9,-26),0,baseVelConstraint)
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
                 ))
