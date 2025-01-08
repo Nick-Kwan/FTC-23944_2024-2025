@@ -314,7 +314,8 @@ public class FieldCentricSpec extends OpMode
         {
             bot.driveTrain.resetIMU();
         }
-
-
+        if(driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)>0){
+            bot.driveTrain.resetYaw();
+        }
     }
 }

@@ -91,5 +91,8 @@ public class Mecanum {
     public double getMotorPower(){
         return frontLeftPower;
     }
+    public void resetYaw(){
+        imu.resetYaw();
+    }
 
 }

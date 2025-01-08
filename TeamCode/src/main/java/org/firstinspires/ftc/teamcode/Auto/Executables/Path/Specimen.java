@@ -38,7 +38,7 @@ public class Specimen extends LinearOpMode{
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint slowVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(30),
+            new TranslationalVelConstraint(15),
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint fastVelConstraint = new MinVelConstraint(Arrays.asList(
@@ -125,7 +125,7 @@ public class Specimen extends LinearOpMode{
                 .waitSeconds(0)
                 .splineToConstantHeading(new Vector2d(27,-29),0,baseVelConstraint) // was y : 29
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(14.5,-29),0,slowVelConstraint)
+                .splineToConstantHeading(new Vector2d(14,-30),Math.PI,slowVelConstraint)
                 // lets go of second sample
 
                 .afterTime(0, new ParallelAction(
@@ -212,7 +212,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction()
                 ))
                 .splineToConstantHeading(new Vector2d(28,0),-7*(Math.PI/8),baseVelConstraint)
-                .splineToConstantHeading(new Vector2d(40,0),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(40,2),0,baseVelConstraint)
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
@@ -231,7 +231,7 @@ public class Specimen extends LinearOpMode{
                         bot.armMidAction()
                 ))
                 // scores 4th spec
-                .splineToConstantHeading(new Vector2d(22,-28),0,fastVelConstraint)
+                .splineToConstantHeading(new Vector2d(26,-32),0,fastVelConstraint)
                 .build();
     }
 }
