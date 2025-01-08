@@ -38,7 +38,7 @@ public class Specimen extends LinearOpMode{
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint slowVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(15),
+            new TranslationalVelConstraint(10),
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint fastVelConstraint = new MinVelConstraint(Arrays.asList(
@@ -125,7 +125,7 @@ public class Specimen extends LinearOpMode{
                 .waitSeconds(0)
                 .splineToConstantHeading(new Vector2d(27,-29),0,baseVelConstraint) // was y : 29
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(14,-30),Math.PI,slowVelConstraint)
+                .splineToConstantHeading(new Vector2d(14.25,-30),Math.PI,slowVelConstraint)
                 // lets go of second sample
 
                 .afterTime(0, new ParallelAction(
@@ -160,8 +160,8 @@ public class Specimen extends LinearOpMode{
                         bot.armWallAction()
                 ))
                 // scores preloaded specimen
-                .splineToConstantHeading(new Vector2d(28,-24),-Math.PI/2,baseVelConstraint)
-                .splineToConstantHeading(new Vector2d(17.25,-26),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(24,-24),-Math.PI/2,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(17.25,-26),0,slowVelConstraint)
 
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
@@ -197,12 +197,12 @@ public class Specimen extends LinearOpMode{
                 ))
                 // scores 3rd spec
                 .splineToConstantHeading(new Vector2d(28,-24),-Math.PI/2,baseVelConstraint)
-                .splineToConstantHeading(new Vector2d(17.9,-26),0,baseVelConstraint)
+                .splineToConstantHeading(new Vector2d(17,-26),0,baseVelConstraint)
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
                 ))
                 // gets Fourth Spec from wall
-                .waitSeconds(0.5)
+                .waitSeconds(0.75)
                 .afterTime(0,new ParallelAction(
                         bot.armUPaBITAction()
                 ))
