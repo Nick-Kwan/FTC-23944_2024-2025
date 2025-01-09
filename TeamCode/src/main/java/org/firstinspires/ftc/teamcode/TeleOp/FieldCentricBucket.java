@@ -40,6 +40,7 @@ public class FieldCentricBucket extends OpMode
         bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
         bot.s.setPosition(-50);
+        bot.sr.resetEncoders();
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

@@ -43,6 +43,20 @@ public class SlideRotation {
         leftRSlide.setPower(0);
         rightRSlide.setPower(0);
     }
+
+    public void resetEncoders(){
+        rightRSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        //rightRSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+
+        rightRSlide.setTargetPositionTolerance(5);
+        leftRSlide.setTargetPositionTolerance(5);
+    }
     public void incrementSlides(double input) {
         setPosition((int)(rightRSlide.getCurrentPosition()+input));
     }
