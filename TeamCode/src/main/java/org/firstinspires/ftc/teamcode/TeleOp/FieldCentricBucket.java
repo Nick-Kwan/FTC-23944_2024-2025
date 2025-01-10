@@ -203,7 +203,7 @@ public class FieldCentricBucket extends OpMode
         //High Bucket
         if (operator.wasJustPressed(GamepadKeys.Button.A)){
             bot.aX.setArmPosMID();
-            bot.sr.setPosition(720);
+            bot.sr.setPosition(732);
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
