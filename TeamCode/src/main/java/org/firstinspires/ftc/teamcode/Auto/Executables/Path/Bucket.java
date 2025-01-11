@@ -109,7 +109,7 @@ public class Bucket extends LinearOpMode {
                         bot.rSlideDownAction(),
                         bot.slideOffAction()
                 ))
-                .splineToLinearHeading(new Pose2d(31, 23.5, 0), 0)
+                .splineToLinearHeading(new Pose2d(32.5, 23.5, 0), 0) // 31 was on back edge of block
                 .afterTime(0, new ParallelAction(
                         bot.rSlideOffAction()
                 ))
@@ -117,6 +117,7 @@ public class Bucket extends LinearOpMode {
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
                 ))
+                //gets first sample off floor
                 .waitSeconds(0.25)
                 .setTangent(0)
                 .splineToLinearHeading(new Pose2d(16, 26, -Math.PI/4), Math.PI/2)

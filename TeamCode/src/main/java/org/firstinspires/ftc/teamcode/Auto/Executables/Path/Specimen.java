@@ -101,7 +101,7 @@ public class Specimen extends LinearOpMode{
                 .afterTime(0, new ParallelAction(
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.25)
+                .waitSeconds(0.175)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
@@ -150,7 +150,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction(),
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.25)
+                .waitSeconds(0.175)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
@@ -186,7 +186,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction(),
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.25)
+                .waitSeconds(0.175)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
@@ -215,13 +215,13 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(28,0.75),-7*(Math.PI/8),aVelConstraint, new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(42,0.75),0,baseVelConstraint,new ProfileAccelConstraint(-80,10))
+                .splineToConstantHeading(new Vector2d(28,6),-7*(Math.PI/8),aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(42,6),0,baseVelConstraint,new ProfileAccelConstraint(-80,10)) // y 3 was too much to he right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.25)
+                .waitSeconds(0.175)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
@@ -232,7 +232,8 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecNegAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armMidAction()
+                        bot.armMidAction(),
+                        bot.clawCloseAction()
                 ))
                 // scores 4th spec
                 //.splineToConstantHeading(new Vector2d(26,-32),0,aVelConstraint, new ProfileAccelConstraint(-30,60))
