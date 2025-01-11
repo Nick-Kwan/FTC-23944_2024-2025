@@ -96,7 +96,7 @@ public class FieldCentricSpec extends OpMode
         if (operator.wasJustPressed(GamepadKeys.Button.B)){
             bot.servoClaw.setClawPosition1();
             bot.servoRClaw.setRClawPosMID();
-            bot.aX.setArmPosSUB();
+            bot.aX.setArmPosMID();
             //bot.servoClaw.setClawPosition0();
             try {
                 Thread.sleep(500);
