@@ -89,7 +89,19 @@ public class Slides {
         leftSlide.setPower(0);
         rightSlide.setPower(0);
     }
-    
+    public void resetEncoders(){
+        rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+
+        rightSlide.setTargetPositionTolerance(5);
+        leftSlide.setTargetPositionTolerance(5);
+    }
     public void altZeroPowerBehavior(){
         if (leftSlide.getZeroPowerBehavior() == DcMotor.ZeroPowerBehavior.BRAKE){
             setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);

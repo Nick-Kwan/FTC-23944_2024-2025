@@ -44,6 +44,17 @@ public class SlideActions {
     public Action slideSpec4Action(){
         return new slideSpec4();
     }
+    public Action slideSpecNegAction(){
+        return new slideSpecNeg();
+    }
+    public class slideSpecNeg implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(-72);
+            return false;
+        }
+    }
     public class slideSpec4 implements Action{
 
         @Override

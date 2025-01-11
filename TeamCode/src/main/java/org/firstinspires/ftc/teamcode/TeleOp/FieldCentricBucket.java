@@ -39,13 +39,14 @@ public class FieldCentricBucket extends OpMode
         bot.sr.setPower0();
         bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
-        bot.s.setPosition(-50);
+        bot.s.setPosition(-72);
         bot.sr.resetEncoders();
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        bot.s.resetEncoders();
         bot.s.setPower0();
     }
 

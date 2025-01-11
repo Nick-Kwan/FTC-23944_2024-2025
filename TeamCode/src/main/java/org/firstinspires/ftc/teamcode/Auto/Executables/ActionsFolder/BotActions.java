@@ -98,4 +98,7 @@ public class BotActions {
     public Action slideSpec4Action(){
         return slideActions.slideSpec4Action();
     }
+    public Action slideSpecNegAction(){
+        return slideActions.slideSpecNegAction();
+    }
 }

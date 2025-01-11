@@ -31,12 +31,20 @@ public class FieldCentricSpec extends OpMode
 
         bot.aX.setArmPosInit();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
+        bot.s.setPosition(-72);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        bot.s.resetEncoders();
+        bot.s.setPower0();
     }
 
     @Override
