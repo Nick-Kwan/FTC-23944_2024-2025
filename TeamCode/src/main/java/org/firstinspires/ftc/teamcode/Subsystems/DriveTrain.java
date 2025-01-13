@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 import java.text.DecimalFormat;
 
-public class Mecanum {
+public class DriveTrain {
     private DcMotorEx left_front, left_back, right_front, right_back;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
@@ -20,7 +20,7 @@ public class Mecanum {
     IMU imu;
 
 
-    public Mecanum(HardwareMap hardwareMap) {
+    public DriveTrain(HardwareMap hardwareMap) {
         left_front = hardwareMap.get(DcMotorEx.class, "left_front");
         left_back = hardwareMap.get(DcMotorEx.class, "left_back");
         right_front = hardwareMap.get(DcMotorEx.class, "right_front");

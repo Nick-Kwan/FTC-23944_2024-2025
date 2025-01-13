@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Robot {
-    public Mecanum driveTrain;
+    public DriveTrain driveTrain;
     public Claw servoClaw;
-    public RClaw servoRClaw;
+    public ClawRotation servoRClaw;
     public Slides s;
     public SlideRotation sr;
     public Arm aX;
@@ -18,10 +18,10 @@ public class Robot {
 
         this.telemetry = telemetry;
 
-        driveTrain = new Mecanum(hardwareMap);
+        driveTrain = new DriveTrain(hardwareMap);
         aX = new Arm(hardwareMap);
         servoClaw = new Claw(hardwareMap);
-        servoRClaw = new RClaw(hardwareMap);
+        servoRClaw = new ClawRotation(hardwareMap);
         s = new Slides(hardwareMap);
         sr = new SlideRotation(hardwareMap);
 

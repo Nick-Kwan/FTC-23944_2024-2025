@@ -6,12 +6,12 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Subsystems.RClaw;
+import org.firstinspires.ftc.teamcode.Subsystems.ClawRotation;
 
 public class RClawActions {
-    RClaw rClaw;
+    ClawRotation rClaw;
     public RClawActions(HardwareMap hardwareMap){
-        rClaw = new RClaw(hardwareMap);
+        rClaw = new ClawRotation(hardwareMap);
     }
     public Action rotClaw90Action(){
         return new clawRotate90();
