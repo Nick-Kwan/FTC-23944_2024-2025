@@ -6,25 +6,26 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
 public class FieldCentricBucket extends OpMode
 {
-    private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
+    private Timer timer;
     private double slidePositionThreshold = 400; // Position threshold for slow mode
 
 
     @Override
     public void init()
     {
-        runTime = new ElapsedTime();
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
+        timer = new Timer();
 
         telemetry.addLine("boop");
         telemetry.update();
@@ -78,6 +79,9 @@ public class FieldCentricBucket extends OpMode
                     bot.s.setPower0();
                 }
             }
+        }
+        if(bot.s.getPosition() < 100){
+            bot.servoRClaw.setRClawPosMID();
         }
 
 
@@ -328,6 +332,53 @@ public class FieldCentricBucket extends OpMode
         if(driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)>0){
             bot.driveTrain.resetYaw();
         }
+
+        TimerTask setBucketSlidesInDelay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.s.setPosition(835);
+            }
+        };
+
+        TimerTask setBucketSlidesOutDelay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.sr.setPosition(0);
+                timer.schedule(,)
+            }
+        };
+
+        TimerTask useIn_BucketOut = new TimerTask() {
+            @Override
+            public void run() {
+                bot.s.setPower0();
+                bot.sr.setPower0();
+                bot.servoClaw.setClawPosition1();
+                bot.aX.setArmPosMID();
+            }
+        };
+        TimerTask setSubSlidesInDelay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.s.setPosition(590);
+            }
+        };
+
+        TimerTask setSubSlidesOutDelay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.s.setPower0();
+                bot.aX.setArmPosMID();
+            }
+        };
+        TimerTask setFishDelay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.aX.setArmPosMID();
+            }
+        };
+
+
 
     }
 }

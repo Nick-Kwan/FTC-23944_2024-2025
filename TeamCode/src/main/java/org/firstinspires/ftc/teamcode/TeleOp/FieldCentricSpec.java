@@ -6,13 +6,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
 public class FieldCentricSpec extends OpMode
 {
-    private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
     private double slidePositionThreshold = 400; // Position threshold for slow mode
@@ -21,7 +21,6 @@ public class FieldCentricSpec extends OpMode
     @Override
     public void init()
     {
-        runTime = new ElapsedTime();
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
         bot = new Robot(hardwareMap, telemetry);
