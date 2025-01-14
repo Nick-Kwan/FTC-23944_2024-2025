@@ -16,6 +16,8 @@ public class Arm {
     private double pos1 = 1;
     private double spec = 0.815;
     private double autoStart = 0.37;
+    private double preSpec = 0.66;
+    private boolean walled;
 
     public Arm(HardwareMap hardwareMap)
     {
@@ -31,10 +33,28 @@ public class Arm {
     public void setArmPosUPaBIT(){servoAL.setPosition(upAbit); servoAR.setPosition(upAbit);}
     public void setArmPosSUB(){servoAL.setPosition(sub); servoAR.setPosition(sub);}
     public void setArmPosSpec(){servoAL.setPosition(spec); servoAR.setPosition(spec);}
+    public void setArmPosPreSpec(){servoAL.setPosition(preSpec); servoAR.setPosition(preSpec);}
     public void setArmPosFish(){servoAL.setPosition(fish); servoAR.setPosition(fish);}
     public void setArmPosSAuto(){servoAL.setPosition(autoStart); servoAR.setPosition(autoStart);}
     public double getArmPos(){
         return servoAL.getPosition();
+    }
+    public void actuateArm(){
+        if (getArmPos() == hb){
+            setArmPosPreSpec();
+        } else {
+            setArmPosHB();
+        }
+    }
+
+    public void setArmPos1HighSpec(){
+        walled = false;
+        setArmPosHB();
+    }
+
+    public void setArmPos2HighSpec(){
+        walled = true;
+        setArmPosPreSpec();
     }
 
 

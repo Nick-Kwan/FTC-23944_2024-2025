@@ -83,256 +83,6 @@ public class FieldCentricBucket extends OpMode
         if(bot.s.getPosition() < 100){
             bot.servoRClaw.setRClawPosMID();
         }
-
-
-        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
-            bot.servoClaw.setClawPosition0();
-
-        }
-        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
-            bot.servoClaw.setClawPosition1();
-        }
-        /*if (driver.wasJustPressed(GamepadKeys.Button.X)){
-            bot.servoRClaw.incrementRotation(0.1);
-        }
-        if (driver.wasJustPressed(GamepadKeys.Button.B)){
-            bot.servoRClaw.incrementRotation(-0.1);
-        }*/
-
-//        In Sub 2
-        if (operator.wasJustPressed(GamepadKeys.Button.B)){
-            bot.servoClaw.setClawPosition1();
-            bot.servoRClaw.setRClawPosMID();
-            bot.aX.setArmPosSUB();
-            //bot.servoClaw.setClawPosition0();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(590);
-        }
-        // rest from sub
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
-            bot.aX.setArmPosSUB();
-            bot.servoRClaw.setRClawPosMID();
-            bot.s.setPosition(0);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPower0();
-
-            bot.aX.setArmPosMID();
-        }
-
-//        Fish
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
-            bot.servoClaw.setClawPosition0();
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.aX.setArmPosMID();
-            /*try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition1();
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.aX.setArmPosSUB();*/
-        }
-        //        Rest High Specimen
-        /*if (driver.wasJustPressed(GamepadKeys.Button.B)){
-            bot.sr.setPosition(0);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(0);
-            bot.s.setPower0();
-            bot.sr.setPower0();
-            bot.servoClaw.setClawPosition1();
-            bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPositionMID();
-        }*/
-
-        //        Rest High Bucket
-        if (operator.wasJustPressed(GamepadKeys.Button.Y)){
-            bot.aX.setArmPosMID();
-            bot.sr.setPosition(650);
-            bot.s.setPosition(0);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.sr.setPosition(0);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPower0();
-            bot.sr.setPower0();
-            bot.servoClaw.setClawPosition1();
-            bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPosMID();
-        }
-
-        //pick up specimen from wall
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.servoRClaw.setRClawPosMID();
-            bot.aX.setArmPosWall();
-            bot.servoClaw.setClawPosition0();
-        }
-
-        //Low Bucket
-        /*if (operator.wasJustPressed(GamepadKeys.Button.X)){
-            bot.sr.setPosition(550);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(1500);
-        }*/
-        //High Bucket
-        if (operator.wasJustPressed(GamepadKeys.Button.A)){
-            bot.aX.setArmPosMID();
-            bot.sr.setPosition(732);
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(835);
-        }
-        //        High Specimen
-        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.aX.setArmPosUPaBIT();
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(27);
-            bot.sr.setPosition(720); //
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.aX.setArmPosSpec();
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition0();
-            bot.sr.setPosition(0);
-            bot.s.setPosition(0);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(0);
-            bot.s.setPower0();
-            bot.sr.setPower0();
-            bot.servoClaw.setClawPosition1();
-            bot.aX.setArmPosMID();
-            bot.servoRClaw.setRClawPosMID();
-        }
-
-
-        // Level 2 Climb
-        /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
-            bot.aX.setArmPosMID();
-            bot.sr.setPosition(700);
-            try {
-                Thread.sleep(2500); // prev 3500.
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(310); // prev 1360
-            try {
-                Thread.sleep(1000); // prev 500
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.sr.setPosition(746); // prev 250
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(220);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(0);
-            bot.sr.setPosition(0);
-        } */
-
-        //if clawservo stuck
-        if (driver.wasJustPressed(GamepadKeys.Button.Y)){
-            bot.aX.setArmPosHB(); // try init next of too high
-        }
-        // up a bit
-        if (driver.wasJustPressed(GamepadKeys.Button.A)) {
-            bot.aX.setArmPosUPaBIT();
-        }
-
-        // rotate claw 90 degrees
-        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
-            bot.servoRClaw.actuateClaw();
-        }
-
-
-        //        Low Slam
-      /*  if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
-            bot.sr.setPosition(240);
-
-            bot.s.setPosition(481);
-            try {
-                Thread.sleep(750);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.servoClaw.setClawPosition0();
-        }
-
-       */
-        //        Low Specimen
-        /*if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
-            bot.aX.setArmPosSpec();
-            bot.sr.setPosition(690);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.s.setPosition(532);
-        }*/
-        if (driver.wasJustPressed(GamepadKeys.Button.START))
-        {
-            bot.driveTrain.resetIMU();
-        }
-        if(driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)>0){
-            bot.driveTrain.resetYaw();
-        }
-
         TimerTask setBucketSlidesInDelay = new TimerTask() {
             @Override
             public void run() {
@@ -340,15 +90,14 @@ public class FieldCentricBucket extends OpMode
             }
         };
 
-        TimerTask setBucketSlidesOutDelay = new TimerTask() {
+        TimerTask setBucketSlidesOut1Delay = new TimerTask() {
             @Override
             public void run() {
                 bot.sr.setPosition(0);
-                timer.schedule(,)
             }
         };
 
-        TimerTask useIn_BucketOut = new TimerTask() {
+        TimerTask setBucketSlidesOut2Delay = new TimerTask() {
             @Override
             public void run() {
                 bot.s.setPower0();
@@ -378,7 +127,121 @@ public class FieldCentricBucket extends OpMode
             }
         };
 
+        TimerTask setHighSpecIn1Delay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.sr.setPosition(720);
+                bot.s.setPosition(27);
+            }
+        };
 
+        TimerTask setHighSpecIn2Delay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.servoClaw.setClawPosition0();
+                bot.sr.setPosition(0);
+                bot.s.setPosition(0);
+            }
+        };
+
+        TimerTask setHighSpecIn3Delay = new TimerTask() {
+            @Override
+            public void run() {
+                bot.s.setPosition(0);
+                bot.s.setPower0();
+                bot.sr.setPower0();
+                bot.servoClaw.setClawPosition1();
+                bot.aX.setArmPosMID();
+            }
+        };
+
+        // open claw
+        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            bot.servoClaw.setClawPosition0();
+
+        }
+
+        // close claw
+        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+            bot.servoClaw.setClawPosition1();
+        }
+
+//        In Sub 2
+        if (operator.wasJustPressed(GamepadKeys.Button.B)){
+            bot.servoClaw.setClawPosition1();
+            bot.servoRClaw.setRClawPosMID();
+            bot.aX.setArmPosSUB();
+            timer.schedule(setSubSlidesInDelay,500);
+        }
+        // rest from sub
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
+            bot.aX.setArmPosSUB();
+            bot.servoRClaw.setRClawPosMID();
+            bot.s.setPosition(0);
+            timer.schedule(setSubSlidesOutDelay,750);
+        }
+
+//        Fish
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)){
+            bot.servoClaw.setClawPosition0();
+            timer.schedule(setFishDelay,250);
+
+        }
+
+        //        Rest High Bucket
+        if (operator.wasJustPressed(GamepadKeys.Button.Y)){
+            bot.aX.setArmPosMID();
+            bot.sr.setPosition(650);
+            bot.s.setPosition(0);
+            timer.schedule(setBucketSlidesOut1Delay,1000);
+            timer.schedule(setBucketSlidesOut2Delay,1750);
+        }
+
+        //pick up specimen from wall
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+            bot.servoRClaw.setRClawPosMID();
+            bot.aX.setArmPosWall();
+            bot.servoClaw.setClawPosition0();
+        }
+        //transfer in between wall and high spec
+        if (driver.wasJustPressed(GamepadKeys.Button.A)){
+            bot.aX.setArmPosUPaBIT();
+        }
+
+        //High Bucket
+        if (operator.wasJustPressed(GamepadKeys.Button.A)){
+            bot.aX.setArmPosMID();
+            bot.sr.setPosition(732);
+            timer.schedule(setBucketSlidesInDelay,1500);
+        }
+
+        //        High Specimen In
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+            bot.aX.setArmPosUPaBIT();
+            timer.schedule(setHighSpecIn1Delay,250);
+        }
+
+        // High Specimen Out
+        if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
+            bot.aX.setArmPosSpec();
+            timer.schedule(setHighSpecIn2Delay,90);
+            timer.schedule(setHighSpecIn3Delay,1090);
+        }
+        if (driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.aX.setArmPosPreSpec();
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.Y)){
+            bot.aX.setArmPosHB();
+        }
+
+        //Reset IMU
+        if (driver.wasJustPressed(GamepadKeys.Button.START))
+        {
+            bot.driveTrain.resetIMU();
+        }
+        if(driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)>0){
+            bot.driveTrain.resetYaw();
+        }
 
     }
 }
