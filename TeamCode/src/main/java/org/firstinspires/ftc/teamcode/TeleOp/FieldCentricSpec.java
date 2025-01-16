@@ -99,16 +99,12 @@ public class FieldCentricSpec extends OpMode
             bot.servoClaw.setClawPosition1();
             bot.servoRClaw.setRClawPosMID();
             bot.aX.setArmPosSUB();
-            //bot.servoClaw.setClawPosition0();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            // 100 ms timer was here
             bot.s.setPosition(590);
         }
         // rest from sub
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
+            bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosSUB();
             bot.servoRClaw.setRClawPosMID();
             bot.s.setPosition(0);
@@ -219,7 +215,7 @@ public class FieldCentricSpec extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(50);
+            bot.s.setPosition(32);
             bot.sr.setPosition(720); //
             try {
                 Thread.sleep(1250);
