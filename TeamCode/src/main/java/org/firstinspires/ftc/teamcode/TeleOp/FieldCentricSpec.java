@@ -65,7 +65,7 @@ public class FieldCentricSpec extends OpMode
 
         double slidePosition = bot.s.getPosition(); // Get slide motor's current position
         boolean slowModeCondition = slidePosition > slidePositionThreshold;
-        if (slowModeCondition || bot.aX.getArmPos() == 0.645) {
+        if (slowModeCondition || bot.aX.getArmPos() == 0.645 || driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER)>0.1) {
             bot.driveTrain.setSlowMode();
         } else {
             bot.driveTrain.setMotorPower();
@@ -79,8 +79,10 @@ public class FieldCentricSpec extends OpMode
 
 
         if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            if((bot.s.getPosition()<50 && bot.sr.getPosition()<50)||bot.aX.getArmPos() != 0.645 && bot.s.getPosition()<50){
+                bot.s.setPosition(51);
+            }
             bot.servoClaw.setClawPosition0();
-
         }
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
             bot.servoClaw.setClawPosition1();
@@ -111,7 +113,7 @@ public class FieldCentricSpec extends OpMode
             bot.servoRClaw.setRClawPosMID();
             bot.s.setPosition(0);
             try {
-                Thread.sleep(750);
+                Thread.sleep(350);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -163,20 +165,20 @@ public class FieldCentricSpec extends OpMode
             bot.aX.setArmPosMID();
             bot.sr.setPosition(650);
             bot.s.setPosition(0);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            bot.sr.setPosition(0);
+            bot.servoClaw.setClawPosition1();
             try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            bot.sr.setPosition(0);
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             bot.s.setPower0();
             bot.sr.setPower0();
-            bot.servoClaw.setClawPosition1();
             bot.aX.setArmPosMID();
             bot.servoRClaw.setRClawPosMID();
         }
@@ -203,7 +205,7 @@ public class FieldCentricSpec extends OpMode
             bot.aX.setArmPosMID();
             bot.sr.setPosition(720);
             try {
-                Thread.sleep(1500);
+                Thread.sleep(600); // prev 1000
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -217,10 +219,10 @@ public class FieldCentricSpec extends OpMode
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            bot.s.setPosition(27);
+            bot.s.setPosition(50);
             bot.sr.setPosition(720); //
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1250);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -289,7 +291,9 @@ public class FieldCentricSpec extends OpMode
 
         // rotate claw 90 degrees
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
-            bot.servoRClaw.actuateClaw();
+            if (bot.s.getPosition() > 75){
+                bot.servoRClaw.actuateClaw();
+            }
         }
 
 

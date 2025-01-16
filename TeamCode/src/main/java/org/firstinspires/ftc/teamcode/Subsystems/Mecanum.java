@@ -64,10 +64,10 @@ public class Mecanum {
     }
 
     public void setSlowMode() {
-        left_front.setPower(frontLeftPower * 0.3);
-        left_back.setPower(backLeftPower * 0.3);
-        right_front.setPower(frontRightPower * 0.3);
-        right_back.setPower(backRightPower * 0.3);
+        left_front.setPower(frontLeftPower * 0.35);
+        left_back.setPower(backLeftPower * 0.35);
+        right_front.setPower(frontRightPower * 0.35);
+        right_back.setPower(backRightPower * 0.35);
     }
     public void resetIMU() {resetIMU();}
 
