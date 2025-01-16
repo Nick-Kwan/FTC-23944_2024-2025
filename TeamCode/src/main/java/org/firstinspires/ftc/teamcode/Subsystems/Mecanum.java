@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -39,10 +40,10 @@ public class Mecanum {
         imu.initialize(parameters);
     }
 
-    public void drive(GamepadEx gamepad1) {
-        y = gamepad1.getLeftY();
-        x = gamepad1.getLeftX();
-        rx = gamepad1.getRightX();
+    public void drive(Gamepad gamepad1) {
+        y = gamepad1.left_stick_y;
+        x = gamepad1.left_stick_x;
+        rx = gamepad1.right_stick_x;
 
         double botHeading = -imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
