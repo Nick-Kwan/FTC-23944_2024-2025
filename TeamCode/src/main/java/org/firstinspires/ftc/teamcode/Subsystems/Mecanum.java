@@ -41,7 +41,7 @@ public class Mecanum {
     }
 
     public void drive(Gamepad gamepad1) {
-        y = gamepad1.left_stick_y;
+        y = -gamepad1.left_stick_y;
         x = gamepad1.left_stick_x;
         rx = gamepad1.right_stick_x;
 

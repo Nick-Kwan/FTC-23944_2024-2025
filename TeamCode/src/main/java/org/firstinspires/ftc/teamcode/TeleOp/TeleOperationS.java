@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 @TeleOp(name="FieldCentricSpec", group="DriveModes")
 
-public class TeleOperation extends LinearOpMode {
+public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
 
@@ -44,7 +44,6 @@ public class TeleOperation extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
             bot.driveTrain.drive(gamepad1);
-            bot.driveTrain.drive(gamepad2);
             if (gamepad1.left_trigger > 0.1) {
                 bot.driveTrain.resetYaw();
             }
@@ -136,7 +135,7 @@ public class TeleOperation extends LinearOpMode {
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 400;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.left_trigger > 0.1) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();

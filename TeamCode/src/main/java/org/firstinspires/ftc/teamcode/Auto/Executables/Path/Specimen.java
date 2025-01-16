@@ -216,7 +216,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction()
                 ))
                 .splineToConstantHeading(new Vector2d(28,4),-7*(Math.PI/8),aVelConstraint, new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(42,4),0,baseVelConstraint,new ProfileAccelConstraint(-80,10)) // y 3 was too much to he right
+                .splineToConstantHeading(new Vector2d(42,10),0,baseVelConstraint,new ProfileAccelConstraint(-80,10)) // y 3 was too much to he right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
