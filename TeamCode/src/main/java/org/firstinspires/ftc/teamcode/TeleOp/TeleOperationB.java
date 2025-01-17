@@ -241,8 +241,11 @@ public class TeleOperationB extends LinearOpMode {
             // rotate claw 90 degrees
             if (gamepad1.dpad_right) {
                 if (bot.s.getPosition() > 75) {
-                    bot.servoRClaw.actuateClaw();
+                    bot.servoRClaw.setRClawPosNine();
                 }
+            }
+            if (gamepad1.dpad_left) {
+                bot.servoRClaw.setRClawPosMID();
             }
         }
     }
