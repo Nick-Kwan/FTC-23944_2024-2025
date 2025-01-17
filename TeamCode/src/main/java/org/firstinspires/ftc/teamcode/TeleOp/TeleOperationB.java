@@ -103,6 +103,15 @@ public class TeleOperationB extends LinearOpMode {
                 }
             };
 
+            TimerTask HighSpec1Mod = new TimerTask() {
+                @Override
+                public void run() {
+                    // use t = 250
+                    bot.s.setPosition(42);
+                    bot.sr.setPosition(720);
+                }
+            };
+
             TimerTask HighSpec1 = new TimerTask() {
                 @Override
                 public void run() {
@@ -202,7 +211,7 @@ public class TeleOperationB extends LinearOpMode {
                 bot.s.setPosition(0);
                 bot.servoClaw.setClawPosition1();
                 timer.schedule(hbR1, 750);
-                timer.schedule(hbR2, 250);
+                timer.schedule(hbR2, 1000);
             }
 
             // pick up specimen from wall
@@ -223,6 +232,15 @@ public class TeleOperationB extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 bot.aX.setArmPosUPaBIT();
                 timer.schedule(HighSpec1, 250);
+                timer.schedule(HighSpec2, 1500);
+                timer.schedule(HighSpec3, 1650);
+                timer.schedule(HighSpec4, 2650);
+            }
+
+            // High Specimen Mod
+            if (gamepad2.dpad_left) {
+                bot.aX.setArmPosUPaBIT();
+                timer.schedule(HighSpec1Mod, 250);
                 timer.schedule(HighSpec2, 1500);
                 timer.schedule(HighSpec3, 1650);
                 timer.schedule(HighSpec4, 2650);
