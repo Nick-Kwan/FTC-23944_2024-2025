@@ -67,6 +67,20 @@ public class TeleOperationS extends LinearOpMode {
                 }
             };
 
+            TimerTask loose = new TimerTask() {
+                @Override
+                public void run() {
+                    bot.servoClaw.setClawPosLoose();
+                }
+            };
+
+            TimerTask grip = new TimerTask() {
+                @Override
+                public void run() {
+                    bot.servoClaw.setClawPosition1();
+                }
+            };
+
             TimerTask hbR1 = new TimerTask() {
                 @Override
                 public void run() {
@@ -98,7 +112,7 @@ public class TeleOperationS extends LinearOpMode {
                 @Override
                 public void run() {
                     // use t = 250
-                    bot.s.setPosition(32);
+                    bot.s.setPosition(30);
                     bot.sr.setPosition(720);
                 }
             };
@@ -220,21 +234,17 @@ public class TeleOperationS extends LinearOpMode {
             }
 
             // High Specimen
-            if (gamepad2.dpad_up) {
+            if (gamepad2.dpad_right) {
                 bot.aX.setArmPosUPaBIT();
                 timer.schedule(HighSpec1, 250);
-                timer.schedule(HighSpec2, 1500);
-                timer.schedule(HighSpec3, 1650);
-                timer.schedule(HighSpec4, 2650);
+                bot.aX.setArmPosSpecWall();
             }
 
-            // High Specimen Mod
-            if (gamepad2.dpad_left) {
-                bot.aX.setArmPosUPaBIT();
-                timer.schedule(HighSpec1Mod, 250);
-                timer.schedule(HighSpec2, 1500);
-                timer.schedule(HighSpec3, 1650);
-                timer.schedule(HighSpec4, 2650);
+            if (gamepad2.dpad_up){
+                bot.s.setPosition(32);
+                timer.schedule(HighSpec2,250);
+                timer.schedule(HighSpec3, 300);
+                timer.schedule(HighSpec4, 900);
             }
 
             // score high bucket
@@ -244,7 +254,9 @@ public class TeleOperationS extends LinearOpMode {
 
             // up a bit
             if (gamepad1.a) {
-                bot.aX.setArmPosUPaBIT();
+                bot.aX.setArmPosSAuto();
+                timer.schedule(loose,0);
+                timer.schedule(grip,500);
             }
 
             // rotate claw 90 degrees

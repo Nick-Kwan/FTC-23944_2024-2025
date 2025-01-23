@@ -8,7 +8,8 @@ import com.qualcomm.robotcore.hardware.ServoController;
 public class Claw {
     private Servo servoC;
     private double pos0 = 0.63;
-    private double pos1 = 0.315;
+    private double pos1 = 0.29;
+    private double loose = 0.33;
 
     public Claw (HardwareMap hardwareMap)
     {
@@ -16,4 +17,5 @@ public class Claw {
     }
     public void setClawPosition0() {servoC.setPosition(pos0);}
     public void setClawPosition1(){servoC.setPosition(pos1);}
+    public void setClawPosLoose(){servoC.setPosition(loose);}
 }

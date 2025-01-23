@@ -38,7 +38,7 @@ public class Specimen extends LinearOpMode{
             new AngularVelConstraint(3*(Math.PI/3))
     ));
     VelConstraint aVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(72), // was 63
+            new TranslationalVelConstraint(65), // was 63
             new AngularVelConstraint(3*(Math.PI/3))
     ));
 
@@ -89,7 +89,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction()
                 ))
                 .setTangent(0)
-                .splineToConstantHeading(new Vector2d(37, 7.5), 0,aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(43.5, 11), 0,aVelConstraint,new ProfileAccelConstraint(-30,80))
                 .afterTime(0, new ParallelAction(
                         bot.armSpecAction()
                 ))
@@ -137,7 +137,7 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(40,11),-5*Math.PI/8,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(40,12),-5*Math.PI/8,aVelConstraint, new ProfileAccelConstraint(-30,80))
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
@@ -172,8 +172,8 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(28,12),-7*(Math.PI/8),aVelConstraint,new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(39,12),0,baseVelConstraint) // was 5 too uch to the right
+                .splineToConstantHeading(new Vector2d(28,11),-7*(Math.PI/8),aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(39,11),0,baseVelConstraint) // was 5 too uch to the right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
@@ -192,8 +192,8 @@ public class Specimen extends LinearOpMode{
                         bot.armWallAction()
                 ))
                 // scores 3rd spec
-                .splineToConstantHeading(new Vector2d(28,-24),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(16.5,-32),0,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 18
+                .splineToConstantHeading(new Vector2d(28,-32),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(16.75,-32),0,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 18
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
                 ))
@@ -207,8 +207,8 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(28,13),-7*(Math.PI/8),aVelConstraint, new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(43,13),0,baseVelConstraint,new ProfileAccelConstraint(-40,50)) // y 10 was too much to he right
+                .splineToConstantHeading(new Vector2d(43,10.25),Math.PI/3,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(43.5,10.25),0,baseVelConstraint,new ProfileAccelConstraint(-60,50)) // y 10 was too much to he right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
