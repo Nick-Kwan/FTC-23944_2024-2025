@@ -131,7 +131,13 @@ public class TeleOperationB extends LinearOpMode {
                 public void run() {
                     // use t = 250
                     bot.s.setPosition(30);
-                    bot.sr.setPosition(720);
+                    bot.sr.setPosition(740);
+                }
+            };
+            TimerTask HighSpecNeg1 = new TimerTask() {
+                @Override
+                public void run() {
+                    bot.sr.setPosition(740);
                 }
             };
 
@@ -245,7 +251,7 @@ public class TeleOperationB extends LinearOpMode {
             // High Specimen
             if (gamepad2.dpad_right) {
                 bot.aX.setArmPosUPaBIT();
-                timer.schedule(HighSpec1, 250);
+                timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
             }
 
