@@ -4,7 +4,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.IMU;
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriver;
+import org.firstinspires.ftc.teamcode.Auto.RRdrives.PinpointDrive;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -15,7 +16,7 @@ public class Mecanum {
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
 
-    IMU imu;
+    GoBildaPinpointDriver imu;
 
 
     public Mecanum(HardwareMap hardwareMap) {
@@ -29,12 +30,12 @@ public class Mecanum {
         left_back.setDirection(DcMotorEx.Direction.REVERSE);
 
 
-        imu = hardwareMap.get(IMU.class, "imu");
         // this is making a new object called 'parameters' that we use to hold the angle the imu is at
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
                 RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
         imu.initialize(parameters);
+        imu = hardwareMap.get(GoBildaPinpointDriver.class, "imu");
     }
 
     public void drive(Gamepad gamepad1) {
@@ -42,7 +43,7 @@ public class Mecanum {
         x = gamepad1.left_stick_x;
         rx = gamepad1.right_stick_x;
 
-        double botHeading = -imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        double botHeading = -imu.getHeading();
 
         rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
         rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
@@ -67,14 +68,12 @@ public class Mecanum {
         right_front.setPower(frontRightPower * 0.35);
         right_back.setPower(backRightPower * 0.35);
     }
-    public void resetIMU() {resetIMU();}
 
     public double getHeading(){
-        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+        return imu.getHeading();
     }
 
     public void resetHeading(){
-        imu.resetYaw();
     }
 
     public double[] getMotorPowers(){
@@ -90,7 +89,7 @@ public class Mecanum {
         return frontLeftPower;
     }
     public void resetYaw(){
-        imu.resetYaw();
+        imu.recalibrateIMU();
     }
 
 }
