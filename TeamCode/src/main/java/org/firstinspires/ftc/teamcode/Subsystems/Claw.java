@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.ServoController;
 public class Claw {
     private Servo servoC;
     private double pos0 = 0.63;
-    private double pos1 = 0.29;
-    private double loose = 0.33;
+    private double pos1 = 0.26;
+    private double loose = 0.3;
 
     public Claw (HardwareMap hardwareMap)
     {

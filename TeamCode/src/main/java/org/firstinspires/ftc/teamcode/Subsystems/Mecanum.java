@@ -9,15 +9,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-import java.text.DecimalFormat;
 
 public class Mecanum {
     private DcMotorEx left_front, left_back, right_front, right_back;
     private double frontLeftPower, backLeftPower, frontRightPower, backRightPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
 
-    DecimalFormat df = new DecimalFormat("#.##");
-    // This rounds to two decimal places
     IMU imu;
 
 
@@ -73,7 +70,7 @@ public class Mecanum {
     public void resetIMU() {resetIMU();}
 
     public double getHeading(){
-        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
     }
 
     public void resetHeading(){

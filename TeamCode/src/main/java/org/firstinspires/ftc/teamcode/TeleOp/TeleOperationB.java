@@ -52,6 +52,9 @@ public class TeleOperationB extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive() && !isStopRequested()) {
+            telemetry.addData("Heading", bot.driveTrain.getHeading());
+
+            telemetry.update();
             bot.driveTrain.drive(gamepad1);
             if (gamepad1.left_trigger > 0.1) {
                 bot.driveTrain.resetYaw();
@@ -258,8 +261,15 @@ public class TeleOperationB extends LinearOpMode {
             if (gamepad2.dpad_up){
                 bot.s.setPosition(32);
                 timer.schedule(HighSpec2,250);
-                timer.schedule(HighSpec3, 300);
-                timer.schedule(HighSpec4, 900);
+                timer.schedule(HighSpec3, 275);
+                timer.schedule(HighSpec4, 875);
+            }
+
+            if (gamepad2.dpad_left){
+                bot.s.setPosition(50);
+                timer.schedule(HighSpec2,250);
+                timer.schedule(HighSpec3, 275);
+                timer.schedule(HighSpec4, 875);
             }
 
             // score high bucket
