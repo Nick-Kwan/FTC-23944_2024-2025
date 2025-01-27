@@ -250,7 +250,7 @@ public class TeleOperationS extends LinearOpMode {
             }
 
             if (gamepad2.dpad_up){
-                bot.s.setPosition(32);
+                bot.s.setPosition(42);
                 timer.schedule(HighSpec2,250);
                 timer.schedule(HighSpec3, 275);
                 timer.schedule(HighSpec4, 875);
