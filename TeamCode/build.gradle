@@ -56,4 +56,6 @@ dependencies {
     implementation "com.github.jdhs-ftc:road-runner-ftc-otos:8e83c17ff7"
     implementation 'org.ftclib.ftclib:core:2.0.1'
     implementation 'org.team11260:fast-load:0.1.2'
+    implementation 'org.ftclib.ftclib:vision:2.1.0'
+    implementation 'org.openftc:easyopencv:1.7.0'
 }
