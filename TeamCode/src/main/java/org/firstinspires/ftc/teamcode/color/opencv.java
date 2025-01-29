@@ -120,6 +120,8 @@ public class opencv extends LinearOpMode {
             Scalar lowerYellow = new Scalar(100, 100, 100);
             Scalar upperYellow = new Scalar(180, 255, 255);
 
+            // kwan was here
+            //ur gay
 
             Mat yellowMask = new Mat();
             Core.inRange(hsvFrame, lowerYellow, upperYellow, yellowMask);
