@@ -31,7 +31,7 @@ public class opencv extends LinearOpMode {
 
     // Calculate the distance using the formula
     public static final double objectWidthInRealWorldUnits = 3.5;  // Replace with the actual width of the object in real-world units
-    public static final double focalLength = 1430;  // Replace with the focal length of the camera in pixels
+    public static final double focalLength = 1632;  // Replace with the focal length of the camera in pixels
 
 
     @Override
@@ -117,7 +117,7 @@ public class opencv extends LinearOpMode {
             Mat hsvFrame = new Mat();
             Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
 
-            Scalar lowerYellow = new Scalar(100, 100, 100); // HSV Values
+            Scalar lowerYellow = new Scalar(100, 100, 100);
             Scalar upperYellow = new Scalar(180, 255, 255);
 
 
@@ -153,7 +153,7 @@ public class opencv extends LinearOpMode {
     }
     private static double getDistance(double width){
         double distance = (objectWidthInRealWorldUnits * focalLength) / width;
-        return distance;
+        return distance;//custom offset
     }
 
 
