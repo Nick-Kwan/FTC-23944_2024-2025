@@ -173,7 +173,7 @@ public class TeleOperationS extends LinearOpMode {
                 bot.driveTrain.setMotorPower();
                 if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
                     bot.s.setPosition(0);
-                    if (slidePosition <= 10) {
+                    if (slidePosition <= 20) {
                         bot.s.setPower0();
                     }
                 }
