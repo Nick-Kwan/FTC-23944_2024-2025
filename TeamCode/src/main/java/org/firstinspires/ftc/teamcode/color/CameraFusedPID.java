@@ -2,10 +2,19 @@ package org.firstinspires.ftc.teamcode.color;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.teamcode.Subsystems.Mecanum;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
@@ -17,17 +26,28 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
-@TeleOp(name = "OpenCV Testing")
+@TeleOp(name = "Cone Tracker")
 
-public class opencv extends LinearOpMode {
+public class CameraFusedPID extends LinearOpMode {
+    double integralSum = 0;
+    double Kp = PIDConstants.Kp;
+    double Ki = PIDConstants.Ki;
+    double Kd = PIDConstants.Kd;
 
+    private Robot bot;
+    ElapsedTime timer = new ElapsedTime();
+    private double lastError = 0;
+
+    private IMU imu;
     double cX = 0;
     double cY = 0;
     double width = 0;
 
     private OpenCvCamera controlHubCam;  // Use OpenCvCamera class from FTC SDK
+    /** MAKE SURE TO CHANGE THE FOV AND THE RESOLUTIONS ACCORDINGLY **/
     private static final int CAMERA_WIDTH = 1280; // width  of wanted camera resolution
     private static final int CAMERA_HEIGHT = 720; // height of wanted camera resolution
+    private static final double FOV = 40;
 
     // Calculate the distance using the formula
     public static final double objectWidthInRealWorldUnits = 3.5;  // Replace with the actual width of the object in real-world units
@@ -36,6 +56,14 @@ public class opencv extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        bot = new Robot(hardwareMap, telemetry);
+
+        imu = hardwareMap.get(IMU.class, "imu");
+        // this is making a new object called 'parameters' that we use to hold the angle the imu is at
+        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
+        imu.initialize(parameters);
 
         initOpenCV();
         FtcDashboard dashboard = FtcDashboard.getInstance();
@@ -46,6 +74,10 @@ public class opencv extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+            telemetry.addData("Target IMU Angle", getAngleTarget(cX));
+            telemetry.addData("Current IMU Angle", imu.getRobotOrientation(AxesReference.INTRINSIC,AxesOrder.ZYX,AngleUnit.DEGREES).firstAngle);
+            double power = PIDControl(Math.toRadians(0 + getAngleTarget(cX)), imu.getRobotOrientation(AxesReference.INTRINSIC,AxesOrder.ZYX,AngleUnit.RADIANS).firstAngle);
+            bot.driveTrain.setMotorPower();
             telemetry.addData("Coordinate", "(" + (int) cX + ", " + (int) cY + ")");
             telemetry.addData("Distance in Inch", (getDistance(width)));
             telemetry.update();
@@ -117,14 +149,12 @@ public class opencv extends LinearOpMode {
             Mat hsvFrame = new Mat();
             Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
 
-            Scalar lowerYellow1 = new Scalar(100, 100, 100);
+            Scalar lowerYellow1 = new Scalar(100, 100, 100); // really low and high yellow
             Scalar upperYellow1 = new Scalar(180, 255, 255);
 
             Scalar lowerYellow = new Scalar(100, 150, 0); // really low and high blue
             Scalar upperYellow = new Scalar(140, 255, 255);
 
-            // kwan was here
-            //ur gay
 
             Mat yellowMask = new Mat();
             Core.inRange(hsvFrame, lowerYellow, upperYellow, yellowMask);
@@ -156,9 +186,32 @@ public class opencv extends LinearOpMode {
         }
 
     }
+    private static double getAngleTarget(double objMidpoint){
+        double midpoint = -((objMidpoint - (CAMERA_WIDTH/2))*FOV)/CAMERA_WIDTH;
+        return midpoint;
+    }
     private static double getDistance(double width){
         double distance = (objectWidthInRealWorldUnits * focalLength) / width;
-        return distance;//custom offset
+        return distance;
+    }
+    public double PIDControl(double refrence, double state) {
+        double error = angleWrap(refrence - state);
+        telemetry.addData("Error: ", error);
+        integralSum += error * timer.seconds();
+        double derivative = (error - lastError) / (timer.seconds());
+        lastError = error;
+        timer.reset();
+        double output = (error * Kp) + (derivative * Kd) + (integralSum * Ki);
+        return output;
+    }
+    public double angleWrap(double radians){
+        while(radians > Math.PI){
+            radians -= 2 * Math.PI;
+        }
+        while(radians < -Math.PI){
+            radians += 2 * Math.PI;
+        }
+        return radians;
     }
 
 
