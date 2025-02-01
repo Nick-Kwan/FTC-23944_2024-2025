@@ -47,7 +47,7 @@ public class CameraFusedPID extends LinearOpMode {
     /** MAKE SURE TO CHANGE THE FOV AND THE RESOLUTIONS ACCORDINGLY **/
     private static final int CAMERA_WIDTH = 1280; // width  of wanted camera resolution
     private static final int CAMERA_HEIGHT = 720; // height of wanted camera resolution
-    private static final double FOV = 40;
+    private static final double FOV = 36;
 
     // Calculate the distance using the formula
     public static final double objectWidthInRealWorldUnits = 3.5;  // Replace with the actual width of the object in real-world units
@@ -57,7 +57,7 @@ public class CameraFusedPID extends LinearOpMode {
     @Override
     public void runOpMode() {
         bot = new Robot(hardwareMap, telemetry);
-
+        bot.aX.setArmPosSAuto();
         imu = hardwareMap.get(IMU.class, "imu");
         // this is making a new object called 'parameters' that we use to hold the angle the imu is at
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
@@ -77,7 +77,7 @@ public class CameraFusedPID extends LinearOpMode {
             telemetry.addData("Target IMU Angle", getAngleTarget(cX));
             telemetry.addData("Current IMU Angle", imu.getRobotOrientation(AxesReference.INTRINSIC,AxesOrder.ZYX,AngleUnit.DEGREES).firstAngle);
             double power = PIDControl(Math.toRadians(0 + getAngleTarget(cX)), imu.getRobotOrientation(AxesReference.INTRINSIC,AxesOrder.ZYX,AngleUnit.RADIANS).firstAngle);
-            bot.driveTrain.setMotorPower();
+            bot.driveTrain.power(power);
             telemetry.addData("Coordinate", "(" + (int) cX + ", " + (int) cY + ")");
             telemetry.addData("Distance in Inch", (getDistance(width)));
             telemetry.update();
@@ -149,11 +149,9 @@ public class CameraFusedPID extends LinearOpMode {
             Mat hsvFrame = new Mat();
             Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
 
-            Scalar lowerYellow1 = new Scalar(100, 100, 100); // really low and high yellow
-            Scalar upperYellow1 = new Scalar(180, 255, 255);
+            Scalar lowerYellow = new Scalar(100, 100, 100); // really low and high yellow
+            Scalar upperYellow = new Scalar(180, 255, 255);
 
-            Scalar lowerYellow = new Scalar(100, 150, 0); // really low and high blue
-            Scalar upperYellow = new Scalar(140, 255, 255);
 
 
             Mat yellowMask = new Mat();

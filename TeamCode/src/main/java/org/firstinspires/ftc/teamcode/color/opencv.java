@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
@@ -33,10 +34,10 @@ public class opencv extends LinearOpMode {
     public static final double objectWidthInRealWorldUnits = 3.5;  // Replace with the actual width of the object in real-world units
     public static final double focalLength = 1632;  // Replace with the focal length of the camera in pixels
 
-
+    private Robot bot;
     @Override
     public void runOpMode() {
-
+        bot = new Robot(hardwareMap,telemetry);
         initOpenCV();
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
@@ -48,6 +49,7 @@ public class opencv extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Coordinate", "(" + (int) cX + ", " + (int) cY + ")");
             telemetry.addData("Distance in Inch", (getDistance(width)));
+            telemetry.addData("Heading", bot.driveTrain.getHeading());
             telemetry.update();
 
             // The OpenCV pipeline automatically processes frames and handles detection
@@ -117,11 +119,10 @@ public class opencv extends LinearOpMode {
             Mat hsvFrame = new Mat();
             Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
 
-            Scalar lowerYellow1 = new Scalar(100, 100, 100);
-            Scalar upperYellow1 = new Scalar(180, 255, 255);
+            Scalar lowerYellow = new Scalar(100, 100, 100);
+            Scalar upperYellow = new Scalar(180, 255, 255);
 
-            Scalar lowerYellow = new Scalar(100, 150, 0); // really low and high blue
-            Scalar upperYellow = new Scalar(140, 255, 255);
+
 
             // kwan was here
             //ur gay

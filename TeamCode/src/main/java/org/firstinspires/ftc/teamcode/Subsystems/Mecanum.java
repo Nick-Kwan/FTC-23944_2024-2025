@@ -67,6 +67,13 @@ public class Mecanum {
         right_front.setPower(frontRightPower * 0.35);
         right_back.setPower(backRightPower * 0.35);
     }
+
+    public void power(double output){
+        left_front.setPower(-output);
+        left_back.setPower(-output);
+        right_front.setPower(output);
+        right_back.setPower(output);
+    }
     public void resetIMU() {resetIMU();}
 
     public double getHeading(){
