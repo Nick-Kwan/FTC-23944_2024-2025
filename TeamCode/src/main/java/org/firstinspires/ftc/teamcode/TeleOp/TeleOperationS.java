@@ -1,11 +1,19 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.color.PIDConstants;
+import org.firstinspires.ftc.teamcode.color.StaticHeading;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,10 +24,27 @@ public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
 
+    double integralSum = 0;
+    double Kp = PIDConstants.Kp;
+    double Ki = PIDConstants.Ki;
+    double Kd = PIDConstants.Kd;
+
+    private IMU imu;
+
+    ElapsedTime timer = new ElapsedTime();
+    private double lastError = 0;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
         bot = new Robot(hardwareMap, telemetry);
+
+        imu = hardwareMap.get(IMU.class, "imu");
+        // this is making a new object called 'parameters' that we use to hold the angle the imu is at
+        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
+        imu.initialize(parameters);
 
         bot.aX.setArmPosInit();
         try {
@@ -37,6 +62,8 @@ public class TeleOperationS extends LinearOpMode {
         }
         bot.s.resetEncoders();
         bot.s.setPower0();
+
+        double referenceAngle = Math.toRadians(90);
 
         waitForStart();
 
@@ -284,7 +311,32 @@ public class TeleOperationS extends LinearOpMode {
             if (gamepad1.dpad_left) {
                 bot.servoRClaw.setRClawPosMID();
             }
+
+            // rotate Robot to 180 deg
+            if (gamepad1.left_trigger>0.1) {
+                double power = PIDControl(referenceAngle, imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
+                bot.driveTrain.power(power);
+            }
         }
+    }
+    public double PIDControl(double reference, double state) {
+        double error = angleWrap(reference - state);
+        telemetry.addData("Error: ", error);
+        integralSum += error * timer.seconds();
+        double derivative = (error - lastError) / (timer.seconds());
+        lastError = error;
+        timer.reset();
+        double output = (error * Kp) + (derivative * Kd) + (integralSum * Ki);
+        return output;
+    }
+    public double angleWrap(double radians){
+        while(radians > Math.PI){
+            radians -= 2 * Math.PI;
+        }
+        while(radians < -Math.PI){
+            radians += 2 * Math.PI;
+        }
+        return radians;
     }
 }
 
