@@ -63,7 +63,7 @@ public class TeleOperationS extends LinearOpMode {
         bot.s.resetEncoders();
         bot.s.setPower0();
 
-        double referenceAngle = Math.toRadians(90);
+        double referenceAngle = Math.toRadians(180);
 
         waitForStart();
 

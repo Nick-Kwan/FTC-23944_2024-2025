@@ -39,7 +39,7 @@ public class StaticHeading extends LinearOpMode {
                 RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
         imu.initialize(parameters);
 
-        double referenceAngle = Math.toRadians(90);
+        double referenceAngle = Math.toRadians(180);
         waitForStart();
 
         while(opModeIsActive()){
