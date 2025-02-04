@@ -265,6 +265,8 @@ public class TeleOperationB extends LinearOpMode {
             if (bot.aX.getArmPos() == 0.645 || bot.aX.getArmPos() == 0.37){
                 double power = PIDControl(referenceAngle, imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
                 bot.driveTrain.power(power);
+
+
             }
 
             // pick up specimen from wall
