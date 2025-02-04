@@ -261,6 +261,11 @@ public class TeleOperationB extends LinearOpMode {
                 timer.schedule(hbR1, 750);
                 timer.schedule(hbR2, 1000);
             }
+            //IMU PID set to 180 deg
+            if (bot.aX.getArmPos() == 0.645 || bot.aX.getArmPos() == 0.37){
+                double power = PIDControl(referenceAngle, imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
+                bot.driveTrain.power(power);
+            }
 
             // pick up specimen from wall
             if (gamepad1.dpad_up) {
@@ -278,7 +283,7 @@ public class TeleOperationB extends LinearOpMode {
 
             // High Specimen
             if (gamepad2.dpad_right) {
-                bot.aX.setArmPosUPaBIT();
+                bot.aX.setArmPosSAuto();
                 timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
             }
@@ -319,11 +324,6 @@ public class TeleOperationB extends LinearOpMode {
                 bot.servoRClaw.setRClawPosMID();
             }
 
-            // rotate Robot to 180 deg
-            if (gamepad1.left_trigger>0.1) {
-                double power = PIDControl(referenceAngle, imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS).firstAngle);
-                bot.driveTrain.power(power);
-            }
         }
     }
     public double PIDControl(double reference, double state) {
