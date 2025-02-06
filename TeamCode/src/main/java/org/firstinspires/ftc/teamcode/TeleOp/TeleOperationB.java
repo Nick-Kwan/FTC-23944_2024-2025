@@ -52,10 +52,13 @@ public class TeleOperationB extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive() && !isStopRequested()) {
-            telemetry.addData("Heading", bot.driveTrain.getHeading());
-
-            telemetry.update();
             bot.driveTrain.drive(gamepad1);
+            telemetry.addData("Heading", bot.driveTrain.getHeading());
+            telemetry.addData("\n FL Motor Current: ", bot.driveTrain.getCurrent()[0]);
+            telemetry.addData("\n BL Motor Current: ", bot.driveTrain.getCurrent()[1]);
+            telemetry.addData("\n FR Motor Current: ", bot.driveTrain.getCurrent()[2]);
+            telemetry.addData("\n BR Motor Current: ", bot.driveTrain.getCurrent()[3]);
+            telemetry.update();
             if (gamepad1.left_trigger > 0.1) {
                 bot.driveTrain.resetYaw();
             }
@@ -120,15 +123,6 @@ public class TeleOperationB extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec1Mod = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 250
-                    bot.s.setPosition(42);
-                    bot.sr.setPosition(720);
-                }
-            };
-
             TimerTask HighSpec1 = new TimerTask() {
                 @Override
                 public void run() {
@@ -151,6 +145,13 @@ public class TeleOperationB extends LinearOpMode {
                     bot.aX.setArmPosSpec();
                 }
             };
+            TimerTask HighSpec2Mod = new TimerTask() {
+                @Override
+                public void run() {
+                    // use t = 1250
+                    bot.aX.setArmPosRevSpec();
+                }
+            };
             TimerTask HighSpec3 = new TimerTask() {
                 @Override
                 public void run() {
@@ -160,7 +161,13 @@ public class TeleOperationB extends LinearOpMode {
                     bot.s.setPosition(0);
                 }
             };
-
+            TimerTask HighSpec3p5 = new TimerTask() {
+                @Override
+                public void run() {
+                    // use t = 250
+                    bot.servoRClaw.flipClaw();
+                }
+            };
             TimerTask HighSpec4 = new TimerTask() {
                 @Override
                 public void run() {
@@ -252,18 +259,32 @@ public class TeleOperationB extends LinearOpMode {
             }
 
             // High Specimen
+//            if (gamepad2.dpad_right) {
+//                bot.aX.setArmPosUPaBIT();
+//                timer.schedule(HighSpecNeg1, 250);
+//                bot.aX.setArmPosSpecWall();
+//            }
+//
+//            if (gamepad2.dpad_up){
+//                bot.s.setPosition(42);
+//                timer.schedule(HighSpec2,250);
+//                timer.schedule(HighSpec3, 275);
+//                timer.schedule(HighSpec4, 875);
+//            }
+            //High Spec alt
             if (gamepad2.dpad_right) {
-                bot.aX.setArmPosUPaBIT();
+                bot.servoClaw.setClawPosition1();
+                bot.servoRClaw.flipClaw();
                 timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
-                bot.servoRClaw.flipClaw();
             }
 
             if (gamepad2.dpad_up){
-                bot.s.setPosition(42);
-                timer.schedule(HighSpec2,250);
-                timer.schedule(HighSpec3, 275);
-                timer.schedule(HighSpec4, 875);
+                bot.s.setPosition(0);
+                bot.aX.setArmPosRevSpec();
+                timer.schedule(HighSpec3,25);
+                timer.schedule(HighSpec3p5, 50);
+                timer.schedule(HighSpec4, 625);
             }
 
             // score high bucket
