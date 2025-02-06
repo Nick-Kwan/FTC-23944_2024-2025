@@ -17,7 +17,7 @@ public class RClaw {
 
     //public void setRClawPosFlip(){servoRC.setPosition(flip);}
 
-
+    public void flipClaw() {servoRC.setPosition(flip);}
 
     public void setRClawPosMID(){
         servoRC.setPosition(mid);

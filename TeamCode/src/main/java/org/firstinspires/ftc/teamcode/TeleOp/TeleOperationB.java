@@ -175,14 +175,14 @@ public class TeleOperationB extends LinearOpMode {
             };
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
-            boolean slowModeCondition = slidePosition > 400;
+            boolean slowModeCondition = slidePosition > 200;
             if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
                 if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
                     bot.s.setPosition(0);
-                    if (slidePosition <= 10) {
+                    if (slidePosition <= 20) {
                         bot.s.setPower0();
                     }
                 }
@@ -256,6 +256,7 @@ public class TeleOperationB extends LinearOpMode {
                 bot.aX.setArmPosUPaBIT();
                 timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
+                bot.servoRClaw.flipClaw();
             }
 
             if (gamepad2.dpad_up){
@@ -264,13 +265,6 @@ public class TeleOperationB extends LinearOpMode {
                 timer.schedule(HighSpec3, 275);
                 timer.schedule(HighSpec4, 875);
             }
-
-//            if (gamepad2.dpad_left){
-//                bot.s.setPosition(50);
-//                timer.schedule(HighSpec2,250);
-//                timer.schedule(HighSpec3, 275);
-//                timer.schedule(HighSpec4, 875);
-//            }
 
             // score high bucket
             if (gamepad1.y) {

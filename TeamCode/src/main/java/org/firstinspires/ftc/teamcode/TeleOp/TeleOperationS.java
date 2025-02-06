@@ -45,7 +45,10 @@ public class TeleOperationS extends LinearOpMode {
         while (opModeIsActive() && !isStopRequested()) {
             bot.driveTrain.drive(gamepad1);
             telemetry.addData("Heading", bot.driveTrain.getHeading());
-
+            telemetry.addData("\n FL Motor Current: ", bot.driveTrain.getCurrent()[0]);
+            telemetry.addData("\n BL Motor Current: ", bot.driveTrain.getCurrent()[1]);
+            telemetry.addData("\n FR Motor Current: ", bot.driveTrain.getCurrent()[2]);
+            telemetry.addData("\n BR Motor Current: ", bot.driveTrain.getCurrent()[3]);
             telemetry.update();
             if (gamepad1.left_trigger > 0.1) {
                 bot.driveTrain.resetYaw();
@@ -126,20 +129,18 @@ public class TeleOperationS extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec1Mod = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 250
-                    bot.s.setPosition(42);
-                    bot.sr.setPosition(720);
-                }
-            };
-
             TimerTask HighSpec2 = new TimerTask() {
                 @Override
                 public void run() {
                     // use t = 1250
                     bot.aX.setArmPosSpec();
+                }
+            };
+            TimerTask HighSpec2Mod = new TimerTask() {
+                @Override
+                public void run() {
+                    // use t = 1250
+                    bot.aX.setArmPosRevSpec();
                 }
             };
             TimerTask HighSpec3 = new TimerTask() {
@@ -151,7 +152,13 @@ public class TeleOperationS extends LinearOpMode {
                     bot.s.setPosition(0);
                 }
             };
-
+            TimerTask HighSpec3p5 = new TimerTask() {
+                @Override
+                public void run() {
+                    // use t = 250
+                    bot.servoRClaw.flipClaw();
+                }
+            };
             TimerTask HighSpec4 = new TimerTask() {
                 @Override
                 public void run() {
@@ -166,14 +173,14 @@ public class TeleOperationS extends LinearOpMode {
             };
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
-            boolean slowModeCondition = slidePosition > 400;
+            boolean slowModeCondition = slidePosition > 200;
             if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
                 if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
                     bot.s.setPosition(0);
-                    if (slidePosition <= 10) {
+                    if (slidePosition <= 20) {
                         bot.s.setPower0();
                     }
                 }
@@ -243,25 +250,32 @@ public class TeleOperationS extends LinearOpMode {
             }
 
             // High Specimen
+//            if (gamepad2.dpad_right) {
+//                bot.aX.setArmPosUPaBIT();
+//                timer.schedule(HighSpecNeg1, 250);
+//                bot.aX.setArmPosSpecWall();
+//            }
+//
+//            if (gamepad2.dpad_up){
+//                bot.s.setPosition(42);
+//                timer.schedule(HighSpec2,250);
+//                timer.schedule(HighSpec3, 275);
+//                timer.schedule(HighSpec4, 875);
+//            }
+            //High Spec alt
             if (gamepad2.dpad_right) {
-                bot.aX.setArmPosUPaBIT();
+                bot.servoClaw.setClawPosition1();
+                bot.servoRClaw.flipClaw();
                 timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
             }
 
             if (gamepad2.dpad_up){
-                bot.s.setPosition(42);
-                timer.schedule(HighSpec2,250);
-                timer.schedule(HighSpec3, 275);
-                timer.schedule(HighSpec4, 875);
+                bot.aX.setArmPosRevSpec();
+                timer.schedule(HighSpec3,25);
+                timer.schedule(HighSpec3p5, 85);
+                timer.schedule(HighSpec4, 625);
             }
-
-//            if (gamepad2.dpad_left){
-//                bot.s.setPosition(50);
-//                timer.schedule(HighSpec2,250);
-//                timer.schedule(HighSpec3, 275);
-//                timer.schedule(HighSpec4, 875);
-//            }
 
             // score high bucket
             if (gamepad1.y) {

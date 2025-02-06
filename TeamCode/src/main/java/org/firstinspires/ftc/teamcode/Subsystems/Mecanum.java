@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 
 public class Mecanum {
@@ -85,12 +86,18 @@ public class Mecanum {
                 backRightPower
         };
     }
-
+    public double[] getCurrent() {
+        return new double[]{
+                left_front.getCurrent(CurrentUnit.AMPS),
+                left_back.getCurrent(CurrentUnit.AMPS),
+                right_front.getCurrent(CurrentUnit.AMPS),
+                right_back.getCurrent(CurrentUnit.AMPS),
+        };
+    }
     public double getMotorPower(){
         return frontLeftPower;
     }
     public void resetYaw(){
         imu.resetYaw();
     }
-
 }
