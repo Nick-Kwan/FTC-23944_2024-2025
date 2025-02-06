@@ -164,7 +164,6 @@ public class TeleOperationB extends LinearOpMode {
             TimerTask HighSpec3p5 = new TimerTask() {
                 @Override
                 public void run() {
-                    // use t = 250
                     bot.servoRClaw.flipClaw();
                 }
             };
@@ -284,7 +283,7 @@ public class TeleOperationB extends LinearOpMode {
                 bot.aX.setArmPosRevSpec();
                 timer.schedule(HighSpec3,25);
                 timer.schedule(HighSpec3p5, 50);
-                timer.schedule(HighSpec4, 625);
+                timer.schedule(HighSpec4, 750);
             }
 
             // score high bucket
