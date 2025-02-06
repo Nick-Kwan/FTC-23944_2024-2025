@@ -155,6 +155,7 @@ public class TeleOperationS extends LinearOpMode {
             TimerTask HighSpec3p5 = new TimerTask() {
                 @Override
                 public void run() {
+                    bot.s.setPosition(50);
                     bot.servoRClaw.flipClaw();
                 }
             };
@@ -162,12 +163,12 @@ public class TeleOperationS extends LinearOpMode {
                 @Override
                 public void run() {
                     // use t = 1000
-                    bot.s.setPosition(0);
-                    bot.s.setPower0();
                     bot.sr.setPower0();
                     bot.servoClaw.setClawPosition1();
                     bot.aX.setArmPosMID();
                     bot.servoRClaw.setRClawPosMID();
+                    bot.s.setPosition(0);
+                    bot.s.setPower0();
                 }
             };
             // slide reset

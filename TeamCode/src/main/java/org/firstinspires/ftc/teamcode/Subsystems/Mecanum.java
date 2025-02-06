@@ -29,13 +29,14 @@ public class Mecanum {
         left_front.setDirection(DcMotorEx.Direction.REVERSE);
         left_back.setDirection(DcMotorEx.Direction.REVERSE);
 
-
         imu = hardwareMap.get(IMU.class, "imu");
-        // this is making a new object called 'parameters' that we use to hold the angle the imu is at
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+                RevHubOrientationOnRobot.UsbFacingDirection.UP
+        ));
         imu.initialize(parameters);
+
+        imu.resetYaw();
     }
 
     public void drive(Gamepad gamepad1) {
