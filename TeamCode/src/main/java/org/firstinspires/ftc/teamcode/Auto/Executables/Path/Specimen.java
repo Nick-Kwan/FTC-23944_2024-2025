@@ -26,7 +26,7 @@ public class Specimen extends LinearOpMode{
     PinpointDrive drive;
     TelemetryPacket tel = new TelemetryPacket();
     SequentialAction path;
-    Pose2d start = new Pose2d(8.5,-8.25,Math.toRadians(180));
+    Pose2d start = new Pose2d(8.5,-8.125,Math.toRadians(180));
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(

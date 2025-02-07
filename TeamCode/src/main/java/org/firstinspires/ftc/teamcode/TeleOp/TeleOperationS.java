@@ -7,6 +7,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,17 +17,11 @@ import java.util.TimerTask;
 public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
-    BNO055IMU imu;
-    BNO055IMU.Parameters parameters;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        bot = new Robot(hardwareMap, telemetry);
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
-        parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-        imu.initialize(parameters);
+        bot = new Robot(hardwareMap,telemetry);
 
         bot.aX.setArmPosInit();
         try {
@@ -278,7 +273,7 @@ public class TeleOperationS extends LinearOpMode {
             }
 
             if (gamepad2.dpad_up){
-                bot.s.setPosition(0);
+                bot.s.setPosition(10);
                 bot.aX.setArmPosRevSpec();
                 timer.schedule(HighSpec3,25);
                 timer.schedule(HighSpec3p5, 50);
