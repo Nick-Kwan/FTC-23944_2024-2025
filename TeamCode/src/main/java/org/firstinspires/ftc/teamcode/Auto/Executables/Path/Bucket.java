@@ -26,7 +26,7 @@ public class Bucket extends LinearOpMode {
     PinpointDrive drive;
     TelemetryPacket tel = new TelemetryPacket();
     SequentialAction path;
-    Pose2d start = new Pose2d(8.5, 8.125, 0);
+    Pose2d start = new Pose2d(8.5, 8.25, 0);
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
@@ -80,7 +80,7 @@ public class Bucket extends LinearOpMode {
                         bot.armAutoAction()
                 ))
                 .setTangent(0)
-                .splineToLinearHeading(new Pose2d(14, 27, -Math.PI/4), Math.PI/2)
+                .splineToLinearHeading(new Pose2d(14, 27, -Math.PI/4), Math.PI/2) //turn both coords back to pos
                 .afterTime(0, new ParallelAction(
                         bot.rSlideUpAction(),
                         bot.armMidAction()
