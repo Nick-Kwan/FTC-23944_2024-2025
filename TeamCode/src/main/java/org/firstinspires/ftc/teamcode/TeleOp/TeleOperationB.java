@@ -60,7 +60,7 @@ public class TeleOperationB extends LinearOpMode {
             telemetry.addData("\n BR Motor Current: ", bot.driveTrain.getCurrent()[3]);
             telemetry.update();
             if (gamepad1.left_trigger > 0.1) {
-                bot.driveTrain.resetYaw();
+                bot.driveTrain.resetIMU();
             }
 
             Timer timer = new Timer();

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -15,11 +16,17 @@ import java.util.TimerTask;
 public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
+    BNO055IMU imu;
+    BNO055IMU.Parameters parameters;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         bot = new Robot(hardwareMap, telemetry);
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        imu.initialize(parameters);
 
         bot.aX.setArmPosInit();
         try {
@@ -51,7 +58,7 @@ public class TeleOperationS extends LinearOpMode {
             telemetry.addData("\n BR Motor Current: ", bot.driveTrain.getCurrent()[3]);
             telemetry.update();
             if (gamepad1.left_trigger > 0.1) {
-                bot.driveTrain.resetYaw();
+                bot.driveTrain.resetIMU();
             }
 
             Timer timer = new Timer();
