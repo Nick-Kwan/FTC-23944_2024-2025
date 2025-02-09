@@ -21,8 +21,8 @@ import org.firstinspires.ftc.teamcode.Auto.RRdrives.PinpointDrive;
 import java.util.Arrays;
 
 @Config
-@Autonomous(name = "FiveSpec", group = "Autonomous")
-public class FiveSpec extends LinearOpMode{
+@Autonomous(name = "NickSpec", group = "Autonomous")
+public class NickSpec extends LinearOpMode{
     PinpointDrive drive;
     TelemetryPacket tel = new TelemetryPacket();
     SequentialAction path;

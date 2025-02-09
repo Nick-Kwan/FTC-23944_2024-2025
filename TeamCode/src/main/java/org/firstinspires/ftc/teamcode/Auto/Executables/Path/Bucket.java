@@ -26,7 +26,7 @@ public class Bucket extends LinearOpMode {
     PinpointDrive drive;
     TelemetryPacket tel = new TelemetryPacket();
     SequentialAction path;
-    Pose2d start = new Pose2d(8.5, 8.25, 0);
+    Pose2d start = new Pose2d(8.5, 8.125, 0);
     BotActions bot;
     boolean running;
     VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
