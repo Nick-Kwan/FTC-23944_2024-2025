@@ -104,7 +104,8 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction(),
                         bot.slideOffAction(),
                         bot.rSlideDownAction(),
-                        bot.armWallAction()
+                        bot.armWallAction(),
+                        bot.rSlideOffAction()
                 ))
                 // scores first spec
                 .splineToConstantHeading(new Vector2d(40,-27.75),Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-30,80))

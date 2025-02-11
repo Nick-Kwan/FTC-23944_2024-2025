@@ -44,8 +44,22 @@ public class SlideActions {
     public Action slideSpec4Action(){
         return new slideSpec4();
     }
+    public Action slideSpecFiftyAction(){
+        return new slideSpecFifty();
+    }
     public Action slideSpecNegAction(){
         return new slideSpecNeg();
+    }
+    public Action slideSpecSeven() {
+        return new slideSeven();
+    }
+    public class slideSpecFifty implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(50);
+            return false;
+        }
     }
     public class slideSpecNeg implements Action{
 
@@ -108,6 +122,13 @@ public class SlideActions {
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
             slides.setPosition(21);
+            return false;
+        }
+    }
+    public class slideSeven implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            slides.setPosition(7);
             return false;
         }
     }

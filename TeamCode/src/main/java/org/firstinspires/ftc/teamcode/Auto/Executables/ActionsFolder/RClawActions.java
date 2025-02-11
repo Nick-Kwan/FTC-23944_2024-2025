@@ -22,6 +22,18 @@ public class RClawActions {
     public Action rotClawHalfAction() {
         return new clawRotateHalf();
     }
+    public Action rotClawFlipAction() {
+        return new clawRotateFlip();
+    }
+
+    public class clawRotateFlip implements Action{
+
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            rClaw.flipClaw();
+            return false;
+        }
+    }
     public class clawRotateHalf implements Action{
 
         @Override

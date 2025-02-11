@@ -35,11 +35,15 @@ public class ArmActions {
     public Action armSpecAction () {
         return new armSpec();
     }
-    public class armSpecAction implements Action{
+    public Action armRevSpecAction () {
+        return new armSpec();
+    }
+
+    public class armRevSpec implements Action{
 
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            arm.setArmPosSpec();
+            arm.setArmPosRevSpec();
             return false;
         }
     }

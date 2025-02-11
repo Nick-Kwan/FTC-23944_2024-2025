@@ -29,6 +29,9 @@ public class BotActions {
     public Action rClawMIDAction(){
         return rClawActions.rotClawMIDAction();
     }
+    public Action rClawFlipAction(){
+        return rClawActions.rotClawFlipAction();
+    }
     public Action rClawHalfAction(){
         return rClawActions.rotClawHalfAction();
     }
@@ -43,6 +46,9 @@ public class BotActions {
     }
     public Action armHBAction(){
         return armActions.armHBAction();
+    }
+    public Action armRevSpecAction(){
+        return armActions.armRevSpecAction();
     }
     public Action armUPaBITAction(){
         return armActions.armUPaBITAction();
@@ -97,6 +103,12 @@ public class BotActions {
     }
     public Action slideSpec4Action(){
         return slideActions.slideSpec4Action();
+    }
+    public Action slideFiftyAction(){
+        return slideActions.slideSpecFiftyAction();
+    }
+    public Action slideSpecSevenAction(){
+        return slideActions.slideSpecSeven();
     }
     public Action slideSpecNegAction(){
         return slideActions.slideSpecNegAction();

@@ -116,14 +116,6 @@ public class TeleOperationS extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec1 = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 250
-                    bot.s.setPosition(30);
-                    bot.sr.setPosition(740);
-                }
-            };
             TimerTask HighSpecNeg1 = new TimerTask() {
                 @Override
                 public void run() {
@@ -131,20 +123,6 @@ public class TeleOperationS extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec2 = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 1250
-                    bot.aX.setArmPosSpec();
-                }
-            };
-            TimerTask HighSpec2Mod = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 1250
-                    bot.aX.setArmPosRevSpec();
-                }
-            };
             TimerTask HighSpec3 = new TimerTask() {
                 @Override
                 public void run() {
@@ -157,8 +135,8 @@ public class TeleOperationS extends LinearOpMode {
             TimerTask HighSpec3p5 = new TimerTask() {
                 @Override
                 public void run() {
+                    bot.servoRClaw.setRClawPosMID();
                     bot.s.setPosition(50);
-                    bot.servoRClaw.flipClaw();
                 }
             };
             TimerTask HighSpec4 = new TimerTask() {
@@ -168,7 +146,6 @@ public class TeleOperationS extends LinearOpMode {
                     bot.sr.setPower0();
                     bot.servoClaw.setClawPosition1();
                     bot.aX.setArmPosMID();
-                    bot.servoRClaw.setRClawPosMID();
                     bot.s.setPosition(0);
                     bot.s.setPower0();
                 }
@@ -176,7 +153,7 @@ public class TeleOperationS extends LinearOpMode {
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || bot.sr.getPosition()>600) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
@@ -270,10 +247,10 @@ public class TeleOperationS extends LinearOpMode {
                 bot.servoRClaw.flipClaw();
                 timer.schedule(HighSpecNeg1, 250);
                 bot.aX.setArmPosSpecWall();
+                bot.s.setPosition(7);
             }
 
             if (gamepad2.dpad_up){
-                bot.s.setPosition(10);
                 bot.aX.setArmPosRevSpec();
                 timer.schedule(HighSpec3,25);
                 timer.schedule(HighSpec3p5, 50);
