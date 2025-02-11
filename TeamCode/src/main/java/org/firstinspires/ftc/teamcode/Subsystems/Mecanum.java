@@ -68,6 +68,12 @@ public class Mecanum {
         right_front.setPower(frontRightPower * 0.35);
         right_back.setPower(backRightPower * 0.35);
     }
+    public void setMidMode() {
+        left_front.setPower(frontLeftPower * 0.5);
+        left_back.setPower(backLeftPower * 0.5);
+        right_front.setPower(frontRightPower * 0.5);
+        right_back.setPower(backRightPower * 0.5);
+    }
 
     public double getHeading(){
         return imu.getRobotYawPitchRollAngles().getYaw();

@@ -30,4 +30,8 @@ public class RClaw {
     public void setRClawPosHalf(){
         servoRC.setPosition(half);
     }
+
+    public double getRClawPos() {
+        return servoRC.getPosition();
+    }
 }

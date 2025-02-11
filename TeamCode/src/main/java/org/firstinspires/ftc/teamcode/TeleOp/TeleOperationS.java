@@ -153,8 +153,20 @@ public class TeleOperationS extends LinearOpMode {
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || bot.sr.getPosition()>600) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
                 bot.driveTrain.setSlowMode();
+            } else {
+                bot.driveTrain.setMotorPower();
+                if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
+                    bot.s.setPosition(0);
+                    if (slidePosition <= 20) {
+                        bot.s.setPower0();
+                    }
+                }
+            }
+            if(bot.aX.getArmPos() == 0.635)
+            {
+                bot.driveTrain.setMidMode();
             } else {
                 bot.driveTrain.setMotorPower();
                 if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
@@ -223,9 +235,14 @@ public class TeleOperationS extends LinearOpMode {
 
             // High Bucket
             if (gamepad2.a) {
-                bot.aX.setArmPosMID();
-                bot.sr.setPosition(720);
-                timer.schedule(hbIn, 600);
+                if(bot.sr.getPosition() < 400) {
+                    bot.aX.setArmPosMID();
+                    bot.sr.setPosition(740);
+                    timer.schedule(hbIn, 600);
+                }
+                else{
+                    bot.s.setPosition(835);
+                }
             }
 
             // High Specimen
@@ -241,13 +258,18 @@ public class TeleOperationS extends LinearOpMode {
 //                timer.schedule(HighSpec3, 275);
 //                timer.schedule(HighSpec4, 875);
 //            }
-            //High Spec alt
+            //High Spec
             if (gamepad2.dpad_right) {
-                bot.servoClaw.setClawPosition1();
-                bot.servoRClaw.flipClaw();
-                timer.schedule(HighSpecNeg1, 250);
-                bot.aX.setArmPosSpecWall();
-                bot.s.setPosition(7);
+                if(bot.aX.getArmPos() == 0.41) {
+                    bot.servoClaw.setClawPosition1();
+                    bot.servoRClaw.flipClaw();
+                    timer.schedule(HighSpecNeg1, 250);
+                    bot.aX.setArmPosSpecWall();
+                    bot.s.setPosition(4);
+                }
+                else {
+                    bot.sr.setPosition(740);
+                }
             }
 
             if (gamepad2.dpad_up){

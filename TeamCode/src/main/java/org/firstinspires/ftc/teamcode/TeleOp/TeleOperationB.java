@@ -123,14 +123,6 @@ public class TeleOperationB extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec1 = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 250
-                    bot.s.setPosition(30);
-                    bot.sr.setPosition(740);
-                }
-            };
             TimerTask HighSpecNeg1 = new TimerTask() {
                 @Override
                 public void run() {
@@ -138,26 +130,11 @@ public class TeleOperationB extends LinearOpMode {
                 }
             };
 
-            TimerTask HighSpec2 = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 1250
-                    bot.aX.setArmPosSpec();
-                }
-            };
-            TimerTask HighSpec2Mod = new TimerTask() {
-                @Override
-                public void run() {
-                    // use t = 1250
-                    bot.aX.setArmPosRevSpec();
-                }
-            };
             TimerTask HighSpec3 = new TimerTask() {
                 @Override
                 public void run() {
                     // use t = 150
                     bot.servoClaw.setClawPosition0();
-                    bot.servoRClaw.flipClaw();
                     bot.sr.setPosition(0);
                     bot.s.setPosition(0);
                 }
@@ -176,7 +153,6 @@ public class TeleOperationB extends LinearOpMode {
                     bot.sr.setPower0();
                     bot.servoClaw.setClawPosition1();
                     bot.aX.setArmPosMID();
-                    bot.servoRClaw.setRClawPosMID();
                     bot.s.setPosition(0);
                     bot.s.setPower0();
                 }
@@ -254,9 +230,14 @@ public class TeleOperationB extends LinearOpMode {
 
             // High Bucket
             if (gamepad2.a) {
-                bot.aX.setArmPosMID();
-                bot.sr.setPosition(720);
-                timer.schedule(hbIn, 600);
+                if(bot.sr.getPosition() < 400) {
+                    bot.aX.setArmPosMID();
+                    bot.sr.setPosition(740);
+                    timer.schedule(hbIn, 600);
+                }
+                else{
+                    bot.s.setPosition(835);
+                }
             }
 
             // High Specimen
@@ -274,11 +255,16 @@ public class TeleOperationB extends LinearOpMode {
 //            }
             //High Spec alt
             if (gamepad2.dpad_right) {
-                bot.servoClaw.setClawPosition1();
-                bot.servoRClaw.flipClaw();
-                timer.schedule(HighSpecNeg1, 250);
-                bot.aX.setArmPosSpecWall();
-                bot.s.setPosition(7);
+                if(bot.aX.getArmPos() == 0.41) {
+                    bot.servoClaw.setClawPosition1();
+                    bot.servoRClaw.flipClaw();
+                    timer.schedule(HighSpecNeg1, 250);
+                    bot.aX.setArmPosSpecWall();
+                    bot.s.setPosition(4);
+                }
+                else {
+                    bot.sr.setPosition(740);
+                }
             }
 
             if (gamepad2.dpad_up){
