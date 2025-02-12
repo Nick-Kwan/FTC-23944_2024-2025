@@ -153,20 +153,8 @@ public class TeleOperationS extends LinearOpMode {
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || bot.sr.getPosition() > 600) {
                 bot.driveTrain.setSlowMode();
-            } else {
-                bot.driveTrain.setMotorPower();
-                if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
-                    bot.s.setPosition(0);
-                    if (slidePosition <= 20) {
-                        bot.s.setPower0();
-                    }
-                }
-            }
-            if(bot.aX.getArmPos() == 0.635)
-            {
-                bot.driveTrain.setMidMode();
             } else {
                 bot.driveTrain.setMotorPower();
                 if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {

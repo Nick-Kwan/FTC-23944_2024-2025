@@ -120,21 +120,21 @@ public class JonSpec extends LinearOpMode{
                 .splineToConstantHeading(new Vector2d(55,-26.75),0,aVelConstraint,new ProfileAccelConstraint(-25,100))
                 .splineToConstantHeading(new Vector2d(55,-39),0,aVelConstraint, new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(26,-39),0,aVelConstraint, new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(24,-39),0,aVelConstraint, new ProfileAccelConstraint(-25,100))
                 .afterTime(0,new ParallelAction(
                         bot.slideDownAction()
                 ))
                 // lets go of first sample
-                .splineToConstantHeading(new Vector2d(53,-14),0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was x 56
+                .splineToConstantHeading(new Vector2d(53,-14), 0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was x 56
                 .splineToConstantHeading(new Vector2d(53,-48),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-25,100)) //was x 56, y : -50
                 .waitSeconds(0)
                 .splineToConstantHeading(new Vector2d(26,-48),0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was y : 29
                 // lets go of second sample
                 .splineToConstantHeading(new Vector2d(35,-40),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(55,-52),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(55,-53.15),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(17,-52),0,aVelConstraint,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(18,-53.15),0,aVelConstraint,new ProfileAccelConstraint(-15,60))
                 // lets go of third sample
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
