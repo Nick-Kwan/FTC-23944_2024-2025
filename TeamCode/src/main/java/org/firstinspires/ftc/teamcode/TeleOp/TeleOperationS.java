@@ -17,7 +17,16 @@ import java.util.TimerTask;
 public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
-    private String temp = "n";
+    private enum AState {
+        GROUND, // while driving
+        SPEC,  // before Scoring Specimen
+        ASPEC, // Active Scoring for Specimen
+        BUCK, // before Scoring Bucket
+        ABUCK // Active Scoring for Bucket
+    }
+
+    private AState aState = AState.GROUND; // Initial state
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -149,12 +158,13 @@ public class TeleOperationS extends LinearOpMode {
                     bot.aX.setArmPosMID();
                     bot.s.setPosition(0);
                     bot.s.setPower0();
+                    aState = AState.GROUND;
                 }
             };
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || temp.equals("a")) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || aState.equals(AState.SPEC)) { // astate equalsto not garauneed to work
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
@@ -249,8 +259,8 @@ public class TeleOperationS extends LinearOpMode {
 //            }
             //High Spec
             if (gamepad2.dpad_right) {
-                temp = "a";
                 if(bot.aX.getArmPos() == 0.41) {
+                    aState = AState.SPEC;
                     bot.servoClaw.setClawPosition1();
                     bot.servoRClaw.flipClaw();
                     timer.schedule(HighSpecNeg1, 250);
@@ -258,8 +268,8 @@ public class TeleOperationS extends LinearOpMode {
                     bot.s.setPosition(4);
                 }
                 else {
+                    aState = AState.BUCK;
                     bot.sr.setPosition(740);
-                    temp = "b";
                 }
             }
 
@@ -268,7 +278,6 @@ public class TeleOperationS extends LinearOpMode {
                 timer.schedule(HighSpec3,25);
                 timer.schedule(HighSpec3p5, 50);
                 timer.schedule(HighSpec4, 750);
-                temp = "b";
             }
 
             // score high bucket
