@@ -17,16 +17,6 @@ import java.util.TimerTask;
 public class TeleOperationS extends LinearOpMode {
 
     private Robot bot;
-    private enum AState {
-        GROUND, // while driving
-        SPEC,  // before Scoring Specimen
-        ASPEC, // Active Scoring for Specimen
-        BUCK, // before Scoring Bucket
-        ABUCK // Active Scoring for Bucket
-    }
-
-    private AState aState = AState.GROUND; // Initial state
-
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -158,13 +148,12 @@ public class TeleOperationS extends LinearOpMode {
                     bot.aX.setArmPosMID();
                     bot.s.setPosition(0);
                     bot.s.setPower0();
-                    aState = AState.GROUND;
                 }
             };
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad1.right_trigger > 0.1 || aState.equals(AState.SPEC)) { // astate equalsto not garauneed to work
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad2.right_trigger > 0.1) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
@@ -196,7 +185,6 @@ public class TeleOperationS extends LinearOpMode {
                 bot.servoClaw.setClawPosition1();
                 bot.servoRClaw.setRClawPosMID();
                 bot.aX.setArmPosSUB();
-                // 100 ms timer was here
                 bot.s.setPosition(590);
             }
 
@@ -260,23 +248,21 @@ public class TeleOperationS extends LinearOpMode {
             //High Spec
             if (gamepad2.dpad_right) {
                 if(bot.aX.getArmPos() == 0.41) {
-                    aState = AState.SPEC;
                     bot.servoClaw.setClawPosition1();
                     bot.servoRClaw.flipClaw();
                     timer.schedule(HighSpecNeg1, 250);
                     bot.aX.setArmPosSpecWall();
-                    bot.s.setPosition(4);
+                    bot.s.setPosition(0);
                 }
                 else {
-                    aState = AState.BUCK;
                     bot.sr.setPosition(740);
                 }
             }
 
             if (gamepad2.dpad_up){
-                bot.aX.setArmPosRevSpec();
-                timer.schedule(HighSpec3,25);
-                timer.schedule(HighSpec3p5, 50);
+                bot.aX.setArmPosUPaBIT();
+                timer.schedule(HighSpec3,50);
+                timer.schedule(HighSpec3p5, 75);
                 timer.schedule(HighSpec4, 750);
             }
 

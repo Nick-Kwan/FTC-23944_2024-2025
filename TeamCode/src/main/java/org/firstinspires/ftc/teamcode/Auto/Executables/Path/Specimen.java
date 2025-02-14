@@ -173,8 +173,8 @@ public class Specimen extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(28,8.75),-7*(Math.PI/8),aVelConstraint,new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(39,8.75),0,baseVelConstraint) // was 9.75 too uch to the right
+                .splineToConstantHeading(new Vector2d(28,7.5),-7*(Math.PI/8),aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(39,7.5),0,baseVelConstraint) // was 9.75 too uch to the right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
