@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -16,7 +17,8 @@ public class Mecanum {
     private double offset = 1.1;
 
 
-    IMU imu;
+    BNO055IMU imu;
+    BNO055IMU.Parameters parameters;
 
     public Mecanum(HardwareMap hardwareMap) {
         left_front = hardwareMap.get(DcMotorEx.class, "left_front");
@@ -28,14 +30,10 @@ public class Mecanum {
         left_front.setDirection(DcMotorEx.Direction.REVERSE);
         left_back.setDirection(DcMotorEx.Direction.REVERSE);
 
-        imu = hardwareMap.get(IMU.class, "imu");
-        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.RIGHT
-        ));
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         imu.initialize(parameters);
-
-        imu.resetYaw();
     }
 
     public void drive(Gamepad gamepad1) {
@@ -43,7 +41,7 @@ public class Mecanum {
         x = gamepad1.left_stick_x;
         rx = gamepad1.right_stick_x;
 
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        double botHeading = imu.getAngularOrientation().firstAngle;
 
         rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
         rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
@@ -76,7 +74,7 @@ public class Mecanum {
     }
 
     public double getHeading(){
-        return imu.getRobotYawPitchRollAngles().getYaw();
+        return imu.getAngularOrientation().firstAngle;
     }
 
     public double[] getMotorPowers(){
@@ -98,8 +96,9 @@ public class Mecanum {
     public double getMotorPower(){
         return frontLeftPower;
     }
+
     public void resetIMU(){
-        imu.resetYaw();
+        imu.initialize(parameters);
     }
 
 }

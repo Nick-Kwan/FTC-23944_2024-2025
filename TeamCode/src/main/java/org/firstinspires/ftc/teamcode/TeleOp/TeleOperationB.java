@@ -161,11 +161,11 @@ public class TeleOperationB extends LinearOpMode {
             // slide reset
             double slidePosition = bot.s.getPosition(); // Get slide motor's current position
             boolean slowModeCondition = slidePosition > 200;
-            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad2.right_trigger > 0.1) {
+            if (slowModeCondition || bot.aX.getArmPos() == 0.645 || gamepad2.right_bumper) {
                 bot.driveTrain.setSlowMode();
             } else {
                 bot.driveTrain.setMotorPower();
-                if (bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1) {
+                if ((bot.driveTrain.getMotorPower() > 0.1 || bot.driveTrain.getMotorPower() < -0.1 )&& bot.sr.getPosition() < 100) {
                     bot.s.setPosition(0);
                     if (slidePosition <= 20) {
                         bot.s.setPower0();
@@ -254,13 +254,13 @@ public class TeleOperationB extends LinearOpMode {
 //                timer.schedule(HighSpec4, 875);
 //            }
             //High Spec
-            if (gamepad2.dpad_right) {
+            if (gamepad2.left_bumper) {
                 if(bot.aX.getArmPos() == 0.41) {
                     bot.servoClaw.setClawPosition1();
                     bot.servoRClaw.flipClaw();
                     timer.schedule(HighSpecNeg1, 250);
                     bot.aX.setArmPosSpecWall();
-                    bot.s.setPosition(0);
+                    bot.s.setPosition(10);
                 }
                 else {
                     bot.sr.setPosition(740);
@@ -269,8 +269,9 @@ public class TeleOperationB extends LinearOpMode {
 
             if (gamepad2.dpad_up){
                 bot.aX.setArmPosUPaBIT();
-                timer.schedule(HighSpec3,50);
-                timer.schedule(HighSpec3p5, 75);
+                bot.s.setPosition(0);
+                timer.schedule(HighSpec3,100); // 50 was too short, 150 too long
+                timer.schedule(HighSpec3p5, 175);
                 timer.schedule(HighSpec4, 750);
             }
 
