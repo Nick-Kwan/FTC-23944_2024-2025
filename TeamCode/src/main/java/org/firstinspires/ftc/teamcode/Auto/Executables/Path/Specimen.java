@@ -117,12 +117,12 @@ public class Specimen extends LinearOpMode{
                         bot.slideDownAction()
                 ))
                 // lets go of first sample
-                .splineToConstantHeading(new Vector2d(56,-14),0,aVelConstraint, new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(56,-51),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(56,-12.75),0,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(56,-50),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-30,80))
                 .waitSeconds(0)
                 .splineToConstantHeading(new Vector2d(27,-29),0,aVelConstraint, new ProfileAccelConstraint(-30,80)) // was y : 29
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(16.5,-32),Math.PI,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 15.5
+                .splineToConstantHeading(new Vector2d(15.75,-32),Math.PI,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 15.5
                 // lets go of second sample
 
                 .afterTime(0, new ParallelAction(
@@ -158,7 +158,7 @@ public class Specimen extends LinearOpMode{
                 ))
                 // scores preloaded specimen
                 .splineToConstantHeading(new Vector2d(24,-24),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(16.55,-29),0,twoVelConstraint) // was 16.5
+                .splineToConstantHeading(new Vector2d(15.75,-29),0,twoVelConstraint) // was 16.5
 
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
@@ -179,7 +179,7 @@ public class Specimen extends LinearOpMode{
                         bot.slideSpecAction(),
                         bot.armSpecAction()
                 ))
-                .waitSeconds(0.175)
+                .waitSeconds(0.225)
                 .afterTime(0, new ParallelAction(
                         bot.clawOpenAction(),
                         bot.rSlideDownAction(),
@@ -194,7 +194,7 @@ public class Specimen extends LinearOpMode{
                 ))
                 // scores 3rd spec
                 .splineToConstantHeading(new Vector2d(28,-32),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-30,80))
-                .splineToConstantHeading(new Vector2d(17.5,-32),0,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 18
+                .splineToConstantHeading(new Vector2d(16.75,-32),0,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 18
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
                 ))
