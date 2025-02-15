@@ -252,7 +252,7 @@ public class TeleOperationS extends LinearOpMode {
                     bot.servoRClaw.flipClaw();
                     timer.schedule(HighSpecNeg1, 250);
                     bot.aX.setArmPosSpecWall();
-                    bot.s.setPosition(7);
+                    bot.s.setPosition(20); // was 7
                 }
                 else {
                     bot.sr.setPosition(740);
