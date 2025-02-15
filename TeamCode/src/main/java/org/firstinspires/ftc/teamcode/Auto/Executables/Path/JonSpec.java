@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Auto.Executables.Path;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.AngularVelConstraint;
 import com.acmerobotics.roadrunner.MinVelConstraint;
@@ -37,10 +38,11 @@ public class JonSpec extends LinearOpMode{
             new TranslationalVelConstraint(20),
             new AngularVelConstraint(3*(Math.PI/3))
     ));
-    VelConstraint aVelConstraint = new MinVelConstraint(Arrays.asList(
+    VelConstraint v = new MinVelConstraint(Arrays.asList(
             new TranslationalVelConstraint(75), // was 63
             new AngularVelConstraint(3*(Math.PI/3))
     ));
+    AccelConstraint a = new ProfileAccelConstraint(-25,100);
 
     public enum AutoStates{
         followingPath, idle
@@ -91,7 +93,7 @@ public class JonSpec extends LinearOpMode{
                         bot.armWallAction()
                 ))
                 .setTangent(Math.PI/2)
-                .splineToConstantHeading(new Vector2d(40, 4), -Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100)) // was 40,8
+                .splineToConstantHeading(new Vector2d(40, 4), -Math.PI/2,v,a) // all accel constraints were -25, 100
                 .afterTime(0, new ParallelAction(
                         bot.armUPaBITAction()
                 ))
@@ -116,25 +118,27 @@ public class JonSpec extends LinearOpMode{
 
                 ))
                 // scores first spec
-                .splineToConstantHeading(new Vector2d(40,-26.75),(Math.PI)/4,aVelConstraint,new ProfileAccelConstraint(-25,100)) // (-30,80)
-                .splineToConstantHeading(new Vector2d(55,-26.75),0,aVelConstraint,new ProfileAccelConstraint(-25,100))
-                .splineToConstantHeading(new Vector2d(55,-39),0,aVelConstraint, new ProfileAccelConstraint(-25,100))
-                .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(24,-39),0,aVelConstraint, new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(40,-27),(Math.PI)/4,v,a) // (-30,80)
+                .lineToX(55,v,a)
+                .splineToConstantHeading(new Vector2d(55,-39),-Math.PI/2,v,a)
+                //.waitSeconds(0)
+                .lineToX(22,v,a)
                 .afterTime(0,new ParallelAction(
                         bot.slideDownAction()
                 ))
                 // lets go of first sample
-                .splineToConstantHeading(new Vector2d(53,-14), 0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was x 56
-                .splineToConstantHeading(new Vector2d(53,-48),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-25,100)) //was x 56, y : -50
-                .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(26,-48),0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was y : 29
+                .lineToX(55,v,a)
+//                .splineToConstantHeading(new Vector2d(53,-14), 0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was x 56
+//                .splineToConstantHeading(new Vector2d(53,-48),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-25,100)) //was x 56, y : -50
+                //.waitSeconds(0)
+                .lineToY(-48,v,a)
+                .splineToConstantHeading(new Vector2d(26,-48),-Math.PI/2,v, new ProfileAccelConstraint(-25,100)) // was y : 29
                 // lets go of second sample
-                .splineToConstantHeading(new Vector2d(35,-40),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(55,-40),Math.toRadians(270),v,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(55,-53.15),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(55,-53.15),-Math.PI/2,v,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(18,-53.15),0,aVelConstraint,new ProfileAccelConstraint(-15,60))
+                .splineToConstantHeading(new Vector2d(17,-53.15),-Math.PI,v,new ProfileAccelConstraint(-15,60))
                 // lets go of third sample
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
@@ -149,7 +153,7 @@ public class JonSpec extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(42,10),-5*Math.PI/8,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(42,10),-5*Math.PI/8,v, new ProfileAccelConstraint(-30,80))
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
                         bot.armSpecAction()
@@ -168,7 +172,7 @@ public class JonSpec extends LinearOpMode{
                         bot.armWallAction()
                 ))
                 // scores preloaded specimen
-                .splineToConstantHeading(new Vector2d(24,-24),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(24,-24),-Math.PI/2,v, new ProfileAccelConstraint(-30,80))
                 .splineToConstantHeading(new Vector2d(16.55,-29),0,twoVelConstraint) // was 16.5
 
                 .afterTime(0,new ParallelAction(
@@ -184,7 +188,7 @@ public class JonSpec extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(28,8.75),-7*(Math.PI/8),aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(28,8.75),-7*(Math.PI/8),v,new ProfileAccelConstraint(-30,80))
                 .splineToConstantHeading(new Vector2d(39,8.75),0,baseVelConstraint) // was 9.75 too uch to the right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
@@ -204,7 +208,7 @@ public class JonSpec extends LinearOpMode{
                         bot.armWallAction()
                 ))
                 // scores 3rd spec
-                .splineToConstantHeading(new Vector2d(28,-32),-Math.PI/2,aVelConstraint,new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(28,-32),-Math.PI/2,v,new ProfileAccelConstraint(-30,80))
                 .splineToConstantHeading(new Vector2d(17.5,-32),0,twoVelConstraint, new ProfileAccelConstraint(-80,10)) // prev 18
                 .afterTime(0,new ParallelAction(
                         bot.clawCloseAction()
@@ -219,7 +223,7 @@ public class JonSpec extends LinearOpMode{
                         bot.rSlideUpAction(),
                         bot.slideSpecAction()
                 ))
-                .splineToConstantHeading(new Vector2d(40,12),-Math.PI/3,aVelConstraint, new ProfileAccelConstraint(-30,80))
+                .splineToConstantHeading(new Vector2d(40,12),-Math.PI/3,v, new ProfileAccelConstraint(-30,80))
                 .splineToConstantHeading(new Vector2d(42,12),0,baseVelConstraint,new ProfileAccelConstraint(-70,50)) // y 10 was too much to he right
                 .afterTime(0, new ParallelAction(
                         bot.slideSpecAction(),
