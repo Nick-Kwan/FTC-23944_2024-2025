@@ -42,6 +42,10 @@ public class JonSpec extends LinearOpMode{
             new TranslationalVelConstraint(75), // was 63
             new AngularVelConstraint(3*(Math.PI/3))
     ));
+    VelConstraint v2 = new MinVelConstraint(Arrays.asList(
+            new TranslationalVelConstraint(90),
+            new AngularVelConstraint(3*(Math.PI/3))
+    ));
     AccelConstraint a = new ProfileAccelConstraint(-25,100);
 
     public enum AutoStates{
@@ -118,27 +122,26 @@ public class JonSpec extends LinearOpMode{
 
                 ))
                 // scores first spec
-                .splineToConstantHeading(new Vector2d(40,-27),(Math.PI)/4,v,a) // (-30,80)
-                .lineToX(55,v,a)
+                .splineToConstantHeading(new Vector2d(40,-27),(Math.PI)/4,v,a)
+                .splineToConstantHeading(new Vector2d(55,-27),(Math.PI)/4,v,a)
                 .splineToConstantHeading(new Vector2d(55,-39),-Math.PI/2,v,a)
-                //.waitSeconds(0)
-                .lineToX(22,v,a)
+                .waitSeconds(0)
+                .lineToX(22,v2,a)
                 .afterTime(0,new ParallelAction(
                         bot.slideDownAction()
                 ))
                 // lets go of first sample
                 .lineToX(55,v,a)
 //                .splineToConstantHeading(new Vector2d(53,-14), 0,aVelConstraint, new ProfileAccelConstraint(-25,100)) // was x 56
-//                .splineToConstantHeading(new Vector2d(53,-48),-Math.PI/2,aVelConstraint, new ProfileAccelConstraint(-25,100)) //was x 56, y : -50
-                //.waitSeconds(0)
-                .lineToY(-48,v,a)
-                .splineToConstantHeading(new Vector2d(26,-48),-Math.PI/2,v, new ProfileAccelConstraint(-25,100)) // was y : 29
+                .splineToConstantHeading(new Vector2d(53,-48),-Math.PI/2,v,a) //was x 56, y : -50
+                .waitSeconds(0)
+                .lineToX(26,v2,a)
                 // lets go of second sample
-                .splineToConstantHeading(new Vector2d(55,-40),Math.toRadians(270),v,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(57,-40),Math.toRadians(270),v,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(55,-53.15),-Math.PI/2,v,new ProfileAccelConstraint(-25,100))
+                .splineToConstantHeading(new Vector2d(57,-53.15),-Math.PI/2,v,new ProfileAccelConstraint(-25,100))
                 .waitSeconds(0)
-                .splineToConstantHeading(new Vector2d(17,-53.15),-Math.PI,v,new ProfileAccelConstraint(-15,60))
+                .lineToX(17,v2,a)
                 // lets go of third sample
                 .afterTime(0, new ParallelAction(
                         bot.clawCloseAction()
