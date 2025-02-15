@@ -31,7 +31,7 @@ public class TeleOperationS extends LinearOpMode {
         }
         bot.servoRClaw.setRClawPosMID();
         bot.aX.setArmPosMID();
-        bot.s.setPosition(-50);
+        bot.s.setPosition(-67);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -252,7 +252,7 @@ public class TeleOperationS extends LinearOpMode {
                     bot.servoRClaw.flipClaw();
                     timer.schedule(HighSpecNeg1, 250);
                     bot.aX.setArmPosSpecWall();
-                    bot.s.setPosition(10);
+                    bot.s.setPosition(7);
                 }
                 else {
                     bot.sr.setPosition(740);
@@ -262,8 +262,8 @@ public class TeleOperationS extends LinearOpMode {
             if (gamepad2.dpad_up){
                 bot.aX.setArmPosUPaBIT();
                 bot.s.setPosition(0);
-                timer.schedule(HighSpec3,100); // 50 was too short, 150 too long
-                timer.schedule(HighSpec3p5, 175);
+                timer.schedule(HighSpec3,200); // 50 was too short, 150 too long
+                timer.schedule(HighSpec3p5, 275);
                 timer.schedule(HighSpec4, 750);
             }
 
