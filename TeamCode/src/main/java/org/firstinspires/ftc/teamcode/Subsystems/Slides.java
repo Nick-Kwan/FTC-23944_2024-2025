@@ -4,10 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
-import org.firstinspires.ftc.teamcode.Commands.ESlides;
-import org.firstinspires.ftc.teamcode.Subsystems.SlideRotation;
-
 public class Slides {
     private DcMotorEx rightSlide, leftSlide;
     private Robot bot;
