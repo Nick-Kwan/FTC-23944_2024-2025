@@ -28,46 +28,6 @@ public class Slides {
 
     }
 
-    public void setRSlidePosition(ExtensionState extensionState, ESlides eSlides) {
-        switch (extensionState) {
-            case retracted:
-                break;
-            case extending: {
-                switch (eSlides) {
-                    case rest:
-                        bot.sr.setPosition(100);
-                        setPosition(0);
-                        break;
-                    case vertical:
-                        bot.sr.setPosition(1);
-                        setPosition(1);
-                        break;
-                    case Horizontal:
-                        bot.sr.setPosition(2);
-                        setPosition(2);
-                        break;
-                    case lowBasket:
-                        bot.sr.setPosition(3);
-                        setPosition(3);
-                        break;
-                    case lowClip:
-                        bot.sr.setPosition(4);
-                        setPosition(4);
-                        break;
-                    case upClip:
-                        bot.sr.setPosition(5);
-                        setPosition(5);
-                        break;
-                    case lowClimb:
-                        bot.sr.setPosition(6);
-                        setPosition(6);
-                        break;
-                }
-            }
-            case extended:
-                break;
-        }
-    }
     public void setPosition (int pos){
         leftSlide.setTargetPosition(pos);
         rightSlide.setTargetPosition(pos);

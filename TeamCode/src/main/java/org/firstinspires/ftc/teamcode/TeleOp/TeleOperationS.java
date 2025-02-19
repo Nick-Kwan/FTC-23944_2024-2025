@@ -5,6 +5,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.teamcode.Commands.MecanumStates;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -22,6 +23,8 @@ public class TeleOperationS extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         bot = new Robot(hardwareMap,telemetry);
+
+        bot.setMecanumState(MecanumStates.NORMAL);
 
         bot.aX.setArmPosInit();
         try {
@@ -45,15 +48,24 @@ public class TeleOperationS extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive() && !isStopRequested()) {
-            bot.driveTrain.drive(gamepad1);
+            bot.driveTrain.driveAngleLock(bot.getMecanumState(), gamepad1);
             telemetry.addData("Heading", bot.driveTrain.getHeading());
             telemetry.addData("\n FL Motor Current: ", bot.driveTrain.getCurrent()[0]);
             telemetry.addData("\n BL Motor Current: ", bot.driveTrain.getCurrent()[1]);
             telemetry.addData("\n FR Motor Current: ", bot.driveTrain.getCurrent()[2]);
             telemetry.addData("\n BR Motor Current: ", bot.driveTrain.getCurrent()[3]);
             telemetry.update();
+
             if (gamepad1.left_trigger > 0.1) {
                 bot.driveTrain.resetIMU();
+            }
+
+            if (gamepad1.share) {
+                bot.setMecanumState(MecanumStates.FLIPPED);
+            }
+
+            if (gamepad1.options) {
+                bot.setMecanumState(MecanumStates.NORMAL);
             }
 
             Timer timer = new Timer();

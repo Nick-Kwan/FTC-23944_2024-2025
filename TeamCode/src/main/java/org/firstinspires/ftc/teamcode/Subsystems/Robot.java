@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.firstinspires.ftc.teamcode.Commands.MecanumStates;
+
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -14,6 +17,8 @@ public class Robot {
 
     Telemetry telemetry;
 
+    public MecanumStates mecanumState;
+
     public Robot(HardwareMap hardwareMap, Telemetry telemetry){
 
         this.telemetry = telemetry;
@@ -26,4 +31,16 @@ public class Robot {
         sr = new SlideRotation(hardwareMap);
 
     }
+
+    public void setMecanumState(MecanumStates mecanumState){
+        // driveTrain.driveAngleLock(mecanumState, gamepad1);
+        this.mecanumState = mecanumState;
+    }
+    public MecanumStates getMecanumState(){
+        return mecanumState;
+    }
+    public void runMecanum(MecanumStates mecanumState, Gamepad gamepad1){
+        driveTrain.driveAngleLock(mecanumState, gamepad1);
+    }
 }
+
